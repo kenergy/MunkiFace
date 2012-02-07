@@ -1,0 +1,7 @@
+
+@interface Model : NSObject
+{
+
+}
+
+@end
