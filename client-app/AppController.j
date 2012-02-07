@@ -14,6 +14,7 @@
 @implementation AppController : CPObject
 {
     @outlet CPWindow    theWindow;
+	@outlet CPView		installerInfoView;
 }
 
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
@@ -33,6 +34,8 @@
 		pathForResource:@"NSTexturedFullScreenBackgroundColor.png"]];
 	var bgColor = [CPColor colorWithPatternImage:img];
 	[[theWindow contentView] setBackgroundColor:bgColor];
+
+	[installerInfoView setBackgroundColor: [CPColor whiteColor]];
 }
 
 @end
