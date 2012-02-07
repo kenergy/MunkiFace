@@ -170,7 +170,7 @@ var CATALOGS_INSTANCE = nil;
 	
 	if (isCatalog)
 	{
-		return item + " (" + [[_data objectForKey:item] count] + ")";
+		return item;
 	}
 	else
 	{
