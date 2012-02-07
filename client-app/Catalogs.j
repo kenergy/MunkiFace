@@ -1,4 +1,5 @@
-@import "Pkg.j";
+@import "Pkg.j"
+@import "Catalog.j"
 /**
 	Stores the catalog information from the server. For now this is a
 	load-at-boot class, but it will eventually be able to reoad the data from
@@ -10,8 +11,8 @@ var CATALOGS_INSTANCE = nil;
 
 @implementation Catalogs : CPObject
 {
-	CPArray _data;
-	@outlet CPTableView _theTable;
+	CPDictionary _data;
+	@outlet CPOutlineView _outlineView;
 }
 
 
@@ -28,7 +29,7 @@ var CATALOGS_INSTANCE = nil;
 				requestWithURL:@"/MunkiFace/server-app/?controller=catalogs"];
 			var connection = [CPURLConnection connectionWithRequest:request
 				delegate:self];
-			_data = [CPArray array];
+			_data = [CPDictionary dictionary];
 		}
 		CATALOGS_INSTANCE = self;
 	}
@@ -68,7 +69,6 @@ var CATALOGS_INSTANCE = nil;
   sortDescriptorsDidChange:(CPArray)oldDescriptors
 {
 	[_data sortUsingDescriptors:[tableView sortDescriptors]];
-	console.log([tableView sortDescriptors]);
 	[tableView reloadData];
 }
 
@@ -116,19 +116,87 @@ var CATALOGS_INSTANCE = nil;
 
 
 
+/*-----------------------CPOutlineView DataSource Methods---------------------*/
+- (id)outlineView:(CPOutlineView) outlineView child:(CPInteger)index
+  ofItem:(id)item
+{
+	if (item == null)
+	{
+		return [[_data allKeys] objectAtIndex:index];
+	}
+	else
+	{
+		return [[_data objectForKey:item] objectAtIndex:index];
+	}
+}
+
+
+
+
+- (BOOL)outlineView:(CPOutlineView) outlineView isItemExpandable:(id)item
+{
+	if (item == null || [[_data allKeys] containsObject:item])
+	{
+		return YES;
+	}
+	return NO;
+}
+
+
+
+
+- (int)outlineView:(CPOutlineView) outlineView numberOfChildrenOfItem:(id)item
+{
+	var isCatalog = [[_data allKeys] containsObject:item];
+
+	if (item == null)
+	{
+		return [_data count];
+	}
+	else if (isCatalog)
+	{
+		return [[_data objectForKey:item] count];
+	}
+	return  0;
+}
+
+
+
+
+- (id)outlineView:(CPOutlineView) outlineView
+  objectValueForTableColumn:(CPTableColumn) tableColumn byItem:(id)item
+{
+	var isCatalog = [[_data allKeys] containsObject:item];
+	
+	if (isCatalog)
+	{
+		return item + " (" + [[_data objectForKey:item] count] + ")";
+	}
+	else
+	{
+		return [item objectForKey:@"name"];
+	}
+	return @"";
+}
+
+
+
+
+
 
 /*------------------------CPConnection Delegate Methods-----------------------*/
 - (void)connection:(CPURLConnection) connection didReceiveData:(CPString)data
 {
 	var cat = [CPDictionary dictionaryWithJSObject:JSON.parse(data)
 		recursively:YES];
-	_data = [cat objectForKey:@"all"];
+	_data = cat;//[cat objectForKey:@"all"];
+	[_outlineView reloadItem:nil];
 
 	// Set the initial sorted column to the application's name
-	var descriptor = [CPSortDescriptor sortDescriptorWithKey:@"name"
-												   ascending:YES];
-	[_data sortUsingDescriptors:[CPArray arrayWithObject:descriptor]];
-	[_theTable reloadData];
+//	var descriptor = [CPSortDescriptor sortDescriptorWithKey:@"name"
+//												   ascending:YES];
+//	[_data sortUsingDescriptors:[CPArray arrayWithObject:descriptor]];
+//	[_theTable reloadData];
 }
 
 

@@ -1,7 +1,7 @@
 
 @interface Catalogs : NSObject
 {
-    IBOutlet NSTableView* _theTable;
+    IBOutlet NSOutlineView* _outlineView;
 }
 
 @end
