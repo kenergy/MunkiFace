@@ -1,7 +1,0 @@
-
-@interface Pkg : NSObject
-{
-
-}
-
-@end
