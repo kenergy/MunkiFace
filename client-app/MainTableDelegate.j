@@ -1,4 +1,4 @@
-@import "Catalogs.j";
+@import "MFCatalogs.j";
 /**
 	Serves as the delegate for the main table in the application.
  */

@@ -6,7 +6,7 @@
 	class does takes care of that task.
  */
 
-@implementation Pkg : CPObject
+@implementation MFPackage : CPObject
 {
 	CPDictionary _row;
 }
@@ -81,6 +81,15 @@
 
 
 
+- (CPString)minOSVersion
+{
+	var item = [_row objectForKey:@"installs"];
+	return [[item firstObject] objectForKey:@"minosversion"];
+}
+
+
+
+
 - (CPString)description
 {
 	return [_row objectForKey:@"description"];
@@ -91,7 +100,7 @@
 
 - (CPString)uninstallable
 {
-	return [self objectForKey:@"uninstallable"] ? 'Yes' : 'No';
+	return [self objectForKey:@"uninstallable"];
 }
 
 
@@ -99,7 +108,7 @@
 
 - (CPString)autoRemove
 {
-	return [self objectForKey:@"autoremove"] ? 'Yes' : 'No';
+	return [self objectForKey:@"autoremove"];
 }
 
 
@@ -111,6 +120,22 @@
 - (id)objectForKey:(CPString)aKey
 {
 	return [_row objectForKey:aKey];
+}
+
+
+
+
+- (int)count
+{
+	return 0;
+}
+
+
+
+
+- (id)objectValueForOutlineColumn:(CPTableColumn)aCol
+{
+	return [self name];
 }
 
 @end

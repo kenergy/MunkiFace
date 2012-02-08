@@ -1,5 +1,5 @@
 
-@interface Catalogs : NSObject
+@interface MFCatalogs : NSObject
 {
     IBOutlet NSOutlineView* _outlineView;
 }

@@ -7,7 +7,8 @@
  */
 
 @import <Foundation/CPObject.j>
-@import "Catalogs.j";
+@import "MFCatalogs.j";
+@import "MFOutlineViewDelegate.j";
 @import "MainTableDelegate.j";
 
 

@@ -1,0 +1,7 @@
+
+@interface MFPackage : NSObject
+{
+
+}
+
+@end
