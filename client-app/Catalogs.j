@@ -25,8 +25,8 @@ var CATALOGS_INSTANCE = nil;
 		self = [super init];
 		if (self)
 		{
-			var request = [CPURLRequest
-				requestWithURL:@"/MunkiFace/server-app/?controller=catalogs"];
+			var uri = [[[CPBundle mainBundle] infoDictionary] objectForKey:@"MunkiFace Server URI"];
+			var request = [CPURLRequest requestWithURL:uri + "?controller=catalogs"];
 			var connection = [CPURLConnection connectionWithRequest:request
 				delegate:self];
 			_data = [CPDictionary dictionary];

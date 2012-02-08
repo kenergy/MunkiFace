@@ -6,5 +6,7 @@
 	<string>MainMenu.cib</string>
 	<key>CPBundleName</key>
 	<string>MunkiFace</string>
+	<key>MunkiFace Server URI</key>
+	<string>/github/MunkiFace/server-app/</string>
 </dict>
 </plist>
