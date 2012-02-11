@@ -9,8 +9,10 @@ var MF_PACKAGES_INSTANCE = nil;
 
 @implementation MFPackages : CPObject
 {
-	CPMutableDictionary _packagesCollection;
-	@outlet CPOutlineView _outlineView;
+	CPMutableDictionary						_packagesCollection;
+	@outlet CPOutlineView					_outlineView;
+	@accessors CPArrayController	_allCatalogs;
+	@outlet CPPopUpButton					_catalogsButton;
 }
 
 
@@ -57,6 +59,33 @@ var MF_PACKAGES_INSTANCE = nil;
 - (id)allPackages
 {
 	return _packagesCollection;
+}
+
+
+
+
+/**
+	Returns a sorted array of all available catalogs.
+	\returns CPArrayController
+ */
+- (CPArrayController)allCatalogs
+{
+	var retArray = [[CPArrayController alloc] init];
+	var keys = [_packagesCollection allKeys];
+	for(var i = 0; i < [keys count]; i++)
+	{
+		var pkgCatalogs = [[_packagesCollection objectForKey:
+			[keys objectAtIndex:i]]
+			catalogsArray];
+		for(var j = 0; j < [[retArray contentArray] count]; j++)
+		{
+			if ([[retArray contentArray] containsObject:[pkgCatalogs objectAtIndex:j]] == NO)
+			{
+				[retArray addObject:[pkgCatalogs objectAtIndex:j]];
+			}
+		}
+	}
+	return retArray;
 }
 
 
@@ -120,7 +149,15 @@ var MF_PACKAGES_INSTANCE = nil;
 		var pkg = [[MFPackage alloc] initWithKey:key andDictionary:row];
 		[_packagesCollection setObject:pkg forKey:key];
 	}
+
+	// Reload the outline view
 	[_outlineView reloadItem:nil];
+
+	// Reload the contents of the catalog popup button
+	var catalogs = [MFCatalogsController sharedController];
+	[catalogs reloadCatalogs];
+	[_catalogsButton removeAllItems];
+	[_catalogsButton addItemsWithTitles:[catalogs catalogs]];
 }
 
 

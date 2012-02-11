@@ -10,6 +10,7 @@
 {
 	CPString _fileKey;
 	CPDictionary _data;
+	CPString _munkiUri;
 }
 
 
@@ -20,6 +21,8 @@
 	{
 		_fileKey = aKey;
 		_data = aDictionary;
+		_munkiUri = [[[CPBundle mainBundle] infoDictionary]
+				objectForKey:@"Munki Server URI"];
 	}
 	return self;
 }
@@ -66,6 +69,16 @@
 - (CPString)catalogsAsString
 {
 	return [[_data objectForKey:@"catalogs"] componentsJoinedByString:@", "];
+}
+
+
+
+
+- (CPString)catalogsArray
+{
+	return [[_data objectForKey:@"catalogs"]
+	sortedArrayUsingSelector:@selector(compare:)];
+
 }
 
 
@@ -131,7 +144,8 @@
 
 - (CPString)packageUrl
 {
-	return [self objectForKey:@"installer_item_location"];
+	return [_munkiUri stringByAppendingString:
+		[self objectForKey:@"installer_item_location"]];
 }
 
 

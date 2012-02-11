@@ -8,6 +8,7 @@
 
 @import <Foundation/CPObject.j>
 @import "MFCatalogs.j";
+@import "MFCatalogsController.j"
 @import "MFPackages.j";
 @import "MFOutlineViewDelegate.j";
 
