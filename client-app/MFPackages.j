@@ -1,3 +1,4 @@
+@import "MFPackage.j"
 /**
 	Stores the catalog information from the server. For now this is a
 	load-at-boot class, but it will eventually be able to reoad the data from

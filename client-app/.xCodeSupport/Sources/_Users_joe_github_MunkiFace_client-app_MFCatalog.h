@@ -1,7 +1,0 @@
-
-@interface MFCatalog : NSObject
-{
-
-}
-
-@end

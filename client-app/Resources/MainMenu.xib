@@ -1548,7 +1548,7 @@
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSPopUpButtonCell" key="NSCell" id="489106049">
 								<int key="NSCellFlags">-2076049856</int>
-								<int key="NSCellFlags2">2048</int>
+								<int key="NSCellFlags2">134219776</int>
 								<reference key="NSSupport" ref="380127132"/>
 								<string key="NSCellIdentifier">_NS:868</string>
 								<reference key="NSControlView" ref="575950626"/>
@@ -1654,7 +1654,7 @@
 			<object class="NSCustomObject" id="30707218">
 				<string key="NSClassName">MFOutlineViewDelegate</string>
 			</object>
-			<object class="NSCustomObject" id="294879116">
+			<object class="NSCustomObject" id="824779425">
 				<string key="NSClassName">MFCatalogsController</string>
 			</object>
 			<object class="NSUserDefaultsController" id="721767075">
@@ -2799,7 +2799,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">996</int>
-						<reference key="object" ref="294879116"/>
+						<reference key="object" ref="824779425"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</object>
@@ -3148,7 +3148,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">MFCatalogsController</string>
-					<string key="superclassName">NSArrayController</string>
+					<string key="superclassName">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MFCatalogsController.h</string>
@@ -3180,31 +3180,31 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>_catalogsButton</string>
 							<string>_outlineView</string>
-							<string>catalogsButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>NSOutlineView</string>
 							<string>NSPopUpButton</string>
+							<string>NSOutlineView</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>_catalogsButton</string>
 							<string>_outlineView</string>
-							<string>catalogsButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
-								<string key="name">_outlineView</string>
-								<string key="candidateClassName">NSOutlineView</string>
+								<string key="name">_catalogsButton</string>
+								<string key="candidateClassName">NSPopUpButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">catalogsButton</string>
-								<string key="candidateClassName">NSPopUpButton</string>
+								<string key="name">_outlineView</string>
+								<string key="candidateClassName">NSOutlineView</string>
 							</object>
 						</object>
 					</object>
