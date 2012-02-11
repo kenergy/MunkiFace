@@ -92,19 +92,43 @@
 
 
 
-- (CPString)installerItemSizeFormatted
+- (int)installedSize
 {
-	var bytes = [self bytes];
+	return [_data objectForKey:@"installed_size"];
+}
+
+
+
+
+- (CPString)formatBytes:(float)bytes
+{
 	var suffix = [CPArray arrayWithObjects:"B","K","M","G","T"];
 	var i = 1;
 	while(bytes > 1024)
 	{
-		bytes = bytes/1024;
+		bytes = bytes/1024.0;
 		i++;
 	}
-	return [CPString stringWithFormat:@"%d%s",
-		bytes,
+	
+	return [CPString stringWithFormat:@"%f%s",
+		Math.round(bytes * Math.pow(10, 2))/Math.pow(10, 2),
 		[suffix objectAtIndex:i]];
+}
+
+
+
+
+- (CPString)installerItemSizeFormatted
+{
+	return [self formatBytes:[self installerItemSize]];
+}
+
+
+
+
+- (CPString)installedSizeFormatted
+{
+	return [self formatBytes:[self installedSize]];
 }
 
 
