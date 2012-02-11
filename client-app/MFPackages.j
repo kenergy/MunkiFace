@@ -80,9 +80,11 @@ var MF_PACKAGES_INSTANCE = nil;
 			catalogsArray];
 		for(var j = 0; j < [[retArray contentArray] count]; j++)
 		{
-			if ([[retArray contentArray] containsObject:[pkgCatalogs objectAtIndex:j]] == NO)
+			var catKey = [[pkgCatalogs allKeys] objectAtIndex:j];
+			var cat = [pkgCatalogs objectForKey:catKey];
+			if ([[retArray contentArray] containsObject:cat] == NO)
 			{
-				[retArray addObject:[pkgCatalogs objectAtIndex:j]];
+				[retArray addObject:cat];
 			}
 		}
 	}

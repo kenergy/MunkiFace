@@ -126,7 +126,7 @@
 
 
 
-- (CPString)description
+- (CPString)notes
 {
 	return [_data objectForKey:@"description"];
 }

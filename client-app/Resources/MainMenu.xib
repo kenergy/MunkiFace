@@ -798,7 +798,7 @@
 													<string key="NSAntiCompressionPriority">{250, 750}</string>
 													<bool key="NSEnabled">YES</bool>
 													<object class="NSTextFieldCell" key="NSCell" id="288696563">
-														<int key="NSCellFlags">-1805517311</int>
+														<int key="NSCellFlags">-1268646399</int>
 														<int key="NSCellFlags2">1346371584</int>
 														<string key="NSContents"/>
 														<reference key="NSSupport" ref="380127132"/>
@@ -832,7 +832,7 @@
 													<string key="NSReuseIdentifierKey">_NS:2368</string>
 													<bool key="NSEnabled">YES</bool>
 													<object class="NSTokenFieldCell" key="NSCell" id="51065112">
-														<int key="NSCellFlags">341966336</int>
+														<int key="NSCellFlags">878837248</int>
 														<int key="NSCellFlags2">0</int>
 														<reference key="NSSupport" ref="380127132"/>
 														<string key="NSCellIdentifier">_NS:2368</string>
@@ -864,7 +864,7 @@
 													<string key="NSReuseIdentifierKey">_NS:2368</string>
 													<bool key="NSEnabled">YES</bool>
 													<object class="NSTokenFieldCell" key="NSCell" id="303080962">
-														<int key="NSCellFlags">341966336</int>
+														<int key="NSCellFlags">878837248</int>
 														<int key="NSCellFlags2">0</int>
 														<reference key="NSSupport" ref="380127132"/>
 														<string key="NSPlaceholderString">Other packages that must be installed before this one. If any package listed here is removed from the client, this package will also be removed.</string>
@@ -1652,9 +1652,9 @@
 				<string key="NSClassName">MFPackages</string>
 			</object>
 			<object class="NSCustomObject" id="30707218">
-				<string key="NSClassName">MFOutlineViewDelegate</string>
+				<string key="NSClassName">MFOutlineViewController</string>
 			</object>
-			<object class="NSCustomObject" id="824779425">
+			<object class="NSCustomObject" id="442218743">
 				<string key="NSClassName">MFCatalogsController</string>
 			</object>
 			<object class="NSUserDefaultsController" id="721767075">
@@ -1682,19 +1682,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">dataSource</string>
-						<reference key="source" ref="47623448"/>
-						<reference key="destination" ref="198582742"/>
-					</object>
-					<int key="connectionID">684</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="47623448"/>
 						<reference key="destination" ref="30707218"/>
 					</object>
 					<int key="connectionID">685</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="47623448"/>
+						<reference key="destination" ref="30707218"/>
+					</object>
+					<int key="connectionID">1016</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1721,132 +1721,148 @@
 					<int key="connectionID">968</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_catalogsPopup</string>
+						<reference key="source" ref="30707218"/>
+						<reference key="destination" ref="575950626"/>
+					</object>
+					<int key="connectionID">1002</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">catalogSelectionDidChange:</string>
+						<reference key="source" ref="30707218"/>
+						<reference key="destination" ref="575950626"/>
+					</object>
+					<int key="connectionID">1017</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: item.preferredName</string>
+						<string key="label">value: activePackage.preferredName</string>
 						<reference key="source" ref="938937919"/>
 						<reference key="destination" ref="30707218"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="938937919"/>
 							<reference key="NSDestination" ref="30707218"/>
-							<string key="NSLabel">value: item.preferredName</string>
+							<string key="NSLabel">value: activePackage.preferredName</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">item.preferredName</string>
+							<string key="NSKeyPath">activePackage.preferredName</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">969</int>
+					<int key="connectionID">1004</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: item.displayName</string>
+						<string key="label">value: activePackage.displayName</string>
 						<reference key="source" ref="990851957"/>
 						<reference key="destination" ref="30707218"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="990851957"/>
 							<reference key="NSDestination" ref="30707218"/>
-							<string key="NSLabel">value: item.displayName</string>
+							<string key="NSLabel">value: activePackage.displayName</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">item.displayName</string>
+							<string key="NSKeyPath">activePackage.displayName</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">961</int>
+					<int key="connectionID">1007</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: item.version</string>
+						<string key="label">value: activePackage.version</string>
 						<reference key="source" ref="918944125"/>
 						<reference key="destination" ref="30707218"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="918944125"/>
 							<reference key="NSDestination" ref="30707218"/>
-							<string key="NSLabel">value: item.version</string>
+							<string key="NSLabel">value: activePackage.version</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">item.version</string>
+							<string key="NSKeyPath">activePackage.version</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">958</int>
+					<int key="connectionID">1006</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: item.description</string>
+						<string key="label">value: activePackage.notes</string>
 						<reference key="source" ref="477626908"/>
 						<reference key="destination" ref="30707218"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="477626908"/>
 							<reference key="NSDestination" ref="30707218"/>
-							<string key="NSLabel">value: item.description</string>
+							<string key="NSLabel">value: activePackage.notes</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">item.description</string>
+							<string key="NSKeyPath">activePackage.notes</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">967</int>
+					<int key="connectionID">1011</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: item.catalogsArray</string>
+						<string key="label">value: activePackage.catalogsArray</string>
 						<reference key="source" ref="132910178"/>
 						<reference key="destination" ref="30707218"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="132910178"/>
 							<reference key="NSDestination" ref="30707218"/>
-							<string key="NSLabel">value: item.catalogsArray</string>
+							<string key="NSLabel">value: activePackage.catalogsArray</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">item.catalogsArray</string>
+							<string key="NSKeyPath">activePackage.catalogsArray</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">979</int>
+					<int key="connectionID">1013</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: item.packageUrl</string>
+						<string key="label">value: activePackage.packageUrl</string>
 						<reference key="source" ref="72440338"/>
 						<reference key="destination" ref="30707218"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="72440338"/>
 							<reference key="NSDestination" ref="30707218"/>
-							<string key="NSLabel">value: item.packageUrl</string>
+							<string key="NSLabel">value: activePackage.packageUrl</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">item.packageUrl</string>
+							<string key="NSKeyPath">activePackage.packageUrl</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">955</int>
+					<int key="connectionID">1009</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: item.minOSVersion</string>
+						<string key="label">value: activePackage.minOSVersion</string>
 						<reference key="source" ref="1052952359"/>
 						<reference key="destination" ref="30707218"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="1052952359"/>
 							<reference key="NSDestination" ref="30707218"/>
-							<string key="NSLabel">value: item.minOSVersion</string>
+							<string key="NSLabel">value: activePackage.minOSVersion</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">item.minOSVersion</string>
+							<string key="NSKeyPath">activePackage.minOSVersion</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">973</int>
+					<int key="connectionID">1014</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: item.maxOSVersion</string>
+						<string key="label">value: activePackage.maxOSVersion</string>
 						<reference key="source" ref="611590430"/>
 						<reference key="destination" ref="30707218"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="611590430"/>
 							<reference key="NSDestination" ref="30707218"/>
-							<string key="NSLabel">value: item.maxOSVersion</string>
+							<string key="NSLabel">value: activePackage.maxOSVersion</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">item.maxOSVersion</string>
+							<string key="NSKeyPath">activePackage.maxOSVersion</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">976</int>
+					<int key="connectionID">1015</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2002,14 +2018,11 @@
 							<reference ref="938937919"/>
 							<reference ref="1042248708"/>
 							<reference ref="766014355"/>
-							<reference ref="990851957"/>
 							<reference ref="918944125"/>
 							<reference ref="72440338"/>
 							<reference ref="477626908"/>
 							<reference ref="132910178"/>
-							<reference ref="1052952359"/>
 							<reference ref="611590430"/>
-							<reference ref="361008338"/>
 							<reference ref="524093634"/>
 							<reference ref="829068991"/>
 							<reference ref="389837894"/>
@@ -2042,6 +2055,9 @@
 							<reference ref="576359441"/>
 							<reference ref="919610260"/>
 							<reference ref="41218807"/>
+							<reference ref="990851957"/>
+							<reference ref="1052952359"/>
+							<reference ref="361008338"/>
 						</object>
 						<reference key="parent" ref="769383187"/>
 					</object>
@@ -2799,7 +2815,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">996</int>
-						<reference key="object" ref="824779425"/>
+						<reference key="object" ref="442218743"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</object>
@@ -3101,7 +3117,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1000</int>
+			<int key="maxID">1017</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3155,22 +3171,54 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">MFOutlineViewDelegate</string>
+					<string key="className">MFOutlineViewController</string>
 					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">catalogSelectionDidChange:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">catalogSelectionDidChange:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">catalogSelectionDidChange:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">_outlineView</string>
-						<string key="NS.object.0">NSOutlineView</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>_catalogsPopup</string>
+							<string>_outlineView</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSPopUpButton</string>
+							<string>NSOutlineView</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">_outlineView</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">_outlineView</string>
-							<string key="candidateClassName">NSOutlineView</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>_catalogsPopup</string>
+							<string>_outlineView</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">_catalogsPopup</string>
+								<string key="candidateClassName">NSPopUpButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">_outlineView</string>
+								<string key="candidateClassName">NSOutlineView</string>
+							</object>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/MFOutlineViewDelegate.h</string>
+						<string key="minorKey">./Classes/MFOutlineViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
