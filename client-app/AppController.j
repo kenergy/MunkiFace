@@ -8,13 +8,13 @@
 
 @import <Foundation/CPObject.j>
 @import "MFCatalogs.j";
+@import "MFPackages.j";
 @import "MFOutlineViewDelegate.j";
-@import "MainTableDelegate.j";
 
 
 @implementation AppController : CPObject
 {
-    @outlet CPWindow    theWindow;
+	@outlet CPWindow	theWindow;
 	@outlet CPView		installerInfoView;
 }
 

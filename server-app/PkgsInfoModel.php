@@ -5,17 +5,22 @@
 class PkgsInfoModel extends RTArray
 {
 
+	protected $_munkiDir;
 
-	public static function plists()
+
+	public function plists()
 	{
-		$munkiDir
-			= Settings::sharedSettings()->objectForKey("munki-repo") .
-			"/pkgsinfo/";
+		$this->_munkiDir
+			= RTString::stringWithString(
+				Settings::sharedSettings()->objectForKey("munki-repo") .
+				"/pkgsinfo/"
+		);
 		$packages = array();
 		
-		self::globPlistFromDir($munkiDir, $packages);
+		self::globPlistFromDir($this->_munkiDir, $packages);
 
-		return parent::arrayWithArray($packages);
+		//return parent::arrayWithArray($packages);
+		return RTDictionary::dictionaryWithPHPArray($packages);
 	}
 
 
@@ -25,6 +30,7 @@ class PkgsInfoModel extends RTArray
 	{
 		if (!is_dir($aDir))
 		{
+			echo $aDir . " is not a directory <br />";
 			return;
 		}
 
@@ -43,7 +49,12 @@ class PkgsInfoModel extends RTArray
 			}
 			else
 			{
-				$plists[] = RTDictionary::dictionaryWithContentsOfFile($path);
+				$relativeFile = $path->stringByReplacingOccurrencesOfString_withString(
+					$this->_munkiDir,
+					RTString::string()
+				);
+				$relativeFile = $relativeFile->description();
+				$plists[$relativeFile] = RTDictionary::dictionaryWithContentsOfFile($path);
 			}
 		}
 	}

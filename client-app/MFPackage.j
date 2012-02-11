@@ -8,16 +8,18 @@
 
 @implementation MFPackage : CPObject
 {
-	CPDictionary _row;
+	CPString _fileKey;
+	CPDictionary _data;
 }
 
 
-- (id)initWithDictionary:(CPDictionary)aDictionary
+- (id)initWithKey:(CPString)aKey andDictionary:(CPDictionary)aDictionary
 {
 	self = [super init];
 	if (self)
 	{
-		_row = aDictionary;
+		_fileKey = aKey;
+		_data = aDictionary;
 	}
 	return self;
 }
@@ -27,13 +29,27 @@
 
 - (CPString)name
 {
-	var name = [_row objectForKey:@"display_name"];
-	if (name == nil)
+	return [_data objectForKey:@"name"];
+}
+
+
+
+
+- (CPString)displayName
+{
+	return [_data objectForKey:@"display_name"];
+}
+
+
+
+
+- (CPString)preferredName
+{
+	if ([self displayName] != nil)
 	{
-		name = [_row objectForKey:@"name"] + " "
-			+ [self version];
+		return [self displayName];
 	}
-	return name;
+	return [self name];
 }
 
 
@@ -41,7 +57,7 @@
 
 - (CPString)version
 {
-	return [_row objectForKey:@"version"];
+	return [_data objectForKey:@"version"];
 }
 
 
@@ -49,21 +65,21 @@
 
 - (CPString)catalogsAsString
 {
-	return [[_row objectForKey:@"catalogs"] componentsJoinedByString:@", "];
+	return [[_data objectForKey:@"catalogs"] componentsJoinedByString:@", "];
 }
 
 
 
 
-- (int)bytes
+- (int)installerItemSize
 {
-	return [_row objectForKey:@"installer_item_size"];
+	return [_data objectForKey:@"installer_item_size"];
 }
 
 
 
 
-- (CPString)bytesFormatted
+- (CPString)installerItemSizeFormatted
 {
 	var bytes = [self bytes];
 	var suffix = [CPArray arrayWithObjects:"B","K","M","G","T"];
@@ -83,8 +99,15 @@
 
 - (CPString)minOSVersion
 {
-	var item = [_row objectForKey:@"installs"];
-	return [[item firstObject] objectForKey:@"minosversion"];
+	return [_data objectForKey:@"minimum_os_version"];
+}
+
+
+
+
+- (CPString)maxOSVersion
+{
+	return [_data objectForKey:@"maximum_os_version"];
 }
 
 
@@ -92,7 +115,7 @@
 
 - (CPString)description
 {
-	return [_row objectForKey:@"description"];
+	return [_data objectForKey:@"description"];
 }
 
 
@@ -101,6 +124,14 @@
 - (CPString)uninstallable
 {
 	return [self objectForKey:@"uninstallable"];
+}
+
+
+
+
+- (CPString)packageUrl
+{
+	return [self objectForKey:@"installer_item_location"];
 }
 
 
@@ -119,7 +150,7 @@
  */
 - (id)objectForKey:(CPString)aKey
 {
-	return [_row objectForKey:aKey];
+	return [_data objectForKey:aKey];
 }
 
 
@@ -135,7 +166,7 @@
 
 - (id)objectValueForOutlineColumn:(CPTableColumn)aCol
 {
-	return [self name];
+	return [self preferredName];
 }
 
 @end

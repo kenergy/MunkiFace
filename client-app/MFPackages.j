@@ -1,4 +1,3 @@
-@import "MFCatalog.j"
 /**
 	Stores the catalog information from the server. For now this is a
 	load-at-boot class, but it will eventually be able to reoad the data from
@@ -6,11 +5,11 @@
 	descriptions, back to the server.
  */
 
-var MF_CATALOGS_INSTANCE = nil;
+var MF_PACKAGES_INSTANCE = nil;
 
-@implementation MFCatalogs : CPObject
+@implementation MFPackages : CPObject
 {
-	CPMutableArray _catalogCollection;
+	CPMutableDictionary _packagesCollection;
 	@outlet CPOutlineView _outlineView;
 }
 
@@ -19,7 +18,7 @@ var MF_CATALOGS_INSTANCE = nil;
 
 - (id)init
 {
-	if (MF_CATALOGS_INSTANCE == nil)
+	if (MF_PACKAGES_INSTANCE == nil)
 	{
 		self = [super init];
 		if (self)
@@ -31,21 +30,21 @@ var MF_CATALOGS_INSTANCE = nil;
 			var connection = [CPURLConnection connectionWithRequest:request
 				delegate:self];
 		}
-		MF_CATALOGS_INSTANCE = self;
+		MF_PACKAGES_INSTANCE = self;
 	}
-	return MF_CATALOGS_INSTANCE;
+	return MF_PACKAGES_INSTANCE;
 }
 
 
 
 
-+ (id)sharedCatalogs
++ (id)sharedPackages
 {
-	if (MF_CATALOGS_INSTANCE == nil)
+	if (MF_PACKAGES_INSTANCE == nil)
 	{
-		return [[Catalogs alloc] init];
+		return [[MFPackages alloc] init];
 	}
-	return MF_CATALOGS_INSTANCE;
+	return MF_PACKAGES_INSTANCE;
 }
 
 
@@ -55,9 +54,9 @@ var MF_CATALOGS_INSTANCE = nil;
 	Returns the entire data collection as returned by the server.
 	\returns CPDictionary
  */
-- (id)catalogs
+- (id)allPackages
 {
-	return _catalogCollection;
+	return _packagesCollection;
 }
 
 
@@ -70,7 +69,8 @@ var MF_CATALOGS_INSTANCE = nil;
 {
 	if (item == nil)
 	{
-		return [_catalogCollection objectAtIndex:index];
+		var key = [[_packagesCollection allKeys] objectAtIndex:index];
+		return [_packagesCollection objectForKey:key];
 	}
 	return [item objectAtIndex:index];
 }
@@ -88,7 +88,7 @@ var MF_CATALOGS_INSTANCE = nil;
 
 - (int)outlineView:(CPOutlineView) outlineView numberOfChildrenOfItem:(id)item
 {
-	return item == nil ? [_catalogCollection count] : [item count];
+	return item == nil ? [_packagesCollection count] : [item count];
 }
 
 
@@ -108,25 +108,19 @@ var MF_CATALOGS_INSTANCE = nil;
 /*------------------------CPConnection Delegate Methods-----------------------*/
 - (void)connection:(CPURLConnection) connection didReceiveData:(CPString)data
 {
-	var cat = [CPDictionary dictionaryWithJSObject:JSON.parse(data)
+	var pkgs = [CPDictionary dictionaryWithJSObject:JSON.parse(data)
 		recursively:YES];
-	_catalogCollection = [CPMutableArray array];
+	_packagesCollection = [CPMutableDictionary dictionary];
 
-	var catKeys = [cat allKeys];
-	for (var i = 0; i < [catKeys count]; i++)
+	var pkgsKeys = [pkgs allKeys];
+	for (var i = 0; i < [pkgsKeys count]; i++)
 	{
-		var key = [catKeys objectAtIndex:i];
-		var row = [cat objectForKey:key];
-		var catalog = [[MFCatalog alloc] initWithName:key andData:row];
-		[_catalogCollection addObject:catalog];
+		var key = [pkgsKeys objectAtIndex:i];
+		var row = [pkgs objectForKey:key];
+		var pkg = [[MFPackage alloc] initWithKey:key andDictionary:row];
+		[_packagesCollection setObject:pkg forKey:key];
 	}
 	[_outlineView reloadItem:nil];
-
-	// Set the initial sorted column to the application's name
-//	var descriptor = [CPSortDescriptor sortDescriptorWithKey:@"name"
-//												   ascending:YES];
-//	[_data sortUsingDescriptors:[CPArray arrayWithObject:descriptor]];
-//	[_theTable reloadData];
 }
 
 

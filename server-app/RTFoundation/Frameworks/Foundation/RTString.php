@@ -287,6 +287,30 @@ class RTString extends RTObject
 		}
 		return RTMakeRange($pos, $aString->length());
 	}
+
+
+
+
+	/**
+		Returns a new string in which all occurrences of a target string in the
+		receiver are replaced by another given string.
+		\param target
+		\param replacement
+		\returns RTString
+	 */
+	public function stringByReplacingOccurrencesOfString_withString(
+		RTString $target,
+		RTString $replacement
+	)
+	{
+		return RTString::stringWithString(
+			str_replace(
+				$target->description(),
+				$replacement->description(),
+				$this->description()
+			)
+		);
+	}
 }
 
 

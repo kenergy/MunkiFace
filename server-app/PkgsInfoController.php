@@ -6,7 +6,7 @@ class PkgsInfoController extends RTObject
 	public function init()
 	{
 		parent::init();
-		$model = PkgsInfoModel::plists();
+		$model = PkgsInfoModel::alloc()->init()->plists();
 		echo $model;
 		return $this;
 	}

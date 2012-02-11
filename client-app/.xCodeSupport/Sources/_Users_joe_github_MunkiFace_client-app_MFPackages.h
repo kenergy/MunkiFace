@@ -1,5 +1,5 @@
 
-@interface MFOutlineViewDelegate : NSObject
+@interface MFPackages : NSObject
 {
     IBOutlet NSOutlineView* _outlineView;
 }
