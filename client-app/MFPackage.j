@@ -175,9 +175,27 @@
 
 
 
-- (CPString)autoRemove
+- (BOOL)autoRemove
 {
 	return [self objectForKey:@"autoremove"];
+}
+
+
+
+
+- (CPArray)requires
+{
+	return [[self objectForKey:@"requires"]
+		sortedArrayUsingSelector:@selector(compare:)];
+}
+
+
+
+
+- (CPArray)updateFor
+{
+	return [[self objectForKey:@"update_for"]
+		sortedArrayUsingSelector:@selector(compare:)];
 }
 
 
