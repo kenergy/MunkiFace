@@ -7,7 +7,7 @@ class PkgsInfoController extends RTObject
 	{
 		parent::init();
 		$model = PkgsInfoModel::alloc()->init()->plists();
-		echo $model;
+		echo json_encode($model);
 		return $this;
 	}
 }

@@ -19,8 +19,8 @@ class PkgsInfoModel extends RTArray
 		
 		self::globPlistFromDir($this->_munkiDir, $packages);
 
-		return $packages;
-		//return RTDictionary::dictionaryWithPHPArray($packages);
+		//return parent::arrayWithArray($packages);
+		return RTDictionary::dictionaryWithPHPArray($packages);
 	}
 
 
@@ -54,8 +54,7 @@ class PkgsInfoModel extends RTArray
 					RTString::string()
 				);
 				$relativeFile = $relativeFile->description();
-				$plist = new CFPropertyList($path);
-				$plists[$relativeFile] = $plist->toArray();
+				$plists[$relativeFile] = RTDictionary::dictionaryWithContentsOfFile($path);
 			}
 		}
 	}

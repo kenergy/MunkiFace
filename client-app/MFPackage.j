@@ -201,6 +201,22 @@
 
 
 
+- (CPString)uninstallScript
+{
+	return [self objectForKey:@"uninstall_script"];
+}
+
+
+
+
+- (CPString)uninstallMethod
+{
+	return [self objectForKey:@"uninstall_method"];
+}
+
+
+
+
 /**
 	A catch-all method.
  */

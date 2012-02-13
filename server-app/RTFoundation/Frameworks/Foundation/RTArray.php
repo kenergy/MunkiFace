@@ -273,7 +273,7 @@ class RTArray extends RTObject implements
 				}
 				else
 				{
-					$output[] = '"' . $obj->description() . '"';
+					$output[] = '"' . str_replace('"', '\"', $obj->description()) . '"';
 				}
 			}
 			else if (is_bool($obj))

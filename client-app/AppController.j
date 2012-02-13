@@ -7,6 +7,7 @@
  */
 
 @import <Foundation/CPObject.j>
+@import <LPKit/LPKit.j>
 @import "MFCatalogsController.j"
 @import "MFOutlineViewController.j"
 @import "MFPackages.j";
@@ -16,6 +17,7 @@
 {
 	@outlet CPWindow	theWindow;
 	@outlet CPView		installerInfoView;
+	@outlet LPMultiLineTextField textField;
 }
 
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
@@ -37,6 +39,8 @@
 	[[theWindow contentView] setBackgroundColor:bgColor];
 
 	[installerInfoView setBackgroundColor: [CPColor whiteColor]];
+
+	console.log([textField textColor]);
 }
 
 @end
