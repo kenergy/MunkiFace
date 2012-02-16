@@ -217,6 +217,25 @@
 
 
 
+- (CPArray)installerEnvironment
+{
+	var ar = [[CPMutableArray alloc] init];
+	var vars = [self objectForKey:@"installer_environment"];
+	var keys = [vars allKeys];
+	for( var i = 0; i < [keys count]; i++)
+	{
+		var key = [keys objectAtIndex:i];
+		var val = [vars objectForKey:key];
+		var dict = [CPDictionary dictionaryWithObjects:[key, val]
+			forKeys:["varName", "varValue"]];
+		[ar addObject:dict];
+	}
+	return ar;
+}
+
+
+
+
 /**
 	A catch-all method.
  */
