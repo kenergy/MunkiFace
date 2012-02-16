@@ -39,8 +39,6 @@
 	[[theWindow contentView] setBackgroundColor:bgColor];
 
 	[installerInfoView setBackgroundColor: [CPColor whiteColor]];
-
-	console.log([textField textColor]);
 }
 
 @end
