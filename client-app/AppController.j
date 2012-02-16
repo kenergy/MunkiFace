@@ -2,22 +2,18 @@
  * AppController.j
  * MunkiFace
  *
- * Created by You on January 25, 2012.
- * Copyright 2012, Your Company All rights reserved.
+ * Created by Joe Wollard on January 25, 2012.
+ * Copyright 2012, MunkiFace All rights reserved.
  */
 
 @import <Foundation/CPObject.j>
 @import <LPKit/LPKit.j>
-@import "MFCatalogsController.j"
-@import "MFOutlineViewController.j"
-@import "MFPackage_Adobe.j"
-@import "MFPackages.j";
+@import <MunkiFace/MunkiFace.j>
 
 
 @implementation AppController : CPObject
 {
 	@outlet CPWindow	theWindow;
-	@outlet CPView		installerInfoView;
 	@outlet LPMultiLineTextField textField;
 }
 
@@ -38,8 +34,6 @@
 		pathForResource:@"NSTexturedFullScreenBackgroundColor.png"]];
 	var bgColor = [CPColor colorWithPatternImage:img];
 	[[theWindow contentView] setBackgroundColor:bgColor];
-
-	[installerInfoView setBackgroundColor: [CPColor whiteColor]];
 }
 
 @end

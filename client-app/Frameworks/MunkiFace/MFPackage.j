@@ -201,6 +201,38 @@
 
 
 
+- (CPString)preinstallScript
+{
+	return [self objectForKey:@"preinstall_script"];
+}
+
+
+
+
+- (CPString)postinstallScript
+{
+	return [self objectForKey:@"postinstall_script"];
+}
+
+
+
+
+- (CPString)preuninstallScript
+{
+	return [self objectForKey:@"preuninstall_script"];
+}
+
+
+
+
+- (CPString)postuninstallScript
+{
+	return [self objectForKey:@"postuninstall_script"];
+}
+
+
+
+
 - (CPString)uninstallScript
 {
 	return [self objectForKey:@"uninstall_script"];
@@ -236,9 +268,25 @@
 
 
 
-- (CPString)adobeSetupType
+- (CPString)forceInstallAfterDate
 {
-	return [self objectForKey:@"AdobeSetupType"];
+	return [self objectForKey:@"force_install_after_date"];
+}
+
+
+
+
+- (BOOL)unattendedInstall
+{
+	return [self objectForKey:@"unattended_install"];
+}
+
+
+
+
+- (BOOL)unattendedUninstall
+{
+	return [self objectForKey:@"unattended_uninstall"];
 }
 
 
