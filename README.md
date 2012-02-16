@@ -1,10 +1,15 @@
 # What's MunkiFace? #
 At the moment, it's a work in progress. What it will eventually become is a web
-application front end for [Munki](http://code.google.com/p/munki/). There once
-was a project called munkiweb, and to be honest, it may very well be under
-active development at this very moment. But, I couldn't verify that on my own,
-and frankly I'm often times not very patient so I decided to see what was
-involved in writing my own frontend for Munki.
+application front end for [Munki](http://code.google.com/p/munki/).
+
+Greg Neagle, the creator of Munki and various other tools, just emailed a few
+links to me for reference. I'll clean this up a little later, but wanted to get
+them posted for reference.
+
+* munkiserver: https://github.com/jnraine/munkiserver
+* MunkiReport: http://code.google.com/p/munkireport/
+* MunkiReport-php: http://code.google.com/p/munkireport-php/
+* [Pushing Packages with Munki](http://documentation.macsysadmin.se/2011/computer/Pushing_Packages_with_Munki.m4v)
 
 ## Basic Roadmap ##
 
