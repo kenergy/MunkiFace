@@ -236,6 +236,14 @@
 
 
 
+- (CPString)adobeSetupType
+{
+	return [self objectForKey:@"AdobeSetupType"];
+}
+
+
+
+
 /**
 	A catch-all method.
  */
