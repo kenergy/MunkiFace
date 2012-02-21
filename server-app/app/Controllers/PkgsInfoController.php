@@ -9,7 +9,9 @@ class PkgsInfoController extends RTObject
 		$request = HTTPRequest::sharedRequest();
 		$model = PkgsInfoModel::alloc()->init()->plists();
 	
-		echo json_encode($model->phpArray());
+		$data = $model->phpArray();
+
+		echo json_encode($data);
 
 		return $this;
 	}

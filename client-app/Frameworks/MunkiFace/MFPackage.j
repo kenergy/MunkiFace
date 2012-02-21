@@ -168,7 +168,7 @@
 
 - (CPString)packageUrl
 {
-	return [_munkiUri stringByAppendingString:
+	return [_munkiUri stringByAppendingFormat:@"%@/%@", @"pkgs",
 		[self objectForKey:@"installer_item_location"]];
 }
 
