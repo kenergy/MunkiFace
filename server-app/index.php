@@ -1,7 +1,7 @@
 <?php
-require_once (dirname(__FILE__) . "/bootstrap.php");
+require_once (dirname(__FILE__) . "/app/bootstrap.php");
 
-$request = RTDictionary::dictionaryWithPHPArray($_REQUEST);
+$request = HTTPRequest::sharedRequest();
 
 $controller = $request->objectForKey("controller");
 
