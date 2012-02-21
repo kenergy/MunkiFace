@@ -10,7 +10,6 @@ require_once($appDir . "Controllers/PkgsInfoController.php");
 require_once($appDir . "Controllers/CatalogsController.php");
 require_once($appDir . "Models/PkgsModel.php");
 require_once($appDir . "Models/PkgsInfoModel.php");
-require_once($appDir . "Models/CatalogsModel.php");
 
 
 
