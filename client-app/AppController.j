@@ -9,6 +9,7 @@
 @import <Foundation/CPObject.j>
 @import <LPKit/LPKit.j>
 @import <MunkiFace/MunkiFace.j>
+@import "CPTextField_Downloadable.j"
 
 
 @implementation AppController : CPObject
@@ -35,5 +36,4 @@
 	var bgColor = [CPColor colorWithPatternImage:img];
 	[[theWindow contentView] setBackgroundColor:bgColor];
 }
-
 @end

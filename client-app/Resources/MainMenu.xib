@@ -204,7 +204,7 @@
 												<int key="NSColorSpace">6</int>
 												<string key="NSCatalogName">System</string>
 												<string key="NSColorName">_sourceListBackgroundColor</string>
-												<object class="NSColor" key="NSColor">
+												<object class="NSColor" key="NSColor" id="746057274">
 													<int key="NSColorSpace">6</int>
 													<string key="NSCatalogName">System</string>
 													<string key="NSColorName">alternateSelectedControlColor</string>
@@ -585,7 +585,7 @@
 												<string key="NSFrame">{{231, 196}, {525, 40}}</string>
 												<reference key="NSSuperview" ref="524041715"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="338759486"/>
+												<reference key="NSNextKeyView" ref="637471013"/>
 												<int key="NSViewLayerContentsRedrawPolicy">2</int>
 												<string key="NSReuseIdentifierKey">_NS:2368</string>
 												<bool key="NSEnabled">YES</bool>
@@ -791,7 +791,7 @@
 											<object class="NSTextField" id="107413085">
 												<reference key="NSNextResponder" ref="524041715"/>
 												<int key="NSvFlags">266</int>
-												<string key="NSFrame">{{228, 347}, {531, 17}}</string>
+												<string key="NSFrame">{{228, 342}, {531, 22}}</string>
 												<reference key="NSSuperview" ref="524041715"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="472449522"/>
@@ -799,15 +799,15 @@
 												<string key="NSReuseIdentifierKey">_NS:3944</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="1035182960">
-													<int key="NSCellFlags">69336641</int>
-													<int key="NSCellFlags2">4196352</int>
+													<int key="NSCellFlags">69336577</int>
+													<int key="NSCellFlags2">4194304</int>
 													<string key="NSContents"/>
 													<reference key="NSSupport" ref="380127132"/>
-													<string key="NSPlaceholderString">http://</string>
+													<string key="NSPlaceholderString"/>
 													<string key="NSCellIdentifier">_NS:3944</string>
 													<reference key="NSControlView" ref="107413085"/>
 													<reference key="NSBackgroundColor" ref="936991285"/>
-													<reference key="NSTextColor" ref="465959902"/>
+													<reference key="NSTextColor" ref="746057274"/>
 												</object>
 											</object>
 											<object class="NSTextField" id="546572393">
@@ -1814,7 +1814,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<int key="NSvFlags">266</int>
 												<string key="NSFrame">{{231, 183}, {525, 70}}</string>
 												<reference key="NSSuperview" ref="791819757"/>
-												<reference key="NSNextKeyView"/>
 												<int key="NSViewLayerContentsRedrawPolicy">2</int>
 												<string key="NSReuseIdentifierKey">_NS:354</string>
 												<string key="NSAntiCompressionPriority">{250, 750}</string>
@@ -2032,7 +2031,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{15, 341}, {231, 18}}</string>
 												<reference key="NSSuperview" ref="949053074"/>
-												<reference key="NSNextKeyView" ref="637471013"/>
 												<string key="NSReuseIdentifierKey">_NS:771</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="27151008">
@@ -4072,6 +4070,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>1155.IBPluginDependency</string>
 					<string>1156.IBPluginDependency</string>
 					<string>1157.IBPluginDependency</string>
+					<string>1158.CustomClassName</string>
 					<string>1158.IBPluginDependency</string>
 					<string>1159.IBPluginDependency</string>
 					<string>1160.IBPluginDependency</string>
@@ -4258,6 +4257,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>CPTextField</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4430,7 +4430,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1388</int>
+			<int key="maxID">1389</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
