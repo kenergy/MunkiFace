@@ -23,6 +23,14 @@
 		_data = aDictionary;
 		_munkiUri = [[[CPBundle mainBundle] infoDictionary]
 				objectForKey:@"Munki Server URI"];
+		if ([_munkiUri hasSuffix:@"/"] == NO)
+		{
+			_munkiUri = [_munkiUri stringByAppendingString:@"/pkgs/"];
+		}
+		else
+		{
+			_munkiUri = [_munkiUrl stringByAppendingString:@"pkgs/"];
+		}
 	}
 	return self;
 }
@@ -168,7 +176,7 @@
 
 - (CPString)packageUrl
 {
-	return [_munkiUri stringByAppendingFormat:@"%@/%@", @"pkgs",
+	return [_munkiUri stringByAppendingString:
 		[self objectForKey:@"installer_item_location"]];
 }
 

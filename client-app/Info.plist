@@ -9,6 +9,6 @@
 	<key>MunkiFace Server URI</key>
 	<string>/github/MunkiFace/server-app/</string>
 	<key>Munki Server URI</key>
-	<string>http://localhost/munki_repo/</string>
+	<string>http://localhost/munki_repo</string>
 </dict>
 </plist>
