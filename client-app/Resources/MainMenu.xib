@@ -1270,7 +1270,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																			<int key="NSPeriodicDelay">400</int>
 																			<int key="NSPeriodicInterval">75</int>
 																		</object>
-																		<reference key="NSSelectedCell" ref="172802096"/>
+																		<int key="NSSelectedRow">-1</int>
+																		<int key="NSSelectedCol">-1</int>
 																		<reference key="NSBackgroundColor" ref="936991285"/>
 																		<reference key="NSCellBackgroundColor" ref="443998477"/>
 																		<reference key="NSFont" ref="380127132"/>
@@ -1423,7 +1424,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																						<int key="NSvFlags">256</int>
 																						<string key="NSFrameSize">{491, 117}</string>
 																						<reference key="NSSuperview" ref="967475865"/>
-																						<reference key="NSNextKeyView" ref="341048761"/>
+																						<reference key="NSNextKeyView" ref="993291622"/>
 																						<string key="NSReuseIdentifierKey">_NS:1828</string>
 																						<bool key="NSEnabled">YES</bool>
 																						<object class="NSTableHeaderView" key="NSHeaderView" id="757358636">
@@ -1567,14 +1568,13 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																		</object>
 																		<string key="NSFrame">{{234, 136}, {493, 135}}</string>
 																		<reference key="NSSuperview" ref="526608843"/>
-																		<reference key="NSNextKeyView" ref="993291622"/>
+																		<reference key="NSNextKeyView" ref="967475865"/>
 																		<string key="NSReuseIdentifierKey">_NS:1824</string>
 																		<int key="NSsFlags">133682</int>
 																		<reference key="NSVScroller" ref="341048761"/>
 																		<reference key="NSHScroller" ref="717913856"/>
 																		<reference key="NSContentView" ref="967475865"/>
 																		<reference key="NSHeaderClipView" ref="993291622"/>
-																		<reference key="NSCornerView" ref="967068891"/>
 																		<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 																	</object>
 																	<object class="NSTextField" id="7009888">
@@ -2258,7 +2258,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{13, 341}, {231, 18}}</string>
 												<reference key="NSSuperview" ref="949053074"/>
-												<reference key="NSNextKeyView" ref="637471013"/>
 												<string key="NSReuseIdentifierKey">_NS:771</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="27151008">
@@ -2456,27 +2455,11 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: activePackage.installerItemSizeFormatted</string>
+						<string key="label">value: activePackage.installedSizeFormatted</string>
 						<reference key="source" ref="913076106"/>
 						<reference key="destination" ref="30707218"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="913076106"/>
-							<reference key="NSDestination" ref="30707218"/>
-							<string key="NSLabel">value: activePackage.installerItemSizeFormatted</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">activePackage.installerItemSizeFormatted</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1182</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: activePackage.installedSizeFormatted</string>
-						<reference key="source" ref="783337304"/>
-						<reference key="destination" ref="30707218"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="783337304"/>
 							<reference key="NSDestination" ref="30707218"/>
 							<string key="NSLabel">value: activePackage.installedSizeFormatted</string>
 							<string key="NSBinding">value</string>
@@ -2484,7 +2467,23 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1184</int>
+					<int key="connectionID">1462</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: activePackage.installerItemSizeFormatted</string>
+						<reference key="source" ref="783337304"/>
+						<reference key="destination" ref="30707218"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="783337304"/>
+							<reference key="NSDestination" ref="30707218"/>
+							<string key="NSLabel">value: activePackage.installerItemSizeFormatted</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">activePackage.installerItemSizeFormatted</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1464</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -4607,7 +4606,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1461</int>
+			<int key="maxID">1464</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
