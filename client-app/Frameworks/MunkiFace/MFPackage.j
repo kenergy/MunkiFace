@@ -46,6 +46,14 @@
 
 
 
+- (CPArray)blockingApplications
+{
+	return [self objectForKey:@"blocking_applications"];
+}
+
+
+
+
 - (CPString)displayName
 {
 	return [_data objectForKey:@"display_name"];
