@@ -1,0 +1,7 @@
+
+@interface DownloadableTextField : NSTextField
+{
+
+}
+
+@end
