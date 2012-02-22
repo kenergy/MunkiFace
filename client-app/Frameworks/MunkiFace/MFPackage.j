@@ -29,7 +29,7 @@
 		}
 		else
 		{
-			_munkiUri = [_munkiUrl stringByAppendingString:@"pkgs/"];
+			_munkiUri = [_munkiUri stringByAppendingString:@"pkgs/"];
 		}
 	}
 	return self;
