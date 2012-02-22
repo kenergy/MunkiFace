@@ -40,7 +40,7 @@
 
 - (CPString)name
 {
-	return [_data objectForKey:@"name"];
+	return [self objectForKey:@"name"];
 }
 
 
@@ -56,7 +56,7 @@
 
 - (CPString)displayName
 {
-	return [_data objectForKey:@"display_name"];
+	return [self objectForKey:@"display_name"];
 }
 
 
@@ -74,9 +74,9 @@
 
 
 
-- (CPString)version
+- (CPString)versionString
 {
-	return [_data objectForKey:@"version"];
+	return [self objectForKey:@"version"];
 }
 
 
@@ -84,7 +84,7 @@
 
 - (CPString)catalogsAsString
 {
-	return [[_data objectForKey:@"catalogs"] componentsJoinedByString:@", "];
+	return [[self objectForKey:@"catalogs"] componentsJoinedByString:@", "];
 }
 
 
@@ -92,7 +92,7 @@
 
 - (CPString)catalogsArray
 {
-	return [[_data objectForKey:@"catalogs"]
+	return [[self objectForKey:@"catalogs"]
 	sortedArrayUsingSelector:@selector(compare:)];
 
 }
@@ -102,7 +102,7 @@
 
 - (int)installerItemSize
 {
-	return [_data objectForKey:@"installer_item_size"];
+	return [self objectForKey:@"installer_item_size"];
 }
 
 
@@ -110,7 +110,7 @@
 
 - (int)installedSize
 {
-	return [_data objectForKey:@"installed_size"];
+	return [self objectForKey:@"installed_size"];
 }
 
 
@@ -152,7 +152,7 @@
 
 - (CPString)minOSVersion
 {
-	return [_data objectForKey:@"minimum_os_version"];
+	return [self objectForKey:@"minimum_os_version"];
 }
 
 
@@ -160,7 +160,7 @@
 
 - (CPString)maxOSVersion
 {
-	return [_data objectForKey:@"maximum_os_version"];
+	return [self objectForKey:@"maximum_os_version"];
 }
 
 
@@ -168,7 +168,7 @@
 
 - (CPString)notes
 {
-	return [_data objectForKey:@"description"];
+	return [self objectForKey:@"description"];
 }
 
 
@@ -329,7 +329,9 @@
 
 - (id)objectValueForOutlineColumn:(CPTableColumn)aCol
 {
-	return [self preferredName];
+	return [CPString stringWithFormat:@"%@-%@",
+		[self preferredName],
+		[self versionString]];
 }
 
 @end
