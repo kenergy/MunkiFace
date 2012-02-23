@@ -17,5 +17,5 @@ switch ($controller)
 		PkgsInfoController::alloc()->init();
 		break;
 	default:
-		echo "I don't know what you want me to tell you right now.";
+		echo "Have ran the configure.sh script yet?";
 }
