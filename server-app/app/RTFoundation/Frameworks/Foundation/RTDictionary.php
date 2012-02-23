@@ -517,6 +517,18 @@ class RTDictionary extends RTObject implements ArrayAccess, IteratorAggregate
 
 
 
+	public function writeToFile($aPath)
+	{
+		$plist = new CFPropertyList();
+		$td = new CFTypeDetector();
+		$struct = $td->toCFType($this->phpArray());
+		$plist->add($struct);
+		$plist->saveXML($aPath);
+	}
+
+
+
+
 	/*-------------------ArrayAccess implementations------------------------*/
 
 	public function offsetExists($offset)
