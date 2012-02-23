@@ -15,6 +15,27 @@ To tell the client-app how to find the server-app, edit `client-app/Info.plist`
 and change the value of `Munki Server URI` such that it points to the location
 of server-app. Something like `http://munki.example.com/server-app/`
 
+
+## Requirements
+In order to properly run the server components, you'll need to have the
+following:
+
+* a web server (MunkiFace is developed using an Apache 2 environment)
+* PHP v5.3.x or higher built as a module for your web server
+* munki
+
+According to [Cappuccino](http://cappuccino.org/learn/)'s documentation, the
+client-app requirements should be one of the following browsers:
+* Internet Explorer 7+
+* Firefox 2+
+* Safari 3+
+* Google Chrome
+* Opera 9+
+
+...though it should be noted that development is largely done in Safari and
+Google Chrome at the moment.
+
+
 # What's MunkiFace? #
 At the moment, it's a work in progress. What it will eventually become is a web
 application front end for [Munki](http://code.google.com/p/munki/).
