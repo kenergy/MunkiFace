@@ -26,6 +26,7 @@ following:
 
 According to [Cappuccino](http://cappuccino.org/learn/)'s documentation, the
 client-app requirements should be one of the following browsers:
+
 * Internet Explorer 7+
 * Firefox 2+
 * Safari 3+
