@@ -284,6 +284,32 @@
 
 
 
+- (CPArray)installs
+{
+	return [self objectForKey:@"installs"];
+}
+
+
+
+
+- (CPArray)receipts
+{
+	var ar = [self objectForKey:@"receipts"];
+	[ar enumerateObjectsUsingBlock:function(obj, idx, stop)
+	{
+		if ([[obj allKeys] containsObject:@"__formatted"] == NO)
+		{
+			[obj setObject:[self formatBytes:[obj objectForKey:@"installed_size"]]
+				forKey:@"installed_size"];
+			[obj setObject:YES forKey:@"__formatted"];
+		}
+	}];
+	return ar;
+}
+
+
+
+
 - (CPString)forceInstallAfterDate
 {
 	return [self objectForKey:@"force_install_after_date"];
