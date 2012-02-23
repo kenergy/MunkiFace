@@ -1,8 +1,15 @@
 # Basic Installation Notes #
-This should get pretty easy as the project moves along, but for now it's not
-terribly difficult. The basic premise is that the client-app needs to know how
-to find the server-app, and the server-app needs to know how to find Munki.
 
+
+## Using configure.sh
+
+If you run configure.sh, it will look for an existing Munki repo in
+`~/Library/Preferences/com.googlecode.munki.munkiimport.plist`, show you the
+existing settings for the various URI settings and offer to help you change
+them. Hopefully it's pretty straight forward.
+
+
+## Manual Installation
 
 To tell the server-app how to find Munki, edit `server-app/Settings.plist` and
 change the value of `munki-repo` such that it points to your Munki repo
