@@ -850,7 +850,7 @@
 																							<bool key="EncodedWithXMLCoder">YES</bool>
 																							<object class="NSTableColumn" id="74926393">
 																								<double key="NSWidth">151.140625</double>
-																								<double key="NSMinWidth">40</double>
+																								<double key="NSMinWidth">15</double>
 																								<double key="NSMaxWidth">1000</double>
 																								<object class="NSTableHeaderCell" key="NSHeaderCell">
 																									<int key="NSCellFlags">75628096</int>
@@ -879,7 +879,7 @@
 																							</object>
 																							<object class="NSTableColumn" id="960645775">
 																								<double key="NSWidth">114.13671875</double>
-																								<double key="NSMinWidth">40</double>
+																								<double key="NSMinWidth">15</double>
 																								<double key="NSMaxWidth">1000</double>
 																								<object class="NSTableHeaderCell" key="NSHeaderCell">
 																									<int key="NSCellFlags">75628096</int>
@@ -905,7 +905,7 @@
 																							</object>
 																							<object class="NSTableColumn" id="332959220">
 																								<double key="NSWidth">100.140625</double>
-																								<double key="NSMinWidth">10</double>
+																								<double key="NSMinWidth">15</double>
 																								<double key="NSMaxWidth">3.4028234663852886e+38</double>
 																								<object class="NSTableHeaderCell" key="NSHeaderCell">
 																									<int key="NSCellFlags">75628096</int>
@@ -936,7 +936,7 @@
 																							</object>
 																							<object class="NSTableColumn" id="706255071">
 																								<double key="NSWidth">52.09765625</double>
-																								<double key="NSMinWidth">10</double>
+																								<double key="NSMinWidth">15</double>
 																								<double key="NSMaxWidth">3.4028234663852886e+38</double>
 																								<object class="NSTableHeaderCell" key="NSHeaderCell">
 																									<int key="NSCellFlags">75628096</int>
@@ -962,7 +962,7 @@
 																							</object>
 																							<object class="NSTableColumn" id="148227356">
 																								<double key="NSWidth">64</double>
-																								<double key="NSMinWidth">10</double>
+																								<double key="NSMinWidth">15</double>
 																								<double key="NSMaxWidth">3.4028234663852886e+38</double>
 																								<object class="NSTableHeaderCell" key="NSHeaderCell">
 																									<int key="NSCellFlags">75628096</int>
@@ -988,7 +988,7 @@
 																							</object>
 																							<object class="NSTableColumn" id="1014721740">
 																								<double key="NSWidth">64</double>
-																								<double key="NSMinWidth">10</double>
+																								<double key="NSMinWidth">15</double>
 																								<double key="NSMaxWidth">3.4028234663852886e+38</double>
 																								<object class="NSTableHeaderCell" key="NSHeaderCell">
 																									<int key="NSCellFlags">75628096</int>
@@ -1014,7 +1014,7 @@
 																							</object>
 																							<object class="NSTableColumn" id="646929657">
 																								<double key="NSWidth">41.79296875</double>
-																								<double key="NSMinWidth">10</double>
+																								<double key="NSMinWidth">15</double>
 																								<double key="NSMaxWidth">3.4028234663852886e+38</double>
 																								<object class="NSTableHeaderCell" key="NSHeaderCell">
 																									<int key="NSCellFlags">75628096</int>
@@ -1183,7 +1183,7 @@
 																							<bool key="EncodedWithXMLCoder">YES</bool>
 																							<object class="NSTableColumn" id="313180233">
 																								<double key="NSWidth">142.171875</double>
-																								<double key="NSMinWidth">40</double>
+																								<double key="NSMinWidth">15</double>
 																								<double key="NSMaxWidth">1000</double>
 																								<object class="NSTableHeaderCell" key="NSHeaderCell">
 																									<int key="NSCellFlags">75628096</int>
@@ -1212,7 +1212,7 @@
 																							</object>
 																							<object class="NSTableColumn" id="30555599">
 																								<double key="NSWidth">86.359375</double>
-																								<double key="NSMinWidth">40</double>
+																								<double key="NSMinWidth">15</double>
 																								<double key="NSMaxWidth">1000</double>
 																								<object class="NSTableHeaderCell" key="NSHeaderCell">
 																									<int key="NSCellFlags">75628096</int>
@@ -1238,7 +1238,7 @@
 																							</object>
 																							<object class="NSTableColumn" id="714682884">
 																								<double key="NSWidth">120.2109375</double>
-																								<double key="NSMinWidth">10</double>
+																								<double key="NSMinWidth">15</double>
 																								<double key="NSMaxWidth">3.4028234663852886e+38</double>
 																								<object class="NSTableHeaderCell" key="NSHeaderCell">
 																									<int key="NSCellFlags">75628096</int>
@@ -1264,7 +1264,7 @@
 																							</object>
 																							<object class="NSTableColumn" id="517520275">
 																								<double key="NSWidth">178.15625</double>
-																								<double key="NSMinWidth">10</double>
+																								<double key="NSMinWidth">15</double>
 																								<double key="NSMaxWidth">3.4028234663852886e+38</double>
 																								<object class="NSTableHeaderCell" key="NSHeaderCell">
 																									<int key="NSCellFlags">75628096</int>
@@ -1290,7 +1290,7 @@
 																							</object>
 																							<object class="NSTableColumn" id="357462771">
 																								<double key="NSWidth">73.64453125</double>
-																								<double key="NSMinWidth">10</double>
+																								<double key="NSMinWidth">15</double>
 																								<double key="NSMaxWidth">3.4028234663852886e+38</double>
 																								<object class="NSTableHeaderCell" key="NSHeaderCell">
 																									<int key="NSCellFlags">75628096</int>
@@ -2316,7 +2316,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 														<int key="NSvFlags">256</int>
 														<string key="NSFrame">{{763, 1}, {15, 510}}</string>
 														<reference key="NSSuperview" ref="472199331"/>
-														<reference key="NSNextKeyView" ref="637471013"/>
 														<string key="NSReuseIdentifierKey">_NS:408</string>
 														<bool key="NSEnabled">YES</bool>
 														<reference key="NSTarget" ref="472199331"/>
@@ -4455,8 +4454,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<reference ref="616525413"/>
 							<reference ref="1003683372"/>
 							<reference ref="392030111"/>
-							<reference ref="1012569814"/>
 							<reference ref="313971437"/>
+							<reference ref="1012569814"/>
 						</object>
 						<reference key="parent" ref="267961210"/>
 					</object>
