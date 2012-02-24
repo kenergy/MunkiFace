@@ -320,6 +320,10 @@
 
 - (BOOL)unattendedInstall
 {
+	if ([[_data allKeys] containsObject:@"forced_install"])
+	{
+		return [_data objectForKey:@"forced_install"];
+	}
 	return [self objectForKey:@"unattended_install"];
 }
 
@@ -328,6 +332,10 @@
 
 - (BOOL)unattendedUninstall
 {
+	if ([[_data allKeys] containsObject:@"forced_uninstall"])
+	{
+		return [_data objectForKey:@"forced_uninstall"];
+	}
 	return [self objectForKey:@"unattended_uninstall"];
 }
 
