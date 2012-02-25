@@ -15,6 +15,7 @@
 @implementation AppController : CPObject
 {
 	@outlet CPWindow	theWindow;
+	@outlet CPView	rebuildCatalogsSheet;
 	CPView mainView;
 	CPViewController mainViewController;
 	CPViewController manifestsViewController;
@@ -45,6 +46,29 @@
 	mainViewController = manifestsViewController;
 	[self prepareMainViewControllerForDisplay];
 	[mainView addSubview:[mainViewController view]];
+}
+
+
+
+
+- (IBAction)rebuildCatalogs:(id)aSender
+{
+	var sheet = [[CPWindow alloc] initWithContentRect:[rebuildCatalogsSheet
+	frame] styleMask:CPDocModalWindowMask];
+	[[sheet contentView] addSubview:rebuildCatalogsSheet];
+	[CPApp beginSheet:sheet
+		 modalForWindow:theWindow
+		  modalDelegate:self
+		 didEndSelector:nil
+		    contextInfo:nil];
+}
+
+
+
+
+- (IBAction)dismissSheet:(id)aSender
+{
+	[CPApp endSheet:[aSender window]];
 }
 
 
