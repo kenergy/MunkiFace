@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>munki-repo</key>
-	<string>/Library/Server/Web/DAta/Sites/Default/munki_repo</string>
+	<string>/Library/WebServer/Documents/munki_repo</string>
 </dict>
 </plist>

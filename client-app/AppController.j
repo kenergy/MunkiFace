@@ -24,6 +24,9 @@
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
 {
     // This is called when the application is done loading.
+		packagesViewController = [[CPViewController alloc]
+			initWithCibName:@"Packages" bundle:nil];
+		[packagesViewController view];
 }
 
 - (void)awakeFromCib
@@ -39,8 +42,6 @@
 
 	manifestsViewController = [[CPViewController alloc]
 		initWithCibName:@"Manifests" bundle:nil];
-	packagesViewController = [[CPViewController alloc]
-		initWithCibName:@"Packages" bundle:nil];
 	mainViewController = manifestsViewController;
 	[self prepareMainViewControllerForDisplay];
 	[mainView addSubview:[mainViewController view]];
