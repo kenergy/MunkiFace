@@ -2,7 +2,6 @@
 @interface AppController : NSObject
 {
     IBOutlet NSWindow* theWindow;
-    IBOutlet LPMultiLineTextField* textField;
 }
-
+- (IBAction)toolbarButtonClicked:(id)aSender;
 @end

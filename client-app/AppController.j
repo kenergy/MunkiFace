@@ -15,7 +15,10 @@
 @implementation AppController : CPObject
 {
 	@outlet CPWindow	theWindow;
-	@outlet LPMultiLineTextField textField;
+	CPView mainView;
+	CPViewController mainViewController;
+	CPViewController manifestsViewController;
+	CPViewController packagesViewController;
 }
 
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
@@ -25,15 +28,53 @@
 
 - (void)awakeFromCib
 {
-    // This is called when the cib is done loading.
-    // You can implement this method on any object instantiated from a Cib.
-    // It's a useful hook for setting up current UI values, and other things.
-
-    // In this case, we want the window from Cib to become our full browser window
-    [theWindow setFullPlatformWindow:YES];
+	mainView = [theWindow contentView];
+	[theWindow setFullPlatformWindow:YES];
+	
 	var img = [[CPImage alloc] initWithContentsOfFile:[[CPBundle mainBundle]
 		pathForResource:@"NSTexturedFullScreenBackgroundColor.png"]];
 	var bgColor = [CPColor colorWithPatternImage:img];
-	[[theWindow contentView] setBackgroundColor:bgColor];
+	[mainView setBackgroundColor:bgColor];
+
+
+	manifestsViewController = [[CPViewController alloc]
+		initWithCibName:@"Manifests" bundle:nil];
+	packagesViewController = [[CPViewController alloc]
+		initWithCibName:@"Packages" bundle:nil];
+	mainViewController = manifestsViewController;
+	[self prepareMainViewControllerForDisplay];
+	[mainView addSubview:[mainViewController view]];
+}
+
+
+
+
+- (IBAction)toolbarButtonClicked:(id)aButton
+{
+	if ([mainViewController view])
+	{
+		[[mainViewController view] removeFromSuperview];
+	}
+	switch(parseInt([aButton tag]))
+	{
+		case 1:
+			mainViewController = manifestsViewController;
+			break;
+		case 2:
+			mainViewController = packagesViewController;
+			break;
+	}
+	[self prepareMainViewControllerForDisplay];
+	[mainView addSubview:[mainViewController view]];
+}
+
+
+
+
+- (void)prepareMainViewControllerForDisplay
+{
+	[[mainViewController view] setFrame:[mainView bounds]];
+	[[mainViewController view] setAutoresizingMask:CPViewHeightSizable |
+		CPViewWidthSizable];
 }
 @end
