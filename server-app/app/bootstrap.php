@@ -5,9 +5,12 @@ $appDir = dirname(__FILE__) . "/";
 
 require_once($appDir . "RTFoundation/Frameworks/Foundation/Foundation.php");
 require_once($appDir . "Settings.php");
+require_once($appDir . "Controllers/CatalogsController.php");
+require_once($appDir . "Controllers/ManifestsController.php");
 require_once($appDir . "Controllers/PkgsController.php");
 require_once($appDir . "Controllers/PkgsInfoController.php");
-require_once($appDir . "Controllers/CatalogsController.php");
+require_once($appDir . "Models/AbstractModel.php");
+require_once($appDir . "Models/ManifestsModel.php");
 require_once($appDir . "Models/PkgsModel.php");
 require_once($appDir . "Models/PkgsInfoModel.php");
 

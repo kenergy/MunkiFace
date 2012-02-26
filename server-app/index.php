@@ -7,6 +7,9 @@ $controller = $request->objectForKey("controller");
 
 switch ($controller)
 {
+	case "manifests":
+		ManifestsController::alloc()->init();
+		break;
 	case "pkgs":
 		PkgsController::alloc()->init();
 		break;
@@ -17,5 +20,5 @@ switch ($controller)
 		PkgsInfoController::alloc()->init();
 		break;
 	default:
-		echo "Have ran the configure.sh script yet?";
+		echo "Have you ran the configure.sh script yet?";
 }
