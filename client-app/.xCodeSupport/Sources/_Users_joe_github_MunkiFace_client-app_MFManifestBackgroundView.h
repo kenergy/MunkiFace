@@ -1,0 +1,7 @@
+
+@interface MFManifestBackgroundView : NSView
+{
+
+}
+
+@end

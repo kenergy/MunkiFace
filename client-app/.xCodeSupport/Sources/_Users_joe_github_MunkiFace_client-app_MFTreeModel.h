@@ -1,0 +1,7 @@
+
+@interface MFTreeModel : NSObject
+{
+
+}
+
+@end

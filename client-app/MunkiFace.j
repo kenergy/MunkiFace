@@ -1,0 +1,7 @@
+@import "MFCatalogsController.j"
+@import "MFOutlineViewController.j"
+@import "MFPackage.j"
+@import "MFPackages.j"
+@import "MFTreeModel.j"
+@import "MFManifestBackgroundView.j"
+@import "MFManifests.j"

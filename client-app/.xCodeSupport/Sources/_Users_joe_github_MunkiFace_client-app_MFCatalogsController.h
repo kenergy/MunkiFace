@@ -1,0 +1,7 @@
+
+@interface MFCatalogsController : NSObject
+{
+
+}
+
+@end
