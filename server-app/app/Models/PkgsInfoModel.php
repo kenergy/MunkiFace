@@ -20,8 +20,9 @@ class PkgsInfoModel extends AbstractModel
 			return self::$packages;
 		}
 
-		return $this->recursivelyScanDirectory(
-			Settings::sharedSettings()->objectForKey("munki-repo") . "/pkgsinfo/"
+		return $this->recursivelyScanDirectory_relativePaths(
+			$this->munkiDir() . "/pkgsinfo/",
+			YES
 		);
 	}
 }
