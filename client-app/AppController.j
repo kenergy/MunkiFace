@@ -16,7 +16,7 @@
 {
 	@outlet CPWindow	theWindow;
 	@outlet CPView	rebuildCatalogsSheet;
-	CPView mainView;
+	@outlet CPView mainView;
 	CPViewController mainViewController;
 	CPViewController manifestsViewController;
 	CPViewController packagesViewController;
@@ -32,13 +32,12 @@
 
 - (void)awakeFromCib
 {
-	mainView = [theWindow contentView];
 	[theWindow setFullPlatformWindow:YES];
 	
 	var img = [[CPImage alloc] initWithContentsOfFile:[[CPBundle mainBundle]
 		pathForResource:@"NSTexturedFullScreenBackgroundColor.png"]];
 	var bgColor = [CPColor colorWithPatternImage:img];
-	[mainView setBackgroundColor:bgColor];
+	[[theWindow contentView] setBackgroundColor:bgColor];
 
 
 	manifestsViewController = [[CPViewController alloc]
