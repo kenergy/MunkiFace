@@ -21,6 +21,7 @@
 			<string>NSButtonCell</string>
 			<string>NSImageCell</string>
 			<string>NSToolbarSeparatorItem</string>
+			<string>NSCollectionViewItem</string>
 			<string>NSCustomObject</string>
 			<string>NSView</string>
 			<string>NSWindowTemplate</string>
@@ -232,7 +233,7 @@
 							</object>
 						</object>
 					</object>
-					<object class="NSMutableArray" key="NSToolbarIBAllowedItems">
+					<object class="NSArray" key="NSToolbarIBAllowedItems">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<reference ref="661952766"/>
 						<reference ref="190532598"/>
@@ -241,7 +242,7 @@
 						<reference ref="784065910"/>
 						<reference ref="529116318"/>
 					</object>
-					<object class="NSMutableArray" key="NSToolbarIBDefaultItems">
+					<object class="NSArray" key="NSToolbarIBDefaultItems">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<reference ref="661952766"/>
 						<reference ref="661952766"/>
@@ -440,6 +441,12 @@
 				<reference key="NSNextKeyView" ref="884066346"/>
 				<string key="NSReuseIdentifierKey">_NS:224</string>
 			</object>
+			<object class="NSCollectionViewItem" id="345146041"/>
+			<object class="NSView" id="49669957">
+				<nil key="NSNextResponder"/>
+				<int key="NSvFlags">256</int>
+				<string key="NSFrameSize">{100, 100}</string>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -499,6 +506,14 @@
 						<reference key="destination" ref="776265473"/>
 					</object>
 					<int key="connectionID">1621</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">view</string>
+						<reference key="source" ref="345146041"/>
+						<reference key="destination" ref="49669957"/>
+					</object>
+					<int key="connectionID">1633</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -680,6 +695,16 @@
 						<reference key="object" ref="1008495325"/>
 						<reference key="parent" ref="776265473"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1630</int>
+						<reference key="object" ref="345146041"/>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1631</int>
+						<reference key="object" ref="49669957"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -708,6 +733,8 @@
 					<string>1616.IBPluginDependency</string>
 					<string>1617.IBPluginDependency</string>
 					<string>1618.IBPluginDependency</string>
+					<string>1630.IBPluginDependency</string>
+					<string>1631.IBPluginDependency</string>
 					<string>371.IBNSWindowAutoPositionCentersHorizontal</string>
 					<string>371.IBNSWindowAutoPositionCentersVertical</string>
 					<string>371.IBPluginDependency</string>
@@ -729,6 +756,8 @@
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -765,7 +794,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1623</int>
+			<int key="maxID">1637</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
