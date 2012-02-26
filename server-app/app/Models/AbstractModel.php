@@ -28,57 +28,67 @@ abstract class AbstractModel extends RTObject
 		beginning of the path. It is set to YES by default.
 		\param $aDirectory
 		\param $relativePaths
-		\returns RTArray
+		\returns RTDictionary
 	 */
-	protected function recursivelyScanDirectory_relativePaths($aDirectory,
-	$relativePaths = YES)
+	protected function recursivelyScanDirectory($aDirectory)
 	{
-		$results = RTMutableArray::anArray();
+		$results = array();
 		
 		$this->_globDir($aDirectory, $results, $relativePaths);
 
-		return $results;
+		return json_encode($results);
 	}
 
 
 
 
-	protected function _globDir($aDir, &$array, $useRelativePaths)
+	protected function _globDir($aDir, &$results, $useRelativePaths)
 	{
 		if (!is_dir($aDir))
 		{
 			return;
 		}
-
-		$contents = RTArray::arrayWithArray(scandir($aDir));
-
-		for($i = 0; $i < $contents->count(); $i++)
+		if (strrpos($aDir, "/") != strlen($aDir)-1)
 		{
-			$file = $contents->objectAtIndex($i);
-			if ($file->hasPrefix("."))
+			$aDir .= "/";
+		}
+
+		// Make a working copy of the full path that doesn't have the leading and
+		// trailing "/" characters.
+		$trimmedPath = $aDir;
+		if (strpos($trimmedPath, "/") === 0)
+		{
+			$trimmedPath = substr($trimmedPath, 1);
+		}
+		if (strrpos($trimmedPath, "/") === strlen($trimmedPath)-1)
+		{
+			$trimmedPath = substr($trimmedPath, 0, -1);
+		}
+
+		// Find the current working directory.
+		$pathParts = explode("/", $trimmedPath);
+		$currentDirectory = $pathParts[count($pathParts)-1];
+
+		$results[$currentDirectory] = array();
+
+		$contents = scandir($aDir);
+		foreach($contents as $node)
+		{
+			// skip hidden nodes
+			if (strpos($node, ".") === 0)
 			{
 				continue;
 			}
-			
-			$fullPath = $aDir . $file;
-			if (is_dir($fullPath))
+
+
+			$fullPathToNode = $aDir . $node;
+			if (is_dir($fullPathToNode))
 			{
-				$this->_globDir($fullPath . "/", $array, $useRelativePaths);
+				$this->_globDir($fullPathToNode . "/", $results[$currentDirectory][], $useRelativePaths);
 			}
 			else
 			{
-				$path = $aDir;
-				if ($useRelativePaths == YES)
-				{
-					$copy = RTString::stringWithString($path);
-					$path = $copy->stringByReplacingOccurrencesOfString_withString(
-						$this->munkiDir(), RTString::stringWithString(""));
-				}
-				$dict = RTDictionary::dictionaryWithObjects_andKeys(
-					array($path, $file),
-					array("path", "file")
-				);
-				$array->addObject($dict);
+				$results[$currentDirectory][] = $node;
 			}
 		}
 	}

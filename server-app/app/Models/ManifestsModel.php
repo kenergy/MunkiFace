@@ -10,8 +10,7 @@ class ManifestsModel extends AbstractModel
 	public function manifests()
 	{
 		$this->_manifestDir = $this->munkiDir() . "/manifests/";
-		return $this->recursivelyScanDirectory_relativePaths($this->_manifestDir,
-		YES);
+		return $this->recursivelyScanDirectory($this->_manifestDir);
 	}
 
 

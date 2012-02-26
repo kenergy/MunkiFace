@@ -20,9 +20,6 @@ class PkgsInfoModel extends AbstractModel
 			return self::$packages;
 		}
 
-		return $this->recursivelyScanDirectory_relativePaths(
-			$this->munkiDir() . "/pkgsinfo/",
-			YES
-		);
+		return $this->recursivelyScanDirectory($this->munkiDir() . "/pkgsinfo/");
 	}
 }
