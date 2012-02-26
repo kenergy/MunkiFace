@@ -8,8 +8,8 @@
 - (void)drawRect:(CGRect)aRect
 {
 	[super drawRect:aRect];
-	var startColor = CGColorCreateGenericGray(1.0, 0.9);
-	var endColor = CGColorCreateGenericGray(0.5, 0.75);
+	var startColor = CGColorCreateGenericGray(1.0, 0.8);
+	var endColor = CGColorCreateGenericGray(1.0, 0.8);
 	var gradient = CGGradientCreateWithColors(
 		CGColorSpaceCreateDeviceRGB(),
 		[startColor, endColor],
