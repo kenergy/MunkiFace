@@ -3,3 +3,4 @@
 @import "MFPackage.j"
 @import "MFPackages.j"
 @import "MFManifestBackgroundView.j"
+@import "MFManifests.j"

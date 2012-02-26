@@ -28,6 +28,7 @@
 		packagesViewController = [[CPViewController alloc]
 			initWithCibName:@"Packages" bundle:nil];
 		[packagesViewController view];
+		var tmp = [[MFManifests alloc] init];
 }
 
 - (void)awakeFromCib
