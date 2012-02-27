@@ -37,7 +37,7 @@
 {
     LPCalendarHeaderView headerView @accessors(readonly);
     LPSlideView          slideView;
-    
+
     LPCalendarMonthView  currentMonthView;
     LPCalendarMonthView  firstMonthView;
     LPCalendarMonthView  secondMonthView;
@@ -56,8 +56,8 @@
 
 + (id)themeAttributes
 {
-    return [CPDictionary dictionaryWithObjects:[[CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], CGSizeMake(0,0), [CPNull null], [CPNull null], 40, [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], 30, [CPNull null], [CPNull null], [CPNull null], [CPNull null]]
-                                       forKeys:[@"background-color", @"grid-color",
+    return [CPDictionary dictionaryWithObjects:[[CPNull null], CGInsetMakeZero(), [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], CGSizeMake(0,0), [CPNull null], [CPNull null], 40, [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], 30, [CPNull null], [CPNull null], [CPNull null], [CPNull null]]
+                                       forKeys:[@"bezel-color", @"bezel-inset", @"grid-color", @"grid-shadow-color",
                                                 @"tile-size", @"tile-font", @"tile-text-color", @"tile-text-shadow-color", @"tile-text-shadow-offset", @"tile-bezel-color",
                                                 @"header-button-offset", @"header-prev-button-image", @"header-next-button-image", @"header-height", @"header-background-color", @"header-font", @"header-text-color", @"header-text-shadow-color", @"header-text-shadow-offset", @"header-alignment",
                                                 @"header-weekday-offset", @"header-weekday-label-font", @"header-weekday-label-color", @"header-weekday-label-shadow-color", @"header-weekday-label-shadow-offset"]];
@@ -71,6 +71,7 @@
         fullSelection = [nil, nil];
 
         var bounds = [self bounds];
+    [self setClipsToBounds:NO];
 
         headerView = [[LPCalendarHeaderView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(bounds), 40)];
         [[headerView prevButton] setTarget:self];
@@ -87,6 +88,10 @@
         [slideView setAnimationDuration:0.2];
         [self addSubview:slideView];
 
+        bezelView = [[CPView alloc] initWithFrame:[slideView frame]];
+        [bezelView setHitTests:NO];
+        [self addSubview:bezelView positioned:CPWindowBelow relativeTo:nil];
+
         firstMonthView = [[LPCalendarMonthView alloc] initWithFrame:[slideView bounds] calendarView:self];
         [firstMonthView setDelegate:self];
         [slideView addSubview:firstMonthView];
@@ -96,6 +101,7 @@
         [slideView addSubview:secondMonthView];
 
         currentMonthView = firstMonthView;
+        [currentMonthView setNeedsLayout];
 
         // Default to today's date.
         [self setMonth:[CPDate date]];
@@ -103,6 +109,15 @@
         [self setNeedsLayout];
     }
     return self;
+}
+
+- (void)setTheme:(CPTheme)aTheme
+{
+    [super setTheme:aTheme];
+
+    [self setNeedsLayout];
+    [firstMonthView setNeedsLayout];
+    [secondMonthView setNeedsLayout];
 }
 
 - (void)selectDate:(CPDate)aDate
@@ -150,7 +165,7 @@
 
     // new current view
     currentMonthView = slideToView;
-    
+
     // Display it way off,
     // because cappuccino wont draw
     // CGGraphics stuff unless it's visible
@@ -158,6 +173,7 @@
     [currentMonthView setFrameOrigin:CGPointMake(-500,-500)];
     [currentMonthView setHidden:NO];
     [currentMonthView setNeedsDisplay:YES];
+    [currentMonthView setNeedsLayout];
 
     [headerView setDate:aMonth];
 
@@ -192,33 +208,67 @@
     [secondMonthView setWeekStartsOnMonday:shouldWeekStartOnMonday];
 }
 
+- (void)setFastForwardEnabled:(BOOL)shouldFastForward
+{
+    [headerView setFastForwardEnabled:shouldFastForward];
+}
+
+- (BOOL)isFastForwardEnabled
+{
+    return [headerView isFastForwardEnabled];
+}
+
 - (void)layoutSubviews
 {
     var width = CGRectGetWidth([self bounds]),
         headerHeight = [self currentValueForThemeAttribute:@"header-height"];
-        
+
     [headerView setFrameSize:CGSizeMake(width, headerHeight)];
     [slideView setFrame:CGRectMake(0, headerHeight, width, CGRectGetHeight([self bounds]) - headerHeight)];
-    
+
+    [headerView setNeedsLayout];
+
+    [bezelView setBackgroundColor:[self currentValueForThemeAttribute:@"bezel-color"]];
+    var bezelInset = [self currentValueForThemeAttribute:@"bezel-inset"],
+        viewFrame = [self frame];
+    [bezelView setFrame:CGRectMake(
+
+        0 + bezelInset.left,
+        0 + bezelInset.top,
+        viewFrame.size.width - bezelInset.left - bezelInset.right,
+        viewFrame.size.height - bezelInset.top - bezelInset.bottom
+
+    )];
+
     [slideView setBackgroundColor:[self currentValueForThemeAttribute:@"background-color"]];
 }
 
 - (void)didClickPrevButton:(id)sender
 {
-    // We can only slide one month in at a time.
-    if ([slideView isSliding])
-        return;
-    
-    [self changeToMonth:[currentMonthView previousMonth]];
+    [self _didClickHeaderButton:sender toMonth:[currentMonthView previousMonth]];
 }
 
 - (void)didClickNextButton:(id)sender
 {
+    [self _didClickHeaderButton:sender toMonth:[currentMonthView nextMonth]];
+}
+
+- (void)_didClickHeaderButton:(LPCalendarHeaderButton) aButton toMonth:(CPDate)aMonth
+{
     // We can only slide one month in at a time.
     if ([slideView isSliding])
         return;
-    
-    [self changeToMonth:[currentMonthView nextMonth]];
+
+    if ([aButton isFastForwarding])
+    {
+        // Rapid change.
+        [self setMonth:aMonth];
+        [currentMonthView makeSelectionWithDate:[fullSelection objectAtIndex:0] end:[fullSelection lastObject]];
+    }
+    else
+    {
+        [self changeToMonth:aMonth];
+    }
 }
 
 - (void)makeSelectionWithDate:(CPDate)aStartDate end:(CPDate)anEndDate
@@ -231,11 +281,11 @@
     // Make sure we have an end to the selection
     if ([aSelection count] <= 1)
         [aSelection addObject:nil];
-    
+
     // The selection didn't change
     if ([fullSelection isEqualToArray:aSelection])
         return;
-    
+
     // Copy the selection
     fullSelection = [CPArray arrayWithArray:aSelection];
 

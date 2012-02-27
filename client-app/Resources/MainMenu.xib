@@ -463,7 +463,7 @@
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSSearchFieldCell" key="NSCell" id="602063968">
 								<int key="NSCellFlags">343014976</int>
-								<int key="NSCellFlags2">268436544</int>
+								<int key="NSCellFlags2">4195392</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="105039744"/>
 								<string key="NSPlaceholderString">Search</string>
@@ -524,6 +524,8 @@
 									<int key="NSPeriodicInterval">75</int>
 								</object>
 								<int key="NSMaximumRecents">255</int>
+								<bool key="NSSendsWholeSearchString">YES</bool>
+								<bytes key="NSSearchFieldFlags">CAAAAA</bytes>
 							</object>
 						</object>
 						<object class="NSCustomView" id="686080788">
@@ -699,10 +701,10 @@
 				<reference key="NSNextKeyView" ref="884066346"/>
 				<string key="NSReuseIdentifierKey">_NS:224</string>
 			</object>
-			<object class="NSCustomObject" id="1067433614">
+			<object class="NSCustomObject" id="615560650">
 				<string key="NSClassName">MFManifestsOutlineDataSource</string>
 			</object>
-			<object class="NSCustomObject" id="342445454">
+			<object class="NSCustomObject" id="867146344">
 				<string key="NSClassName">MFPkgsInfoOutlineDataSource</string>
 			</object>
 		</object>
@@ -785,7 +787,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">manifestsOutlineDataSource</string>
 						<reference key="source" ref="635946545"/>
-						<reference key="destination" ref="1067433614"/>
+						<reference key="destination" ref="615560650"/>
 					</object>
 					<int key="connectionID">1655</int>
 				</object>
@@ -793,7 +795,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">pkgsInfoOutlineDataSource</string>
 						<reference key="source" ref="635946545"/>
-						<reference key="destination" ref="342445454"/>
+						<reference key="destination" ref="867146344"/>
 					</object>
 					<int key="connectionID">1659</int>
 				</object>
@@ -1045,12 +1047,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1653</int>
-						<reference key="object" ref="1067433614"/>
+						<reference key="object" ref="615560650"/>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1656</int>
-						<reference key="object" ref="342445454"/>
+						<reference key="object" ref="867146344"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</object>
@@ -1172,7 +1174,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1659</int>
+			<int key="maxID">1661</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

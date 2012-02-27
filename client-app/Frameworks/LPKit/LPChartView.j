@@ -30,8 +30,6 @@
 @import <AppKit/CPView.j>
 
 // TODO: These should be ivars, or more likely, theme settings.
-var labelViewHeight = 20,
-    drawViewPadding = 5;
 
 
 @implementation LPChartView : CPView
@@ -39,6 +37,9 @@ var labelViewHeight = 20,
     id               dataSource @accessors;
     id               delegate @accessors;
     id               drawView @accessors;
+    int              fixedMaxValue @accessors;
+    int              labelViewHeight @accessors;
+    int              drawViewPadding @accessors;
     
     LPChartGridView  gridView @accessors;
     
@@ -79,6 +80,10 @@ var labelViewHeight = 20,
     [self addSubview:labelView];
     
     _currentSize = CGSizeMake(0,0);
+    
+    fixedMaxValue = 0;
+    labelViewHeight = 20;
+    drawViewPadding = 5;
 }
 
 - (void)setDataSource:(id)aDataSource
@@ -128,8 +133,13 @@ var labelViewHeight = 20,
     
     [aGridView setAutoresizingMask:CPViewWidthSizable | CPViewHeightSizable];
     [self replaceSubview:gridView with:aGridView];
-    
+
+    var gridViewFrame = [drawView frame];
+    gridViewFrame.height -= 1;
+    [aGridView setFrame:gridViewFrame];
+
     gridView = aGridView;
+
 }
 
 - (void)setDisplayLabels:(BOOL)shouldDisplayLabels
@@ -180,7 +190,7 @@ var labelViewHeight = 20,
     
     // Reset data & max value
     _data = [CPArray array];
-    _maxValue = 0;
+    _maxValue = fixedMaxValue;
     
     var numberOfSets = [dataSource numberOfSetsInChart:self];
     
@@ -228,7 +238,7 @@ var labelViewHeight = 20,
     if (_maxValuePosition !== 1.0)
         drawViewSize.height -= maxValueHeightDelta;
 
-    // Make sure we don't do unnecessary word
+    // Make sure we don't do unnecessary work
     if (_currentSize && CGSizeEqualToSize(_currentSize, drawViewSize))
         return _framesSet;
         

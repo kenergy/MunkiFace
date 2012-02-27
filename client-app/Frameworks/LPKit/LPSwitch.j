@@ -62,7 +62,7 @@
 
 + (id)themeAttributes
 {
-    return [CPDictionary dictionaryWithObjects:[[CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null]]
+    return [CPDictionary dictionaryWithObjects:[[CPNull null], [CPNull null], [CPNull null], CGSizeMake(30.0, 24.0), [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null], [CPNull null]]
                                        forKeys:[@"off-background-color", @"on-background-color", @"knob-background-color", @"knob-size", @"label-offset",
                                                 @"off-label-font", @"off-label-text-color", @"off-label-text-shadow-color", @"off-label-text-shadow-offset",
                                                 @"on-label-font", @"on-label-text-color", @"on-label-text-shadow-color", @"on-label-text-shadow-offset"]];
@@ -262,6 +262,35 @@
     [onLabel sizeToFit];
     
     [onLabel setFrameOrigin:CGPointMake(CGRectGetMinX([knob frame]) - labelOffset.width - CGRectGetWidth([onLabel bounds]), CGRectGetMinY([offLabel frame]))];
+}
+
+- (void)setEnabled:(BOOL)isEnabled
+{
+    if (!isEnabled)
+    {
+        [self setThemeState:CPThemeStateDisabled];
+        [knob setThemeState:CPThemeStateDisabled];
+    }
+    else
+    {
+        [self unsetThemeState:CPThemeStateDisabled];
+        [knob unsetThemeState:CPThemeStateDisabled];
+    }
+    
+    [super setEnabled:isEnabled];
+}
+
+- (void)setState:(int)aState
+{
+    if (aState == CPOnState)
+        [self setOn:YES animated:YES sendAction:NO];
+    else
+        [self setOn:NO animated:YES sendAction:NO];
+}
+
+- (BOOL)state
+{
+    return on ? CPOnState : CPOffState;
 }
 
 @end
