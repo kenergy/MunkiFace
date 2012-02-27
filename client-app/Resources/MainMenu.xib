@@ -699,8 +699,11 @@
 				<reference key="NSNextKeyView" ref="884066346"/>
 				<string key="NSReuseIdentifierKey">_NS:224</string>
 			</object>
-			<object class="NSCustomObject" id="970155570">
+			<object class="NSCustomObject" id="1067433614">
 				<string key="NSClassName">MFManifestsOutlineDataSource</string>
+			</object>
+			<object class="NSCustomObject" id="342445454">
+				<string key="NSClassName">MFPkgsInfoOutlineDataSource</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -782,9 +785,17 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">manifestsOutlineDataSource</string>
 						<reference key="source" ref="635946545"/>
-						<reference key="destination" ref="970155570"/>
+						<reference key="destination" ref="1067433614"/>
 					</object>
 					<int key="connectionID">1655</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">pkgsInfoOutlineDataSource</string>
+						<reference key="source" ref="635946545"/>
+						<reference key="destination" ref="342445454"/>
+					</object>
+					<int key="connectionID">1659</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1034,7 +1045,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1653</int>
-						<reference key="object" ref="970155570"/>
+						<reference key="object" ref="1067433614"/>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1656</int>
+						<reference key="object" ref="342445454"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</object>
@@ -1081,6 +1097,7 @@
 					<string>1645.IBPluginDependency</string>
 					<string>1646.IBPluginDependency</string>
 					<string>1653.IBPluginDependency</string>
+					<string>1656.IBPluginDependency</string>
 					<string>371.IBNSWindowAutoPositionCentersHorizontal</string>
 					<string>371.IBNSWindowAutoPositionCentersVertical</string>
 					<string>371.IBPluginDependency</string>
@@ -1131,6 +1148,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1154,7 +1172,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1655</int>
+			<int key="maxID">1659</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1208,6 +1226,7 @@
 							<string>mainOutlineView</string>
 							<string>mainView</string>
 							<string>manifestsOutlineDataSource</string>
+							<string>pkgsInfoOutlineDataSource</string>
 							<string>rebuildCatalogsSheet</string>
 							<string>theWindow</string>
 						</object>
@@ -1216,6 +1235,7 @@
 							<string>NSOutlineView</string>
 							<string>NSView</string>
 							<string>MFManifestsOutlineDataSource</string>
+							<string>MFPkgsInfoOutlineDataSource</string>
 							<string>NSView</string>
 							<string>NSWindow</string>
 						</object>
@@ -1227,6 +1247,7 @@
 							<string>mainOutlineView</string>
 							<string>mainView</string>
 							<string>manifestsOutlineDataSource</string>
+							<string>pkgsInfoOutlineDataSource</string>
 							<string>rebuildCatalogsSheet</string>
 							<string>theWindow</string>
 						</object>
@@ -1243,6 +1264,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">manifestsOutlineDataSource</string>
 								<string key="candidateClassName">MFManifestsOutlineDataSource</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">pkgsInfoOutlineDataSource</string>
+								<string key="candidateClassName">MFPkgsInfoOutlineDataSource</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">rebuildCatalogsSheet</string>
@@ -1265,6 +1290,33 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MFManifestsOutlineDataSource.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MFOutlineDataSource</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">outlineView</string>
+						<string key="NS.object.0">NSOutlineView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">outlineView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">outlineView</string>
+							<string key="candidateClassName">NSOutlineView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MFOutlineDataSource.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MFPkgsInfoOutlineDataSource</string>
+					<string key="superclassName">MFOutlineDataSource</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MFPkgsInfoOutlineDataSource.h</string>
 					</object>
 				</object>
 			</object>

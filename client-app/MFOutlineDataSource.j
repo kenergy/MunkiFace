@@ -54,6 +54,25 @@
 
 
 
+- (void)setOutlineView:(CPOutlineView)anOutlineView
+{
+	if (anOutlineView == nil)
+	{
+		outlineView = nil;
+		return;
+	}
+	outlineView = anOutlineView;
+	if ([outlineView dataSource] != nil)
+	{
+		[[outlineView dataSource] setOutlineView:nil];
+	}
+	[outlineView setDataSource:self];
+	[outlineView reloadItem:nil];
+}
+
+
+
+
 /**
 	Asks for new data at dataSourceURI and sets 'self' as the delegate.
  */

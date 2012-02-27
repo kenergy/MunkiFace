@@ -22,6 +22,7 @@
 					CPViewController manifestsViewController;
 					CPViewController packagesViewController;
 	@outlet	MFManifestsOutlineDataSource manifestsOutlineDataSource;
+	@outlet	MFPkgsInfoOutlineDataSource pkgsInfoOutlineDataSource;
 }
 
 
@@ -54,7 +55,7 @@
 	[self prepareMainViewControllerForDisplay];
 	[mainView addSubview:[mainViewController view]];
 
-	[self changeOutlineViewDataSource:manifestsOutlineDataSource];
+	[manifestsOutlineDataSource setOutlineView:mainOutlineView];
 }
 
 
@@ -109,33 +110,17 @@
 	{
 		// "Manifests" button
 		case 1:
-			[self changeOutlineViewDataSource:manifestsOutlineDataSource];
+			[manifestsOutlineDataSource setOutlineView:mainOutlineView];
 			mainViewController = manifestsViewController;
 			break;
 		// "Packages" button
 		case 2:
+			[pkgsInfoOutlineDataSource setOutlineView:mainOutlineView];
 			mainViewController = packagesViewController;
 			break;
 	}
 	[self prepareMainViewControllerForDisplay];
 	[mainView addSubview:[mainViewController view]];
-}
-
-
-
-
-/**
-	Interlal mechanism for switching out datasource objects for the primary
-	CPOutlineView
- */
-- (void)changeOutlineViewDataSource:(MFOutlineDataSource)aDataSource
-{
-	if ([mainOutlineView dataSource] != nil)
-	{
-		[[mainOutlineView dataSource] setOutlineView:nil];
-	}
-	[mainOutlineView setDataSource:aDataSource];
-	[aDataSource setOutlineView:mainOutlineView];
 }
 
 

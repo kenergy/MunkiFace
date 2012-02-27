@@ -1,0 +1,7 @@
+
+@interface MFPkgsInfoOutlineDataSource : MFOutlineDataSource
+{
+
+}
+
+@end

@@ -6,6 +6,7 @@
     IBOutlet NSWindow* theWindow;
     IBOutlet NSOutlineView* mainOutlineView;
     IBOutlet MFManifestsOutlineDataSource* manifestsOutlineDataSource;
+    IBOutlet MFPkgsInfoOutlineDataSource* pkgsInfoOutlineDataSource;
 }
 - (IBAction)rebuildCatalogs:(id)aSender;
 - (IBAction)dismissSheet:(id)aSender;
