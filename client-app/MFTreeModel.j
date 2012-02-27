@@ -59,6 +59,10 @@
 
 
 
+/**
+	This is used internally by MFTreeModel and should probably not be used
+	directly.
+ */
 - (id)initAsLeafWithNode:(id)aNode andParent:(MFTreeModel)aParent
 {
 	self = [super init];
@@ -74,6 +78,10 @@
 
 
 
+/**
+	This is used internally by MFTreeModel and should probably not be used
+	directly.
+ */
 - (void)parseDataStructure:(CPDictionary)aDict
 {
 	// Look at each item in the parent dictionary
@@ -107,6 +115,11 @@
 
 
 
+/**
+	Returns the parent MFTreeModel object if there is one, or nil if this is the
+	top of the structure.
+	\returns MFTreeModel
+ */
 - (MFTreeModel)parentItem
 {
 	return _parentItem;
@@ -115,6 +128,39 @@
 
 
 
+/**
+	Calculates the textual path or namespace to this object within the
+	datastructure in the form of a relative URI. For example:
+	"manifests/apps/Firefox"
+	\returns CPString
+ */
+- (CPString)itemNamespace
+{
+	var path = @"";
+	var obj = self;
+
+	while(obj != nil)
+	{
+		if ([obj isLeaf])
+		{
+			path = [obj itemName];
+		}
+		else
+		{
+			path = [[obj itemName] stringByAppendingFormat:@"/%@", path];
+		}
+		obj = [obj parentItem];
+	}
+	return path;
+}
+
+
+
+
+/**
+	Returns the CPArray of child MFTreeModel objects contained within this one.
+	\returns CPArray
+ */
 - (CPArray)childItems
 {
 	return _childItems;
@@ -123,6 +169,45 @@
 
 
 
+/**
+	Returns a CPArray containing a normalized list of all objects in the receiver
+	that are leaf nodes. In terms of a file listing, it's a pretty easy way to
+	condense the structure into an array of all of the files that are represented
+	without regard to their home on the filesystem.
+	\returns CPArray
+ */
+- (CPArray)leafItemsAsNormalizedArray
+{
+	var items = [CPMutableArray array];
+	
+	function addLeafItemsForNode_toArray(aNode, anArray)
+	{
+		var children = [aNode childItems];
+		for(var i = 0; i < [children count]; i++)
+		{
+			var child = [children objectAtIndex:i];
+			if ([child isLeaf])
+			{
+				[anArray addObject:child];
+			}
+			else
+			{
+				anArray = addLeafItemsForNode_toArray(child, anArray);
+			}
+		}
+		return anArray;
+	}
+
+	return addLeafItemsForNode_toArray(self, items);
+}
+
+
+
+
+/**
+	Returns the number of child MFTreeModel objects represented by the receiver.
+	\returns int
+ */
 - (int)numberOfChildren
 {
 	if (_childItems == nil)
@@ -138,6 +223,11 @@
 
 
 
+/**
+	Returns a boolean value indicating that the receiver is a leaf node, meaning
+	it has no children.
+	\returns BOOL
+ */
 - (BOOL)isLeaf
 {
 	return [self numberOfChildren] == 0;
@@ -146,8 +236,22 @@
 
 
 
-- (CPString)nodeName
+/**
+	Returns the name of the receiver. When the MFTreeModel data structure
+	represents a filesystem, this can be thought of as the name of a folder or if
+	the receiver is a leaf node, the name of the file it represents.
+	\returns CPString
+ */
+- (CPString)itemName
 {
 	return _nodeName;
+}
+
+
+
+
+-(CPString)description
+{
+	return [self itemName];
 }
 @end

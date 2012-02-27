@@ -44,6 +44,7 @@
  */
 - (void)outlineViewSelectionDidChange:(CPNotification)aNotification
 {
+	console.log("Selection changed");
 	var selectedRow = [[aNotification object] selectedRow];
 	[self setActivePackage: [_outlineView itemAtRow:selectedRow]];
 }
@@ -96,6 +97,6 @@
 - (id)outlineView:(CPOutlineView) outlineView
   objectValueForTableColumn:(CPTableColumn) tableColumn byItem:(id)item
 {
-	return nil == item ? [_tree nodeName] : [item nodeName];
+	return nil == item ? [_tree itemName] : [item itemName];
 }
 @end
