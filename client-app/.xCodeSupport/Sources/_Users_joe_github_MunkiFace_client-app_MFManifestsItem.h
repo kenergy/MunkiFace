@@ -1,7 +1,0 @@
-
-@interface MFManifestsItem : NSObject
-{
-
-}
-
-@end

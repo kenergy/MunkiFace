@@ -1,9 +1,11 @@
 
 @interface AppController : NSObject
 {
-    IBOutlet NSWindow* theWindow;
     IBOutlet NSView* rebuildCatalogsSheet;
     IBOutlet NSView* mainView;
+    IBOutlet NSWindow* theWindow;
+    IBOutlet NSOutlineView* mainOutlineView;
+    IBOutlet MFManifestsOutlineDataSource* manifestsOutlineDataSource;
 }
 - (IBAction)rebuildCatalogs:(id)aSender;
 - (IBAction)dismissSheet:(id)aSender;
