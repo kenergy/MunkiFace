@@ -56,7 +56,7 @@
 			<object class="NSWindowTemplate" id="972006081">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{696, 202}, {1068, 641}}</string>
+				<string key="NSWindowRect">{{696, 202}, {1024, 768}}</string>
 				<int key="NSWTFlags">1954021376</int>
 				<string key="NSWindowTitle">MunkiFace</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -267,6 +267,7 @@
 					</object>
 				</object>
 				<nil key="NSUserInterfaceItemIdentifier"/>
+				<string key="NSWindowContentMinSize">{1024, 450}</string>
 				<object class="NSView" key="NSWindowView" id="439893737">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -285,7 +286,7 @@
 										<object class="NSOutlineView" id="106796885">
 											<reference key="NSNextResponder" ref="915249142"/>
 											<int key="NSvFlags">256</int>
-											<string key="NSFrameSize">{248, 590}</string>
+											<string key="NSFrameSize">{248, 717}</string>
 											<reference key="NSSuperview" ref="915249142"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="1052760605"/>
@@ -401,7 +402,7 @@
 											<float key="NSOutlineViewIndentationPerLevelKey">14</float>
 										</object>
 									</object>
-									<string key="NSFrame">{{1, 1}, {248, 590}}</string>
+									<string key="NSFrame">{{1, 1}, {248, 717}}</string>
 									<reference key="NSSuperview" ref="336494841"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="106796885"/>
@@ -440,7 +441,7 @@
 									<double key="NSPercent">0.99328859060402686</double>
 								</object>
 							</object>
-							<string key="NSFrame">{{-1, -1}, {250, 592}}</string>
+							<string key="NSFrame">{{-1, -1}, {250, 719}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="915249142"/>
@@ -455,7 +456,7 @@
 						<object class="NSSearchField" id="161497918">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{5, 599}, {240, 22}}</string>
+							<string key="NSFrame">{{5, 726}, {240, 22}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="336494841"/>
@@ -531,7 +532,7 @@
 						<object class="NSCustomView" id="686080788">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">274</int>
-							<string key="NSFrame">{{248, 0}, {820, 641}}</string>
+							<string key="NSFrame">{{248, 0}, {776, 768}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
@@ -539,13 +540,14 @@
 							<string key="NSClassName">NSView</string>
 						</object>
 					</object>
-					<string key="NSFrameSize">{1068, 641}</string>
+					<string key="NSFrameSize">{1024, 768}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="161497918"/>
 					<int key="NSViewLayerContentsRedrawPolicy">2</int>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
+				<string key="NSMinSize">{1024, 528}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
