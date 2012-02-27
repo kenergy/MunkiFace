@@ -1,0 +1,7 @@
+
+@interface MFManifestsOutlineDataSource : MFOutlineDataSource
+{
+
+}
+
+@end
