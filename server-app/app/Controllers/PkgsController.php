@@ -2,7 +2,7 @@
 
 
 
-class PkgsController extends RTObject
+class PkgsController extends AbstractController
 {
 	public function init()
 	{

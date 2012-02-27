@@ -18,11 +18,19 @@ class PkgsInfoModel extends AbstractModel
 	public function init()
 	{
 		parent::init();
-		$request = $this->HTTPRequest();
-		var_dump($request);
+		$this->buildFullPathToModelRepo("pkgsinfo");
 		return $this;
 	}
 
+
+
+
+	public function contentsOfFileUsingRelativePath($aPath)
+	{
+		$path = RTString::stringWithString($this->fullPathToModelRepo() . $aPath);
+		$dict = RTDictionary::dictionaryWithContentsOfFile($path);
+		return $dict;
+	}
 
 
 	public function plists()

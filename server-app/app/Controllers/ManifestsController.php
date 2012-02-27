@@ -1,7 +1,7 @@
 <?php
 
 
-class ManifestsController extends RTObject
+class ManifestsController extends AbstractController
 {
 
 	public function init()

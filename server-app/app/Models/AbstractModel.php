@@ -8,19 +8,8 @@
 abstract class AbstractModel extends RTObject
 {
 	protected static $_munkiDir;
-	protected static $_HTTPRequest;
+	protected $fullPathToModelRepo;
 
-
-
-
-	public function HTTPRequest()
-	{
-		if (self::$_HTTPRequest == null)
-		{
-			self::$_HTTPRequest = HTTPRequest::sharedRequest();
-		}
-		return self::$_HTTPRequest;
-	}
 
 
 
@@ -31,6 +20,43 @@ abstract class AbstractModel extends RTObject
 			self::$_munkiDir = Settings::sharedSettings()->objectForKey("munki-repo");
 		}
 		return self::$_munkiDir;
+	}
+
+
+
+
+	public function fullPathToModelRepo()
+	{
+		if ($this->fullPathToModelRepo == null)
+		{
+			return $this->munkiDir();
+		}
+		return $this->fullPathToModelRepo;
+	}
+
+
+
+	/**
+		Allows the models that implement this class to append to the exising munki
+		repo path in order to specify a specific folder within that repo. For
+		example, you would pass 'pkgsinfo' to this method if you were calling it
+		from the PkgsInfoModel.
+	 */
+	protected function buildFullPathToModelRepo($aPath)
+	{
+		$aPath = RTString::stringWithString($aPath);
+		$munkiPath = RTString::stringWithString($this->munkiDir());
+		if ($aPath->hasSuffix("/") == NO)
+		{
+			$aPath = $aPath->stringByAppendingString("/");
+		}
+
+		if ($this->munkiDir()->hasSuffix("/") == NO && $aPath->hasPrefix("/") == NO)
+		{
+			$munkiPath = $munkiPath->stringByAppendingString("/");
+		}
+
+		$this->fullPathToModelRepo = $munkiPath . $aPath;
 	}
 
 

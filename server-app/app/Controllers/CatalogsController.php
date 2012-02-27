@@ -1,7 +1,7 @@
 <?php
 
 
-class CatalogsController extends RTObject
+class CatalogsController extends AbstractController
 {
 	protected static $_catalogs;
 

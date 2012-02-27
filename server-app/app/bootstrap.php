@@ -5,6 +5,7 @@ $appDir = dirname(__FILE__) . "/";
 
 require_once($appDir . "RTFoundation/Frameworks/Foundation/Foundation.php");
 require_once($appDir . "Settings.php");
+require_once($appDir . "Controllers/AbstractController.php");
 require_once($appDir . "Controllers/CatalogsController.php");
 require_once($appDir . "Controllers/ManifestsController.php");
 require_once($appDir . "Controllers/PkgsController.php");
