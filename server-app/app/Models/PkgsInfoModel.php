@@ -13,6 +13,18 @@ class PkgsInfoModel extends AbstractModel
 	protected static $packages;
 
 
+
+
+	public function init()
+	{
+		parent::init();
+		$request = $this->HTTPRequest();
+		var_dump($request);
+		return $this;
+	}
+
+
+
 	public function plists()
 	{
 		if (self::$packages != null)

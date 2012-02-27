@@ -8,6 +8,19 @@
 abstract class AbstractModel extends RTObject
 {
 	protected static $_munkiDir;
+	protected static $_HTTPRequest;
+
+
+
+
+	public function HTTPRequest()
+	{
+		if (self::$_HTTPRequest == null)
+		{
+			self::$_HTTPRequest = HTTPRequest::sharedRequest();
+		}
+		return self::$_HTTPRequest;
+	}
 
 
 
@@ -24,17 +37,14 @@ abstract class AbstractModel extends RTObject
 
 	/**
 		Returns an array of dictionaries, each containing a 'path' and 'file' key.
-		If relativePaths is set to YES, then the munki-path will be striped from the
-		beginning of the path. It is set to YES by default.
 		\param $aDirectory
-		\param $relativePaths
 		\returns RTDictionary
 	 */
 	protected function recursivelyScanDirectory($aDirectory)
 	{
 		$results = array();
 		
-		$this->_globDir($aDirectory, $results, $relativePaths);
+		$this->_globDir($aDirectory, $results);
 
 		return json_encode($results);
 	}
@@ -42,7 +52,7 @@ abstract class AbstractModel extends RTObject
 
 
 
-	protected function _globDir($aDir, &$results, $useRelativePaths)
+	protected function _globDir($aDir, &$results)
 	{
 		if (!is_dir($aDir))
 		{
@@ -84,7 +94,7 @@ abstract class AbstractModel extends RTObject
 			$fullPathToNode = $aDir . $node;
 			if (is_dir($fullPathToNode))
 			{
-				$this->_globDir($fullPathToNode . "/", $results[$currentDirectory][], $useRelativePaths);
+				$this->_globDir($fullPathToNode . "/", $results[$currentDirectory][]);
 			}
 			else
 			{
