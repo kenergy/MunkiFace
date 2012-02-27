@@ -87,10 +87,10 @@
 														<int key="NSCellFlags">68288064</int>
 														<int key="NSCellFlags2">71304192</int>
 														<string key="NSContents">Managed Installs:</string>
-														<object class="NSFont" key="NSSupport" id="359236780">
+														<object class="NSFont" key="NSSupport" id="26">
 															<string key="NSName">LucidaGrande</string>
-															<double key="NSSize">13</double>
-															<int key="NSfFlags">1044</int>
+															<double key="NSSize">11</double>
+															<int key="NSfFlags">3100</int>
 														</object>
 														<string key="NSCellIdentifier">_NS:3944</string>
 														<reference key="NSControlView" ref="683449607"/>
@@ -127,7 +127,7 @@
 														<int key="NSCellFlags">68288064</int>
 														<int key="NSCellFlags2">71304192</int>
 														<string key="NSContents">Managed Updates:</string>
-														<reference key="NSSupport" ref="359236780"/>
+														<reference key="NSSupport" ref="26"/>
 														<string key="NSCellIdentifier">_NS:3944</string>
 														<reference key="NSControlView" ref="634177453"/>
 														<reference key="NSBackgroundColor" ref="89216201"/>
@@ -147,7 +147,7 @@
 														<int key="NSCellFlags">68288064</int>
 														<int key="NSCellFlags2">71304192</int>
 														<string key="NSContents">Managed Uninstalls:</string>
-														<reference key="NSSupport" ref="359236780"/>
+														<reference key="NSSupport" ref="26"/>
 														<string key="NSCellIdentifier">_NS:3944</string>
 														<reference key="NSControlView" ref="821247893"/>
 														<reference key="NSBackgroundColor" ref="89216201"/>
@@ -167,7 +167,7 @@
 														<int key="NSCellFlags">68288064</int>
 														<int key="NSCellFlags2">71304192</int>
 														<string key="NSContents">Optional Installs:</string>
-														<reference key="NSSupport" ref="359236780"/>
+														<reference key="NSSupport" ref="26"/>
 														<string key="NSCellIdentifier">_NS:3944</string>
 														<reference key="NSControlView" ref="842003251"/>
 														<reference key="NSBackgroundColor" ref="89216201"/>
@@ -187,7 +187,7 @@
 														<int key="NSCellFlags">68288064</int>
 														<int key="NSCellFlags2">71304192</int>
 														<string key="NSContents">Conditional Items:</string>
-														<reference key="NSSupport" ref="359236780"/>
+														<reference key="NSSupport" ref="26"/>
 														<string key="NSCellIdentifier">_NS:3944</string>
 														<reference key="NSControlView" ref="642029793"/>
 														<reference key="NSBackgroundColor" ref="89216201"/>
@@ -207,7 +207,7 @@
 														<int key="NSCellFlags">68288064</int>
 														<int key="NSCellFlags2">71304192</int>
 														<string key="NSContents">Included Manifests:</string>
-														<reference key="NSSupport" ref="359236780"/>
+														<reference key="NSSupport" ref="26"/>
 														<string key="NSCellIdentifier">_NS:3944</string>
 														<reference key="NSControlView" ref="316464945"/>
 														<reference key="NSBackgroundColor" ref="89216201"/>
@@ -227,7 +227,7 @@
 														<int key="NSCellFlags">68288064</int>
 														<int key="NSCellFlags2">272630784</int>
 														<string key="NSContents"/>
-														<reference key="NSSupport" ref="359236780"/>
+														<reference key="NSSupport" ref="26"/>
 														<string key="NSPlaceholderString">0</string>
 														<string key="NSCellIdentifier">_NS:3944</string>
 														<reference key="NSControlView" ref="856507546"/>
@@ -248,7 +248,7 @@
 														<int key="NSCellFlags">68288064</int>
 														<int key="NSCellFlags2">272630784</int>
 														<string key="NSContents"/>
-														<reference key="NSSupport" ref="359236780"/>
+														<reference key="NSSupport" ref="26"/>
 														<string key="NSPlaceholderString">0</string>
 														<string key="NSCellIdentifier">_NS:3944</string>
 														<reference key="NSControlView" ref="38360213"/>
@@ -269,7 +269,7 @@
 														<int key="NSCellFlags">68288064</int>
 														<int key="NSCellFlags2">272630784</int>
 														<string key="NSContents"/>
-														<reference key="NSSupport" ref="359236780"/>
+														<reference key="NSSupport" ref="26"/>
 														<string key="NSPlaceholderString">0</string>
 														<string key="NSCellIdentifier">_NS:3944</string>
 														<reference key="NSControlView" ref="685181641"/>
@@ -290,7 +290,7 @@
 														<int key="NSCellFlags">68288064</int>
 														<int key="NSCellFlags2">272630784</int>
 														<string key="NSContents"/>
-														<reference key="NSSupport" ref="359236780"/>
+														<reference key="NSSupport" ref="26"/>
 														<string key="NSPlaceholderString">0</string>
 														<string key="NSCellIdentifier">_NS:3944</string>
 														<reference key="NSControlView" ref="30160487"/>
@@ -311,7 +311,7 @@
 														<int key="NSCellFlags">68288064</int>
 														<int key="NSCellFlags2">272630784</int>
 														<string key="NSContents"/>
-														<reference key="NSSupport" ref="359236780"/>
+														<reference key="NSSupport" ref="26"/>
 														<string key="NSPlaceholderString">0</string>
 														<string key="NSCellIdentifier">_NS:3944</string>
 														<reference key="NSControlView" ref="863491951"/>
@@ -332,7 +332,7 @@
 														<int key="NSCellFlags">68288064</int>
 														<int key="NSCellFlags2">272630784</int>
 														<string key="NSContents"/>
-														<reference key="NSSupport" ref="359236780"/>
+														<reference key="NSSupport" ref="26"/>
 														<string key="NSPlaceholderString">0</string>
 														<string key="NSCellIdentifier">_NS:3944</string>
 														<reference key="NSControlView" ref="472300414"/>
@@ -402,7 +402,6 @@
 											<nil key="NSNextResponder"/>
 											<int key="NSvFlags">256</int>
 											<string key="NSFrame">{{10, 33}, {798, 255}}</string>
-											<reference key="NSNextKeyView"/>
 										</object>
 										<string key="NSLabel">Conditional Items</string>
 										<reference key="NSColor" ref="89216201"/>
@@ -420,7 +419,11 @@
 									</object>
 								</object>
 								<reference key="NSSelectedTabViewItem" ref="35463120"/>
-								<reference key="NSFont" ref="359236780"/>
+								<object class="NSFont" key="NSFont" id="359236780">
+									<string key="NSName">LucidaGrande</string>
+									<double key="NSSize">13</double>
+									<int key="NSfFlags">1044</int>
+								</object>
 								<int key="NSTvFlags">0</int>
 								<bool key="NSAllowTruncatedLabels">YES</bool>
 								<bool key="NSDrawsBackground">YES</bool>
@@ -1297,19 +1300,19 @@
 					<string>Managed Installs Count</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>Managed Installs Count</string>
+					<string>Managed Updates Count</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>Managed Installs Count</string>
+					<string>Managed Uninstalls Count</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>Managed Installs Count</string>
+					<string>Optional Installs Count</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>Managed Installs Count</string>
+					<string>Conditional Items Count</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>Managed Installs Count</string>
+					<string>Included Manifests Count</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
