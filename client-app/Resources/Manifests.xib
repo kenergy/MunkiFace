@@ -402,9 +402,9 @@
 											<nil key="NSNextResponder"/>
 											<int key="NSvFlags">256</int>
 											<string key="NSFrame">{{10, 33}, {798, 255}}</string>
-											<reference key="NSNextKeyView" ref="506187442"/>
+											<reference key="NSNextKeyView"/>
 										</object>
-										<string key="NSLabel">Conditional Installs</string>
+										<string key="NSLabel">Conditional Items</string>
 										<reference key="NSColor" ref="89216201"/>
 										<reference key="NSTabView" ref="506187442"/>
 									</object>
