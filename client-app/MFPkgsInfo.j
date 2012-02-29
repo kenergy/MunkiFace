@@ -73,5 +73,35 @@ var MFPKGSINFO_INSTANCE = nil;
 		restartActionTag = 5;
 	}
 	[data setObject:restartActionTag forKey:@"MFRestartActionTag"];
+
+
+
+
+	// translate the uninstall_method for bindings
+	var uninstallMethod = [data objectForKey:@"uninstall_method"];
+	var uninstallMethodTag = 1; //removepackages by default
+	var uninstallScript = @"";
+	if([uninstallMethod hasPrefix:@"/"])
+	{
+		uninstallMethodTag = 2;
+		uninstallScript = uninstallMethod;
+	}
+	else if ([uninstallMethod isEqualToString:@"uninstall_script"])
+	{
+		uninstallMethodTag = 3;
+		uninstallScript = [data objectForKey:@"uninstall_script"];
+	}
+	[data setObject:uninstallMethodTag forKey:@"MFUninstallMethodTag"];
+	[data setObject:uninstallScript forKey:@"MFUninstallScript"];
+
+
+
+
+	// prefix the installer location path with the munki repo uri
+	var itemUri = [data objectForKey:@"installer_item_location"];
+	var munkiRepo = [[[CPBundle mainBundle] infoDictionary]
+		objectForKey:@"Munki Server URI"];
+	itemUri = [munkiRepo stringByAppendingString:@"pkgs/" + itemUri];
+	[data setObject:itemUri forKey:@"installer_item_location"];
 }
 @end
