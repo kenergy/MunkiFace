@@ -2,6 +2,9 @@
 	Provides the main CPOutlineView with a datasource and delegate.
  */
 @implementation MFPkgsInfoOutlineDataSource : MFOutlineDataSource
+{
+	MFPkgsInfo _selectedPkgsInfo;
+}
 
 
 -(void)awakeFromCib
@@ -22,7 +25,11 @@
 {
 	var anOutlineView = [aNotification object];
 	var item = [anOutlineView itemAtRow:[anOutlineView selectedRow]];
-	console.log([item itemNamespace]);
+	if ([item isLeaf])
+	{
+		_selectedPkgsInfo = [MFPkgsInfo sharedInstance];
+		[_selectedPkgsInfo setRepresentedModel:item];
+	}
 }
 
 @end

@@ -4,6 +4,9 @@
 	the CPOutlineView accordingly.
  */
 @implementation MFManifestsOutlineDataSource : MFOutlineDataSource
+{
+	MFManifest _selectedManifest;
+}
 
 
 -(void)awakeFromCib
@@ -24,6 +27,7 @@
 {
 	var anOutlineView = [aNotification object];
 	var item = [anOutlineView itemAtRow:[anOutlineView selectedRow]];
-	console.log([item itemNamespace]);
+	_selectedManifest = [MFManifest sharedInstance];
+	[_selectedManifest setRepresentedModel:item];
 }
 @end

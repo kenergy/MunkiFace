@@ -1,0 +1,7 @@
+
+@interface MFPkgsInfo : MFOutlineSelectedObject
+{
+
+}
+
+@end

@@ -11,9 +11,17 @@ var MFMANIFEST_INSTANCE = nil;
 
 
 
+- (id)awakeFromCib
+{
+	MFMANIFEST_INSTANCE = self;
+}
+
+
+
+
 + (id)sharedInstance
 {
-	if (MFMANIFEST_INSTANCE = nil)
+	if (MFMANIFEST_INSTANCE == nil)
 	{
 		MFMANIFEST_INSTANCE = [[MFManifest alloc] init];
 	}

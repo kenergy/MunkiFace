@@ -11,7 +11,7 @@
 	MFTreeModel representedModel @accessors;
 	CPURLRequest _dataSourceRequest;
 	CPString _munkiURI;
-	CPDictionary _data;
+	CPDictionary data @accessors;
 }
 
 
@@ -26,11 +26,8 @@
 	if (_munkiURI == nil)
 	{
 		_munkiURI = [[[CPBundle mainBundle] infoDictionary]
-			objectForKey:@"Munki Server URI"];
-		if ([_munkiURI hasSuffix:@"/"] == NO)
-		{
-			_munkiURI = [_munkiURI stringByAppendingString:@"/"];
-		}
+			objectForKey:@"MunkiFace Server URI"];
+		_munkiURI = [_munkiURI stringByAppendingString:@"?controller=readFile&file="];
 	}
 
 	var path = [aTreeModel itemNamespace];
@@ -54,16 +51,25 @@
 
 
 
-/*------------------------CPConnection Delegate Methods-----------------------*/
-- (void)connection:(CPURLConnection) connection didReceiveData:(CPString)data
+/**
+	This is meant to be overridden by implementing classes, so if it's not, we'll
+	log an error message to let developers know that.
+ */
+- (void)dataDidReload
 {
-	var dict = [CPDictionary dictionaryWithJSObject:JSON.parse(data)
-		recursively:YES];
-	[self setTreeModel:[[MFTreeModel alloc] initWithDictionary:dict]];
-	if ([self outlineView] != nil)
-	{
-		[outlineView reloadItem:nil];
-	}
+	CPLog("If you're implementing MFOutlineSelectedObject, you should reimplement"
+		+ " the dataDidReload method so you can update any KVO/KVC properties.");
+}
+
+
+
+
+/*------------------------CPConnection Delegate Methods-----------------------*/
+- (void)connection:(CPURLConnection) connection didReceiveData:(CPString)someData
+{
+	[self setData:[CPDictionary dictionaryWithJSObject:JSON.parse(someData)
+		recursively:YES]];
+	[self dataDidReload];
 }
 
 

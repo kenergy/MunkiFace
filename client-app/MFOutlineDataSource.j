@@ -47,19 +47,6 @@
 
 
 
-- (id)initWithDataURI:(CPString)aURI
-{
-	self = [super init];
-	if (self)
-	{
-		[self setDataSourceURI:aURI];
-	}
-	return self;
-}
-
-
-
-
 - (void)setDataSourceURI:(CPString)aURI
 {
 	dataSourceURI = aURI;
