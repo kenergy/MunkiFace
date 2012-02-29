@@ -19,6 +19,17 @@ switch ($controller)
 	case "pkgsinfo":
 		PkgsInfoController::alloc()->init();
 		break;
+	case "readFile":
+		// This is a meta controller, and it just allows the caller to get the
+		// contents of a plist by providing the full path to the file relative to
+		// the munki repo directory.
+		$munkiDir = Settings::sharedSettings()->objectForKey("munki-repo");
+		echo RTDictionary::dictionaryWithContentsOfFile(
+			RTString::stringWithString(
+				$munkiDir . "/" . $request->objectForKey("file")
+			)
+		);
+		break;
 	default:
 		echo "Have you ran the configure.sh script yet?";
 }
