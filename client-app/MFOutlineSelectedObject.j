@@ -23,6 +23,7 @@
  */
 - (void)setRepresentedModel:(MFTreeModel)aTreeModel
 {
+	representedModel = aTreeModel;
 	if (_munkiURI == nil)
 	{
 		_munkiURI = [[[CPBundle mainBundle] infoDictionary]
@@ -64,12 +65,24 @@
 
 
 
+/**
+	Used to set the url hash when a model has changed.
+ */
+- (void)updateURLHash
+{
+	window.location.hash = "#" + [[self representedModel] itemNamespace];
+}
+
+
+
+
 /*------------------------CPConnection Delegate Methods-----------------------*/
 - (void)connection:(CPURLConnection) connection didReceiveData:(CPString)someData
 {
 	[self setData:[CPDictionary dictionaryWithJSObject:JSON.parse(someData)
 		recursively:YES]];
 	[self dataDidReload];
+	[self updateURLHash];
 }
 
 
