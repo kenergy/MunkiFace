@@ -28,6 +28,21 @@
 					 CPURLRequest _dataSourceRequest;
 	@outlet CPOutlineView outlineView 				@accessors;
 						MFTreeModel treeModel						@accessors;
+						       BOOL alsoBecomeDelegate	@accessors;
+}
+
+
+
+
+/**
+	Returns the flag used to determine if the receiver should become the delegate
+	for the outline view when it becomes the datasource. Implementing classes that
+	want this behavior should set this value to YES during initialization using
+	[self setAlsoBecomeDelegate:YES];
+ */
+- (BOOL)alsoBecomeDelegate
+{
+	return alsoBecomeDelegate == YES;
 }
 
 
@@ -67,6 +82,13 @@
 		[[outlineView dataSource] setOutlineView:nil];
 	}
 	[outlineView setDataSource:self];
+
+
+	if ([self alsoBecomeDelegate] == YES)
+	{
+		[outlineView setDelegate:self];
+	}
+
 	[outlineView reloadItem:nil];
 }
 
