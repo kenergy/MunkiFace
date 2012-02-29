@@ -71,6 +71,6 @@ class RTObject
 
 	public function __tostring()
 	{
-		return $this->description();
+		return str_replace("\n", "\\n", $this->description());
 	}
 }
