@@ -1,0 +1,7 @@
+
+@interface MFOutlineSelectedObject : NSObject
+{
+
+}
+
+@end

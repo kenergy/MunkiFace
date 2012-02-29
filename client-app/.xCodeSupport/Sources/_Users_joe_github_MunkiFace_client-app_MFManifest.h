@@ -1,0 +1,7 @@
+
+@interface MFManifest : MFOutlineSelectedObject
+{
+
+}
+
+@end

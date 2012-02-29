@@ -1,4 +1,6 @@
 @import "MFOutlineDataSource.j"
+@import "MFOutlineSelectedObject.j"
+@import "MFManifest.j"
 @import "MFManifestsOutlineDataSource.j"
 @import "MFPkgsInfoOutlineDataSource.j"
 @import "MFTreeModel.j"
