@@ -14,9 +14,10 @@
 
 @implementation AppController : CPObject
 {
-	@outlet	CPView rebuildCatalogsSheet;
+	@outlet	MFApplicationViewController appViewController;
 	@outlet	CPView mainView;
 	@outlet	CPWindow theWindow;
+	@outlet CPWindow munkiLogo;
 	@outlet	CPOutlineView mainOutlineView;
 					CPViewController mainViewController;
 					CPViewController manifestsViewController;
@@ -56,6 +57,7 @@
 	[mainView addSubview:[mainViewController view]];
 
 	[manifestsOutlineDataSource setOutlineView:mainOutlineView];
+	console.log([[CPApplication sharedApplication] arguments]);
 }
 
 
@@ -68,14 +70,7 @@
  */
 - (IBAction)rebuildCatalogs:(id)aSender
 {
-	var sheet = [[CPWindow alloc] initWithContentRect:[rebuildCatalogsSheet
-	frame] styleMask:CPDocModalWindowMask];
-	[[sheet contentView] addSubview:rebuildCatalogsSheet];
-	[CPApp beginSheet:sheet
-		 modalForWindow:theWindow
-		  modalDelegate:self
-		 didEndSelector:nil
-		    contextInfo:nil];
+	[appViewController displaySheet];
 }
 
 
@@ -88,7 +83,7 @@
  */
 - (IBAction)dismissSheet:(id)aSender
 {
-	[CPApp endSheet:[aSender window]];
+	[appViewController dismissSheet];
 }
 
 

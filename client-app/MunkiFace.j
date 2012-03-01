@@ -1,3 +1,4 @@
+@import "MFApplicationViewController.j"
 @import "MFOutlineDataSource.j"
 @import "MFOutlineSelectedObject.j"
 @import "MFManifest.j"

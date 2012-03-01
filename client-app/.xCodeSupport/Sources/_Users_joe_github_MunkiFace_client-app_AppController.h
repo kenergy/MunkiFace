@@ -1,9 +1,10 @@
 
 @interface AppController : NSObject
 {
-    IBOutlet NSView* rebuildCatalogsSheet;
+    IBOutlet MFApplicationViewController* appViewController;
     IBOutlet NSView* mainView;
     IBOutlet NSWindow* theWindow;
+    IBOutlet NSWindow* munkiLogo;
     IBOutlet NSOutlineView* mainOutlineView;
     IBOutlet MFManifestsOutlineDataSource* manifestsOutlineDataSource;
     IBOutlet MFPkgsInfoOutlineDataSource* pkgsInfoOutlineDataSource;

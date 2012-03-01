@@ -535,6 +535,7 @@
 							<string key="NSFrame">{{248, 0}, {776, 768}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:1192</string>
 							<string key="NSClassName">NSView</string>
 						</object>
@@ -545,18 +546,15 @@
 					<reference key="NSNextKeyView" ref="161497918"/>
 					<int key="NSViewLayerContentsRedrawPolicy">2</int>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{1024, 528}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
-			<object class="NSCustomObject" id="635946545">
-				<string key="NSClassName">AppController</string>
-			</object>
 			<object class="NSWindowTemplate" id="500074380">
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{0, 1000}, {265, 58}}</string>
-				<int key="NSWTFlags">606606336</int>
+				<string key="NSWindowRect">{{0, 820}, {265, 58}}</string>
+				<int key="NSWTFlags">1680348160</int>
 				<string key="NSWindowTitle">MunkiFace Logo</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
@@ -572,6 +570,7 @@
 							<string key="NSFrame">{{110, -7}, {147, 65}}</string>
 							<reference key="NSSuperview" ref="663311111"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:3944</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="86732193">
@@ -641,13 +640,16 @@
 					<reference key="NSNextKeyView" ref="637471013"/>
 					<string key="NSReuseIdentifierKey">_NS:224</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
+			<object class="NSCustomObject" id="635946545">
+				<string key="NSClassName">AppController</string>
+			</object>
 			<object class="NSView" id="872534674">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">256</int>
+				<int key="NSvFlags">264</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="NSTextField" id="884066346">
@@ -676,6 +678,7 @@
 						<string key="NSFrame">{{362, 12}, {104, 32}}</string>
 						<reference key="NSSuperview" ref="872534674"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:687</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="1008495325">
@@ -706,6 +709,9 @@
 			<object class="NSCustomObject" id="867146344">
 				<string key="NSClassName">MFPkgsInfoOutlineDataSource</string>
 			</object>
+			<object class="NSCustomObject" id="792743242">
+				<string key="NSClassName">MFApplicationViewController</string>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -717,14 +723,6 @@
 						<reference key="destination" ref="635946545"/>
 					</object>
 					<int key="connectionID">451</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">theWindow</string>
-						<reference key="source" ref="635946545"/>
-						<reference key="destination" ref="972006081"/>
-					</object>
-					<int key="connectionID">459</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -752,30 +750,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">rebuildCatalogsSheet</string>
-						<reference key="source" ref="635946545"/>
-						<reference key="destination" ref="872534674"/>
-					</object>
-					<int key="connectionID">1619</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">dismissSheet:</string>
-						<reference key="source" ref="635946545"/>
-						<reference key="destination" ref="776265473"/>
-					</object>
-					<int key="connectionID">1621</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">mainView</string>
-						<reference key="source" ref="635946545"/>
-						<reference key="destination" ref="686080788"/>
-					</object>
-					<int key="connectionID">1648</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">mainOutlineView</string>
 						<reference key="source" ref="635946545"/>
 						<reference key="destination" ref="106796885"/>
@@ -797,6 +771,46 @@
 						<reference key="destination" ref="867146344"/>
 					</object>
 					<int key="connectionID">1659</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">appViewController</string>
+						<reference key="source" ref="635946545"/>
+						<reference key="destination" ref="792743242"/>
+					</object>
+					<int key="connectionID">1663</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">theWindow</string>
+						<reference key="source" ref="635946545"/>
+						<reference key="destination" ref="972006081"/>
+					</object>
+					<int key="connectionID">1670</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">mainView</string>
+						<reference key="source" ref="635946545"/>
+						<reference key="destination" ref="686080788"/>
+					</object>
+					<int key="connectionID">1673</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">dismissSheet:</string>
+						<reference key="source" ref="792743242"/>
+						<reference key="destination" ref="776265473"/>
+					</object>
+					<int key="connectionID">1665</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">sheet</string>
+						<reference key="source" ref="792743242"/>
+						<reference key="destination" ref="872534674"/>
+					</object>
+					<int key="connectionID">1678</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -952,6 +966,7 @@
 							<reference ref="776265473"/>
 						</object>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Catalogs Sheet</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1615</int>
@@ -1054,6 +1069,11 @@
 						<reference key="object" ref="867146344"/>
 						<reference key="parent" ref="0"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1662</int>
+						<reference key="object" ref="792743242"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1099,6 +1119,7 @@
 					<string>1646.IBPluginDependency</string>
 					<string>1653.IBPluginDependency</string>
 					<string>1656.IBPluginDependency</string>
+					<string>1662.IBPluginDependency</string>
 					<string>371.IBNSWindowAutoPositionCentersHorizontal</string>
 					<string>371.IBNSWindowAutoPositionCentersVertical</string>
 					<string>371.IBPluginDependency</string>
@@ -1150,11 +1171,12 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{303, 221}, {480, 360}}</string>
-					<integer value="1"/>
+					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1173,7 +1195,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1661</int>
+			<int key="maxID">1678</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1224,20 +1246,22 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>appViewController</string>
 							<string>mainOutlineView</string>
 							<string>mainView</string>
 							<string>manifestsOutlineDataSource</string>
+							<string>munkiLogo</string>
 							<string>pkgsInfoOutlineDataSource</string>
-							<string>rebuildCatalogsSheet</string>
 							<string>theWindow</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>MFApplicationViewController</string>
 							<string>NSOutlineView</string>
 							<string>NSView</string>
 							<string>MFManifestsOutlineDataSource</string>
+							<string>NSWindow</string>
 							<string>MFPkgsInfoOutlineDataSource</string>
-							<string>NSView</string>
 							<string>NSWindow</string>
 						</object>
 					</object>
@@ -1245,15 +1269,20 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>appViewController</string>
 							<string>mainOutlineView</string>
 							<string>mainView</string>
 							<string>manifestsOutlineDataSource</string>
+							<string>munkiLogo</string>
 							<string>pkgsInfoOutlineDataSource</string>
-							<string>rebuildCatalogsSheet</string>
 							<string>theWindow</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">appViewController</string>
+								<string key="candidateClassName">MFApplicationViewController</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">mainOutlineView</string>
 								<string key="candidateClassName">NSOutlineView</string>
@@ -1267,12 +1296,12 @@
 								<string key="candidateClassName">MFManifestsOutlineDataSource</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">pkgsInfoOutlineDataSource</string>
-								<string key="candidateClassName">MFPkgsInfoOutlineDataSource</string>
+								<string key="name">munkiLogo</string>
+								<string key="candidateClassName">NSWindow</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">rebuildCatalogsSheet</string>
-								<string key="candidateClassName">NSView</string>
+								<string key="name">pkgsInfoOutlineDataSource</string>
+								<string key="candidateClassName">MFPkgsInfoOutlineDataSource</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">theWindow</string>
@@ -1283,6 +1312,57 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/AppController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MFApplicationViewController</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">dismissSheet:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">dismissSheet:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">dismissSheet:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>rebuildCatalogsSheet</string>
+							<string>sheet</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSView</string>
+							<string>NSView</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>rebuildCatalogsSheet</string>
+							<string>sheet</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">rebuildCatalogsSheet</string>
+								<string key="candidateClassName">NSView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">sheet</string>
+								<string key="candidateClassName">NSView</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MFApplicationViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
