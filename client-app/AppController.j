@@ -15,15 +15,7 @@
 @implementation AppController : CPObject
 {
 	@outlet	MFApplicationViewController appViewController;
-	@outlet	CPView mainView;
 	@outlet	CPWindow theWindow;
-	@outlet CPWindow munkiLogo;
-	@outlet	CPOutlineView mainOutlineView;
-					CPViewController mainViewController;
-					CPViewController manifestsViewController;
-					CPViewController packagesViewController;
-	@outlet	MFManifestsOutlineDataSource manifestsOutlineDataSource;
-	@outlet	MFPkgsInfoOutlineDataSource pkgsInfoOutlineDataSource;
 }
 
 
@@ -31,10 +23,15 @@
 
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
 {
-    // This is called when the application is done loading.
-		packagesViewController = [[CPViewController alloc]
-			initWithCibName:@"Packages" bundle:nil];
-		[packagesViewController view];
+	var mainView = [[[CPApplication sharedApplication] arguments] firstObject];
+	if (mainView == "pkgsinfo")
+	{
+		[appViewController setMainViewController:MFApplicationViewPkgsInfo];
+	}
+	else
+	{
+		[appViewController setMainViewController:MFApplicationViewManifests];
+	}
 }
 
 
@@ -49,15 +46,6 @@
 	var bgColor = [CPColor colorWithPatternImage:img];
 	[[theWindow contentView] setBackgroundColor:bgColor];
 
-
-	manifestsViewController = [[CPViewController alloc]
-		initWithCibName:@"Manifests" bundle:nil];
-	mainViewController = manifestsViewController;
-	[self prepareMainViewControllerForDisplay];
-	[mainView addSubview:[mainViewController view]];
-
-	[manifestsOutlineDataSource setOutlineView:mainOutlineView];
-	console.log([[CPApplication sharedApplication] arguments]);
 }
 
 
@@ -95,36 +83,6 @@
  */
 - (IBAction)toolbarButtonClicked:(id)aButton
 {
-	if ([mainViewController view])
-	{
-		[[mainViewController view] removeFromSuperview];
-	}
-
-
-	switch(parseInt([aButton tag]))
-	{
-		// "Manifests" button
-		case 1:
-			[manifestsOutlineDataSource setOutlineView:mainOutlineView];
-			mainViewController = manifestsViewController;
-			break;
-		// "Packages" button
-		case 2:
-			[pkgsInfoOutlineDataSource setOutlineView:mainOutlineView];
-			mainViewController = packagesViewController;
-			break;
-	}
-	[self prepareMainViewControllerForDisplay];
-	[mainView addSubview:[mainViewController view]];
-}
-
-
-
-
-- (void)prepareMainViewControllerForDisplay
-{
-	[[mainViewController view] setFrame:[mainView bounds]];
-	[[mainViewController view] setAutoresizingMask:CPViewHeightSizable |
-		CPViewWidthSizable];
+	[appViewController setMainViewController:[aButton tag]];
 }
 @end

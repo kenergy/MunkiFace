@@ -1,5 +1,5 @@
-//MFApplicationViewManifests = 1;
-//MFApplicationViewPkgsInfo = 2;
+MFApplicationViewManifests = 1;
+MFApplicationViewPkgsInfo = 2;
 
 /**
 	This class is just a proxy class that can switch between the various views
@@ -8,14 +8,24 @@
 @implementation MFApplicationViewController : CPObject
 {
 	@outlet	CPView sheet @accessors;
-//	@outlet	CPView mainView;
-//	@outlet	CPWindow theWindow;
-//	@outlet	CPOutlineView mainOutlineView;
-//					CPViewController mainViewController;
-//					CPViewController manifestsViewController;
-//					CPViewController packagesViewController;
-//	@outlet	MFManifestsOutlineDataSource manifestsOutlineDataSource;
-//	@outlet	MFPkgsInfoOutlineDataSource pkgsInfoOutlineDataSource;
+	@outlet	CPView mainView;
+	@outlet	CPOutlineView mainOutlineView;
+					CPViewController mainViewController;
+					CPViewController manifestsViewController;
+					CPViewController pkgsInfoViewController;
+	@outlet	MFManifestsOutlineDataSource manifestsOutlineDataSource;
+	@outlet	MFPkgsInfoOutlineDataSource pkgsInfoOutlineDataSource;
+}
+
+
+
+
+- (void)awakeFromCib
+{
+	manifestsViewController = [[CPViewController alloc]
+		initWithCibName:@"Manifests" bundle:nil];
+	pkgsInfoViewController = [[CPViewController alloc]
+		initWithCibName:@"Packages" bundle:nil];
 }
 
 
@@ -26,26 +36,33 @@
 	constants as an argument and will bring forward the corresponding view.
 	\param anApplicationViewTag
  */
-/*- (void)makeViewActive:(int)anApplicationViewTag
+- (void)setMainViewController:(int)anApplicationViewTag
 {
+	if ([mainViewController view])
+	{
+		[[mainViewController view] removeFromSuperview];
+	}
+
+
 	switch(anApplicationViewTag)
 	{
+		// "Manifests" button
 		case MFApplicationViewManifests:
+			[manifestsOutlineDataSource setOutlineView:mainOutlineView];
+			mainViewController = manifestsViewController;
 			break;
+		// "Packages" button
 		case MFApplicationViewPkgsInfo:
+			[pkgsInfoOutlineDataSource setOutlineView:mainOutlineView];
+			mainViewController = pkgsInfoViewController;
 			break;
 		default:
+			alert("Unknown view, '" + anApplicationViewTag + "', requested!");
 	}
+	[self prepareMainViewControllerForDisplay];
+	[mainView addSubview:[mainViewController view]];
 }
-*/
 
-
-
-/*- (CPViewController)viewControllerForCib:(CPString)aCibName
-{
-	return [[CPViewController alloc] initWithCibName:aCibName bundle:nil];
-}
-*/
 
 
 
@@ -81,11 +98,10 @@
 
 
 
-/*- (void)prepareMainViewControllerForDisplay
+- (void)prepareMainViewControllerForDisplay
 {
 	[[mainViewController view] setFrame:[mainView bounds]];
 	[[mainViewController view] setAutoresizingMask:CPViewHeightSizable |
 		CPViewWidthSizable];
 }
-*/
 @end

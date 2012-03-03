@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">11D50</string>
+		<string key="IBDocument.SystemVersion">11D50b</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
 		<string key="IBDocument.AppKitVersion">1138.32</string>
 		<string key="IBDocument.HIToolboxVersion">568.00</string>
@@ -386,7 +386,7 @@
 													<bytes key="NSWhite">MC41AA</bytes>
 												</object>
 											</object>
-											<double key="NSRowHeight">24</double>
+											<double key="NSRowHeight">20</double>
 											<int key="NSTvFlags">-767557632</int>
 											<reference key="NSDelegate"/>
 											<reference key="NSDataSource"/>
@@ -451,7 +451,7 @@
 							<reference key="NSVScroller" ref="1052760605"/>
 							<reference key="NSHScroller" ref="971878902"/>
 							<reference key="NSContentView" ref="915249142"/>
-							<bytes key="NSScrollAmts">QSAAAEEgAABBwAAAQcAAAA</bytes>
+							<bytes key="NSScrollAmts">QSAAAEEgAABBoAAAQaAAAA</bytes>
 						</object>
 						<object class="NSSearchField" id="161497918">
 							<reference key="NSNextResponder" ref="439893737"/>
@@ -546,14 +546,14 @@
 					<reference key="NSNextKeyView" ref="161497918"/>
 					<int key="NSViewLayerContentsRedrawPolicy">2</int>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMinSize">{1024, 528}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 			<object class="NSWindowTemplate" id="500074380">
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{0, 820}, {265, 58}}</string>
+				<string key="NSWindowRect">{{0, 1000}, {265, 58}}</string>
 				<int key="NSWTFlags">1680348160</int>
 				<string key="NSWindowTitle">MunkiFace Logo</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -640,7 +640,7 @@
 					<reference key="NSNextKeyView" ref="637471013"/>
 					<string key="NSReuseIdentifierKey">_NS:224</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -750,30 +750,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">mainOutlineView</string>
-						<reference key="source" ref="635946545"/>
-						<reference key="destination" ref="106796885"/>
-					</object>
-					<int key="connectionID">1654</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">manifestsOutlineDataSource</string>
-						<reference key="source" ref="635946545"/>
-						<reference key="destination" ref="615560650"/>
-					</object>
-					<int key="connectionID">1655</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">pkgsInfoOutlineDataSource</string>
-						<reference key="source" ref="635946545"/>
-						<reference key="destination" ref="867146344"/>
-					</object>
-					<int key="connectionID">1659</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">appViewController</string>
 						<reference key="source" ref="635946545"/>
 						<reference key="destination" ref="792743242"/>
@@ -787,14 +763,6 @@
 						<reference key="destination" ref="972006081"/>
 					</object>
 					<int key="connectionID">1670</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">mainView</string>
-						<reference key="source" ref="635946545"/>
-						<reference key="destination" ref="686080788"/>
-					</object>
-					<int key="connectionID">1673</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -811,6 +779,38 @@
 						<reference key="destination" ref="872534674"/>
 					</object>
 					<int key="connectionID">1678</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">pkgsInfoOutlineDataSource</string>
+						<reference key="source" ref="792743242"/>
+						<reference key="destination" ref="867146344"/>
+					</object>
+					<int key="connectionID">1679</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">manifestsOutlineDataSource</string>
+						<reference key="source" ref="792743242"/>
+						<reference key="destination" ref="615560650"/>
+					</object>
+					<int key="connectionID">1680</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">mainView</string>
+						<reference key="source" ref="792743242"/>
+						<reference key="destination" ref="686080788"/>
+					</object>
+					<int key="connectionID">1681</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">mainOutlineView</string>
+						<reference key="source" ref="792743242"/>
+						<reference key="destination" ref="106796885"/>
+					</object>
+					<int key="connectionID">1682</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1195,7 +1195,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1678</int>
+			<int key="maxID">1682</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1249,9 +1249,6 @@
 							<string>appViewController</string>
 							<string>mainOutlineView</string>
 							<string>mainView</string>
-							<string>manifestsOutlineDataSource</string>
-							<string>munkiLogo</string>
-							<string>pkgsInfoOutlineDataSource</string>
 							<string>theWindow</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1259,9 +1256,6 @@
 							<string>MFApplicationViewController</string>
 							<string>NSOutlineView</string>
 							<string>NSView</string>
-							<string>MFManifestsOutlineDataSource</string>
-							<string>NSWindow</string>
-							<string>MFPkgsInfoOutlineDataSource</string>
 							<string>NSWindow</string>
 						</object>
 					</object>
@@ -1272,9 +1266,6 @@
 							<string>appViewController</string>
 							<string>mainOutlineView</string>
 							<string>mainView</string>
-							<string>manifestsOutlineDataSource</string>
-							<string>munkiLogo</string>
-							<string>pkgsInfoOutlineDataSource</string>
 							<string>theWindow</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1290,18 +1281,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">mainView</string>
 								<string key="candidateClassName">NSView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">manifestsOutlineDataSource</string>
-								<string key="candidateClassName">MFManifestsOutlineDataSource</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">munkiLogo</string>
-								<string key="candidateClassName">NSWindow</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">pkgsInfoOutlineDataSource</string>
-								<string key="candidateClassName">MFPkgsInfoOutlineDataSource</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">theWindow</string>
@@ -1332,12 +1311,18 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>rebuildCatalogsSheet</string>
+							<string>mainOutlineView</string>
+							<string>mainView</string>
+							<string>manifestsOutlineDataSource</string>
+							<string>pkgsInfoOutlineDataSource</string>
 							<string>sheet</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSOutlineView</string>
 							<string>NSView</string>
+							<string>MFManifestsOutlineDataSource</string>
+							<string>MFPkgsInfoOutlineDataSource</string>
 							<string>NSView</string>
 						</object>
 					</object>
@@ -1345,14 +1330,29 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>rebuildCatalogsSheet</string>
+							<string>mainOutlineView</string>
+							<string>mainView</string>
+							<string>manifestsOutlineDataSource</string>
+							<string>pkgsInfoOutlineDataSource</string>
 							<string>sheet</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
-								<string key="name">rebuildCatalogsSheet</string>
+								<string key="name">mainOutlineView</string>
+								<string key="candidateClassName">NSOutlineView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">mainView</string>
 								<string key="candidateClassName">NSView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">manifestsOutlineDataSource</string>
+								<string key="candidateClassName">MFManifestsOutlineDataSource</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">pkgsInfoOutlineDataSource</string>
+								<string key="candidateClassName">MFPkgsInfoOutlineDataSource</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">sheet</string>
