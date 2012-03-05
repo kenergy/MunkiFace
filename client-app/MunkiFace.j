@@ -7,3 +7,4 @@
 @import "MFPkgsInfoOutlineDataSource.j"
 @import "MFTreeModel.j"
 @import "MFManifestBackgroundView.j"
+@import "MFPkgsInfoCollectionViewItemView.j"
