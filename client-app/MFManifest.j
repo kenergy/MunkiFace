@@ -27,4 +27,24 @@ var MFMANIFEST_INSTANCE = nil;
 	}
 	return MFMANIFEST_INSTANCE;
 }
+
+
+
+
+- (void)dataDidReload
+{
+	var installsCount = [[data objectForKey:@"managed_installs"] count];
+	var updatesCount = [[data objectForKey:@"managed_updates"] count];
+	var uninstallsCount = [[data objectForKey:@"managed_uninstalls"] count];
+	var optionalInstallsCount = [[data objectForKey:@"optional_installs"] count];
+	var manifestsCount = [[data objectForKey:@"included_manifests"] count];
+	var catalogsCount = [[data objectForKey:@"catalogs"] count];
+	
+	[data setObject:installsCount forKey:@"MFManagedInstallsCount"];
+	[data setObject:updatesCount forKey:@"MFManagedUpdatesCount"];
+	[data setObject:uninstallsCount forKey:@"MFManagedUninstallsCount"];
+	[data setObject:optionalInstallsCount forKey:@"MFOptionalInstallsCount"];
+	[data setObject:manifestsCount forKey:@"MFIncludedManifestsCount"];
+	[data setObject:catalogsCount forKey:@"MFIncludedCatalogsCount"];
+}
 @end
