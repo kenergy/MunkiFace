@@ -31,8 +31,9 @@ var MFPKGSINFO_INSTANCE = nil;
 
 
 
-- (void)dataDidReload
+- (void)dataDidReload:(CPDictionary)someData
 {
+	[super dataDidReload:someData];
 	[data setObject:[data objectForKey:@"description"] forKey:@"item_description"];
 
 	// translate the installer_environment dictionary to an array of dictionaries

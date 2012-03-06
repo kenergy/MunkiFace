@@ -31,8 +31,9 @@ var MFMANIFEST_INSTANCE = nil;
 
 
 
-- (void)dataDidReload
+- (void)dataDidReload:(CPDictionary)someData
 {
+	[super dataDidReload:someData];
 	var installsCount = [[data objectForKey:@"managed_installs"] count];
 	var updatesCount = [[data objectForKey:@"managed_updates"] count];
 	var uninstallsCount = [[data objectForKey:@"managed_uninstalls"] count];

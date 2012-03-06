@@ -6,11 +6,9 @@
 	server on each selection. This will prevent the entire database from needing
 	to be loaded into memory all at once.
  */
-@implementation MFOutlineSelectedObject : CPObject
+@implementation MFOutlineSelectedObject : MFNetworkDataSource
 {
 	MFTreeModel representedModel @accessors;
-	CPURLRequest _dataSourceRequest;
-	CPString _munkiURI;
 	CPDictionary data @accessors;
 }
 
@@ -24,42 +22,11 @@
 - (void)setRepresentedModel:(MFTreeModel)aTreeModel
 {
 	representedModel = aTreeModel;
-	if (_munkiURI == nil)
-	{
-		_munkiURI = [[[CPBundle mainBundle] infoDictionary]
-			objectForKey:@"MunkiFace Server URI"];
-		_munkiURI = [_munkiURI stringByAppendingString:@"?controller=readFile&file="];
-	}
 
 	var path = [aTreeModel itemNamespace];
-	dataSourceURI = [_munkiURI stringByAppendingString:path];
-	_dataSourceRequest = [CPURLRequest requestWithURL:dataSourceURI];
+	[self setDataSourceURI:[MF_SERVER_URI stringByAppendingString:
+		@"?controller=readFile&file=" + path]];
 	[self reloadData];
-}
-
-
-
-
-/**
-	Asks for new data at dataSourceURI and sets 'self' as the delegate.
- */
-- (id)reloadData
-{
-	var connection = [CPURLConnection connectionWithRequest:_dataSourceRequest
-		delegate:self];
-}
-
-
-
-
-/**
-	This is meant to be overridden by implementing classes, so if it's not, we'll
-	log an error message to let developers know that.
- */
-- (void)dataDidReload
-{
-	CPLog("If you're implementing MFOutlineSelectedObject, you should reimplement"
-		+ " the dataDidReload method so you can update any KVO/KVC properties.");
 }
 
 
@@ -76,20 +43,9 @@
 
 
 
-/*------------------------CPConnection Delegate Methods-----------------------*/
-- (void)connection:(CPURLConnection) connection didReceiveData:(CPString)someData
+- (void)dataDidReload:(CPDictionary)someData
 {
-	[self setData:[CPDictionary dictionaryWithJSObject:JSON.parse(someData)
-		recursively:YES]];
-	[self dataDidReload];
+	[self setData:someData];
 	[self updateURLHash];
-}
-
-
-
-
-- (void)connection:(CPURLConnection) connection didFailWithError:(CPString)error
-{
-	alert(error);
 }
 @end
