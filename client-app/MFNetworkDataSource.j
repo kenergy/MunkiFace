@@ -43,7 +43,7 @@
 	into a CPDictionary.
 	\param data
  */
-- (void)dataDidReload:(CPDictionary)data
+- (void)dataDidReload:(CPDictionary)someData
 {
 	CPLog("MFNetworkDataSource::dataDidReload hasn't been overridden. "
 		+ "How will you know when the data has been received?");
@@ -52,9 +52,9 @@
 
 
 /*------------------------CPConnection Delegate Methods-----------------------*/
-- (void)connection:(CPURLConnection) connection didReceiveData:(CPString)data
+- (void)connection:(CPURLConnection) connection didReceiveData:(CPString)someData
 {
-	var dict = [CPDictionary dictionaryWithJSObject:JSON.parse(data)
+	var dict = [CPDictionary dictionaryWithJSObject:JSON.parse(someData)
 		recursively:YES];
 	[self dataDidReload:dict];
 }
