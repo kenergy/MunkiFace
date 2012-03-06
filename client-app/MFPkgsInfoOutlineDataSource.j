@@ -9,9 +9,7 @@
 
 -(void)awakeFromCib
 {
-	var uri = [[[CPBundle mainBundle] infoDictionary]
-				objectForKey:@"MunkiFace Server URI"];
-	uri = [uri stringByAppendingString:@"?controller=pkgsinfo"];
+	var uri = [MF_SERVER_URI stringByAppendingString:@"?controller=pkgsinfo"];
 
 	[self setAlsoBecomeDelegate:YES];
 	[self setDataSourceURI:uri];
