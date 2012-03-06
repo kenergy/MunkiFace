@@ -9,3 +9,5 @@
 @import "MFTreeModel.j"
 @import "MFManifestBackgroundView.j"
 @import "MFPkgsInfoCollectionViewItemView.j"
+MF_SERVER_URI = [[[CPBundle mainBundle] infoDictionary]
+	objectForKey:@"MunkiFace Server URI"];
