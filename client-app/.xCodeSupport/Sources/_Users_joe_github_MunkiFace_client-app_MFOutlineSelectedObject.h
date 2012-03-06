@@ -1,5 +1,5 @@
 
-@interface MFOutlineSelectedObject : NSObject
+@interface MFOutlineSelectedObject : MFNetworkDataSource
 {
 
 }
