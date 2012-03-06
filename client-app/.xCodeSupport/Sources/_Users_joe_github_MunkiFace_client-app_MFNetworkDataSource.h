@@ -1,0 +1,7 @@
+
+@interface MFNetworkDataSource : NSObject
+{
+
+}
+
+@end

@@ -22,10 +22,8 @@
 	before a call to reloadData will return nil since there hasn't yet been a need
 	to created the object.
  */
-@implementation MFOutlineDataSource : CPObject
+@implementation MFOutlineDataSource : MFNetworkDataSource
 {
-					     CPString dataSourceURI 			@accessors;
-					 CPURLRequest _dataSourceRequest;
 	@outlet CPOutlineView outlineView 				@accessors;
 						MFTreeModel treeModel						@accessors;
 						       BOOL alsoBecomeDelegate	@accessors;
@@ -44,15 +42,6 @@
 {
 	return alsoBecomeDelegate == YES;
 }
-
-
-
-- (void)setDataSourceURI:(CPString)aURI
-{
-	dataSourceURI = aURI;
-	_dataSourceRequest = [CPURLRequest requestWithURL:dataSourceURI];
-}
-
 
 
 
@@ -79,17 +68,6 @@
 	[outlineView reloadItem:nil];
 }
 
-
-
-
-/**
-	Asks for new data at dataSourceURI and sets 'self' as the delegate.
- */
-- (id)reloadData
-{
-	var connection = [CPURLConnection connectionWithRequest:_dataSourceRequest
-		delegate:self];
-}
 
 
 
@@ -142,22 +120,12 @@
 
 
 /*------------------------CPConnection Delegate Methods-----------------------*/
-- (void)connection:(CPURLConnection) connection didReceiveData:(CPString)data
+- (void)dataDidReload:(CPDictionary)someData
 {
-	var dict = [CPDictionary dictionaryWithJSObject:JSON.parse(data)
-		recursively:YES];
-	[self setTreeModel:[[MFTreeModel alloc] initWithDictionary:dict]];
+	[self setTreeModel:[[MFTreeModel alloc] initWithDictionary:someData]];
 	if ([self outlineView] != nil)
 	{
 		[outlineView reloadItem:nil];
 	}
-}
-
-
-
-
-- (void)connection:(CPURLConnection) connection didFailWithError:(CPString)error
-{
-	alert(error);
 }
 @end
