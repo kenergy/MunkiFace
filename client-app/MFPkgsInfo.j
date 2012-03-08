@@ -1,9 +1,10 @@
+var MFPKGSINFO_INSTANCE = nil;
 /**
 	This is a singleton class that represents the data for the manifest that's
 	selected in the outline view.
+	\class MFPkgsInfo
+	\extends MFOutlineSelectedObject
  */
-
-var MFPKGSINFO_INSTANCE = nil;
 @implementation MFPkgsInfo : MFOutlineSelectedObject
 {
 }

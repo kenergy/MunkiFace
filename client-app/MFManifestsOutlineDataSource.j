@@ -2,6 +2,8 @@
 	Provides the main CPOutlineView with a datasource and delegate. Also observes
 	the selected value of the catalogs CPPopUpButton and adjusts the contentns of
 	the CPOutlineView accordingly.
+	\class MFManifestsOutlineDataSource
+	\extends MFOutlineDataSource
  */
 @implementation MFManifestsOutlineDataSource : MFOutlineDataSource
 {

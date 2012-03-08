@@ -5,6 +5,9 @@
 	package from the outline view can be programatically loaded with data from the
 	server on each selection. This will prevent the entire database from needing
 	to be loaded into memory all at once.
+
+	\class MFOutlineSelectedObject
+	\extends MFNetworkDataSource
  */
 @implementation MFOutlineSelectedObject : MFNetworkDataSource
 {

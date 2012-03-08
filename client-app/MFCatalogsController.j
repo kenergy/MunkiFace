@@ -1,7 +1,9 @@
+var MF_CATALOGS_CONTROLLER_INSTANCE = nil;
+
+
 /**
 	Provides access to the Catalogs array.
  */
-var MF_CATALOGS_CONTROLLER_INSTANCE = nil;
 @implementation MFCatalogsController : CPObject
 {
 	@accessors CPArray catalogs;

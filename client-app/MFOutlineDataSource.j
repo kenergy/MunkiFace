@@ -21,6 +21,9 @@
 	provides access to the underlying data structure. Note: a call to treeModel
 	before a call to reloadData will return nil since there hasn't yet been a need
 	to created the object.
+
+	\class MFOutlineDataSource
+	\extends MFNetworkDataSource
  */
 @implementation MFOutlineDataSource : MFNetworkDataSource
 {

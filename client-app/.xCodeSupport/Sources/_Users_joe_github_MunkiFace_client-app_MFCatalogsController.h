@@ -1,5 +1,5 @@
 
-@interface MFCatalogsController : MFNetorkDataSource
+@interface MFCatalogsController : NSObject
 {
 
 }

@@ -1,9 +1,11 @@
+var MFMANIFEST_INSTANCE = nil;
+
 /**
 	This is a singleton class that represents the data for the manifest that's
 	selected in the outline view.
+	\class MFManifest
+	\extends MFOutlineSelectedObject
  */
-
-var MFMANIFEST_INSTANCE = nil;
 @implementation MFManifest : MFOutlineSelectedObject
 {
 }

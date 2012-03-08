@@ -1,5 +1,7 @@
 /**
 	Provides the main CPOutlineView with a datasource and delegate.
+	\class MFPkgsInfoOutlineDataSource
+	\extends MFOutlineDataSource
  */
 @implementation MFPkgsInfoOutlineDataSource : MFOutlineDataSource
 {
