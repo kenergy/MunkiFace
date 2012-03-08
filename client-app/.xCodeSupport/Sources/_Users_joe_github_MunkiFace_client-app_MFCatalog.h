@@ -1,0 +1,7 @@
+
+@interface MFCatalog : MFNetworkDataSource
+{
+
+}
+
+@end
