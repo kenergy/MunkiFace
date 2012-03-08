@@ -359,6 +359,10 @@ class RTDictionary extends RTObject implements ArrayAccess, IteratorAggregate
 				{
 					$output[] = $key . $obj->description();
 				}
+				else if (is_a($obj, "RTString"))
+				{
+					$output[] = $key . json_encode($obj->description());
+				}
 				else
 				{
 					$output[] = $key . '"' . $obj->description() . '"';
