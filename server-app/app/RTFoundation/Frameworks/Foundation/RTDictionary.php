@@ -173,7 +173,7 @@ class RTDictionary extends RTObject implements ArrayAccess, IteratorAggregate
 			$plist = $plist->toArray();
 			if (RTPHPArrayIsRTDictionary($plist) == NO)
 			{
-				return null;
+				return RTArray::arrayWithArray($plist);
 			}
 			return $this->initWithPHPArray($plist);
 		}
