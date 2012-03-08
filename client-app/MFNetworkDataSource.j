@@ -34,6 +34,7 @@
 	Asks for new data at dataSourceURI and sets 'self' as the delegate.
 	In your implementation, you should expect the data in the dataDidReload
 	delegate method.
+	\see MFNEtworkDataSource::reloadRawData
  */
 - (void)reloadData
 {
@@ -49,6 +50,11 @@
 	Asks for new data at dataSourceURI and sets 'self' as the delegate.
 	In your implementation, you should expect the data in the dataDidReload
 	delegate method.
+	Unlike the MFNetworkData::reloadData method, this method will pass the
+	resulting JSON data through JSON.parse and then hand it over to the
+	dataDidReload method. If you want the resulting object to be a CPDictionary,
+	use MFNetworkDataSource::reloadData instead.
+	\see MFNetworkDataSource::reloadData
  */
 - (void)reloadRawData
 {
