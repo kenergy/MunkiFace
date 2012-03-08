@@ -9,6 +9,11 @@
 }
 
 
+/**
+	When the class is loaded from the cib, it sets the URI for the
+	MFOutlineDataSource, asks to become the delegate for what ever CPOutlineView
+	represents the data and then requests the data from the server.
+ */
 -(void)awakeFromCib
 {
 	var uri = [MF_SERVER_URI stringByAppendingString:@"?controller=pkgsinfo"];
@@ -21,6 +26,13 @@
 
 
 
+/**
+	When the representing outline view selection changes, it calls this method (as
+	long as alsoBecomeDelegate is set to YES). This method then grabs an instance
+	of MFPkgsInfo and sets the representedModel to the selected MFTreeModel
+	object.
+	\see MFOutlineSelectedObject::setRepresentedModel
+ */
 - (void)outlineViewSelectionDidChange:(id)aNotification
 {
 	var anOutlineView = [aNotification object];

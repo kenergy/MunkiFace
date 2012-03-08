@@ -15,6 +15,11 @@
 
 
 
+/**
+	Set the URI that will be used in all future requests made by calling
+	MFNetworkDataSource::reloadData. There is nothing wrong with using the same
+	instance of the receiver to make multiple requests to multiple URIs.
+ */
 - (void)setDataSourceURI:(CPString)aURI
 {
 	dataSourceURI = aURI;
@@ -26,6 +31,8 @@
 
 /**
 	Asks for new data at dataSourceURI and sets 'self' as the delegate.
+	In your implementation, you should expect the data in the dataDidReload
+	delegate method.
  */
 - (id)reloadData
 {

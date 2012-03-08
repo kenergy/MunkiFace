@@ -27,9 +27,9 @@
  */
 @implementation MFOutlineDataSource : MFNetworkDataSource
 {
-	@outlet CPOutlineView outlineView 				@accessors;
-						MFTreeModel treeModel						@accessors;
-						       BOOL alsoBecomeDelegate	@accessors;
+	@outlet @accessors CPOutlineView outlineView;
+	@accessors MFTreeModel treeModel;
+	@accessors BOOL alsoBecomeDelegate;
 }
 
 

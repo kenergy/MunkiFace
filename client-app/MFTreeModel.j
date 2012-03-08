@@ -22,6 +22,7 @@
 	Each of those keys point to an array of items within the corresponding
 	directory. Each element of the array will contain either a string/number,
 	which represents a file, or another dictionary, which represents a directory.
+	\returns MFTreeModel
  */
 - (id)initWithDictionary:(CPDictionary)aDict
 {
@@ -42,6 +43,7 @@
 /**
 	This is used internally by MFTreeModel and should probably not be used
 	directly.
+	\returns MFTreeModel
  */
 - (id)initWithDictionary:(CPDictionary)aDict andParent:(MFTreeModel)aParent
 {
@@ -62,6 +64,7 @@
 /**
 	This is used internally by MFTreeModel and should probably not be used
 	directly.
+	\returns MFTreeModel
  */
 - (id)initAsLeafWithNode:(id)aNode andParent:(MFTreeModel)aParent
 {
@@ -250,6 +253,11 @@
 
 
 
+/**
+	Returns the value of MFTreeModel::name to make sure the object can be logged
+	with a little more meaningful information.
+	\returns CPString
+ */
 -(CPString)description
 {
 	return [self itemName];

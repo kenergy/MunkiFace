@@ -46,6 +46,12 @@
 
 
 
+/**
+	When data is received from the server, this method is called. The data that's
+	returned is set to the data field and then a call is made to
+	MFOutlineSelectedObject::updateURLHash to make sure the address bar contents
+	change according to the selected object.
+ */
 - (void)dataDidReload:(CPDictionary)someData
 {
 	[self setData:someData];
