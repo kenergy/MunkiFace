@@ -8,6 +8,8 @@ var MFCATALOG_INSTANCE = nil;
  */
 @implementation MFCatalog : MFNetworkDataSource
 {
+	@accessors CPArray packages;
+	@outlet CPImageView iconView;
 }
 
 
@@ -15,10 +17,14 @@ var MFCATALOG_INSTANCE = nil;
 
 - (id)awakeFromCib
 {
+	[super awakeFromCib];
+	[self setPackages:[CPArray array]];
 	[self setDataSourceURI:
 		[MF_SERVER_URI stringByAppendingString:@"?controller=readFile&file=catalogs/all"]];
-	[self reloadData];
+	[self reloadRawData];
 	MFCATALOG_INSTANCE = self;
+
+	[iconView setImage:[[CPImage alloc] initWithContentsOfFile:@"Resources/__icon__pkgs.png"]];
 }
 
 
@@ -36,8 +42,14 @@ var MFCATALOG_INSTANCE = nil;
 
 
 
-- (void)dataDidReload:(CPDictionary)someData
+- (void)dataDidReload:(CPArray)someData
 {
-	console.log(someData);
+	var arr = [CPMutableArray array];
+	for(var i = 0; i < [someData count]; i++)
+	{
+		[arr addObject:[CPDictionary dictionaryWithJSObject:[someData
+		objectAtIndex:i] recursively:YES]];
+	}
+	[self setPackages:arr];
 }
 @end

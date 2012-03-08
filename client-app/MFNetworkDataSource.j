@@ -10,6 +10,7 @@
 {
 	CPString dataSourceURI @accessors;
 	CPURLRequest _dataSourceRequest;
+	BOOL _convertDataToDictionary;
 }
 
 
@@ -34,10 +35,26 @@
 	In your implementation, you should expect the data in the dataDidReload
 	delegate method.
  */
-- (id)reloadData
+- (void)reloadData
 {
 	var connection = [CPURLConnection connectionWithRequest:_dataSourceRequest
 		delegate:self];
+	_convertDataToDictionary = YES;
+}
+
+
+
+
+/**
+	Asks for new data at dataSourceURI and sets 'self' as the delegate.
+	In your implementation, you should expect the data in the dataDidReload
+	delegate method.
+ */
+- (void)reloadRawData
+{
+	var connection = [CPURLConnection connectionWithRequest:_dataSourceRequest
+		delegate:self];
+	_convertDataToDictionary = NO;
 }
 
 
@@ -50,7 +67,7 @@
 	into a CPDictionary.
 	\param data
  */
-- (void)dataDidReload:(CPDictionary)someData
+- (void)dataDidReload:(id)someData
 {
 	CPLog("MFNetworkDataSource::dataDidReload hasn't been overridden. "
 		+ "How will you know when the data has been received?");
@@ -61,9 +78,16 @@
 /*------------------------CPConnection Delegate Methods-----------------------*/
 - (void)connection:(CPURLConnection) connection didReceiveData:(CPString)someData
 {
-	var dict = [CPDictionary dictionaryWithJSObject:JSON.parse(someData)
-		recursively:YES];
-	[self dataDidReload:dict];
+	if (_convertDataToDictionary == YES)
+	{
+		var dict = [CPDictionary dictionaryWithJSObject:JSON.parse(someData)
+			recursively:YES];
+		[self dataDidReload:dict];
+	}
+	else
+	{
+		[self dataDidReload:JSON.parse(someData)];
+	}
 }
 
 
