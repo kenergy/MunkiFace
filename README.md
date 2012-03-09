@@ -35,8 +35,11 @@ following:
 * PHP v5.3.x or higher built as a module for your web server
 * munki
 
-According to [Cappuccino](http://cappuccino.org/learn/)'s documentation, the
-client-app requirements should be one of the following browsers:
+MunkiFace is pure Javascript, which means it really only requires a modern
+browser with a stanards-compliant Javascript engine. MunkiFace is written in
+Objective-J/Cappuccino, and according to
+[Cappuccino](http://cappuccino.org/learn/)'s documentation, the client-app
+requirements should be one of the following browsers:
 
 * Internet Explorer 7+
 * Firefox 2+
@@ -45,7 +48,10 @@ client-app requirements should be one of the following browsers:
 * Opera 9+
 
 ...though it should be noted that development is largely done in Safari and
-Google Chrome at the moment.
+Google Chrome at the moment with Chrome out performing Safari. The Cappuccino
+group has a few bugs filed with Apple that will hopefully be addressed in
+Mountain Lion. The Safari bugs are largely related to resizing the browser
+window while a Cappuccino app is loaded and visible.
 
 
 # What's MunkiFace? #
