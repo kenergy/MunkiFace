@@ -1,26 +1,30 @@
 # Basic Installation Notes #
 
 
-## Using configure.sh
-
-If you run configure.sh, it will look for an existing Munki repo in
-`~/Library/Preferences/com.googlecode.munki.munkiimport.plist`, show you the
-existing settings for the various URI settings and offer to help you change
-them. Hopefully it's pretty straight forward.
-
-
 ## Manual Installation
 
-To tell the server-app how to find Munki, edit `server-app/Settings.plist` and
-change the value of `munki-repo` such that it points to your Munki repo
-directory. Something like `/Library/WebServer/Documents/munki/`. This should be
-the directory that houses the `catalogs`, `manifests`, `pkgs`, and `pkgsinfo`
-directories.
+Download and unzip the latest version of MunkiFace from
+https://github.com/buffalo/MunkiFace/zipball/master (zip).
 
 
-To tell the client-app how to find the server-app, edit `client-app/Info.plist`
-and change the value of `Munki Server URI` such that it points to the location
-of server-app. Something like `http://munki.example.com/server-app/`
+Move the `server-app` and `client-app` directories into your webserver's
+document root. On OS X client, this would be `/Library/WebServer/Documents`.
+
+
+Edit `client-app/Info.plist`'s `MunkiFace Server URI` key such that it contains
+the full URI to `server-app`. For example: `http://munki.example.com/server-app`
+
+Edit `server-app/Settings.plist` and set `munki-repo` to the local filesystem
+path that contains your munki files; `/Users/Shared/munki_repo` for example.
+Next set the `SoftwareRepoURL` to essentially the same value that you would use
+in ManagedInstalls.plist; `http://munki.example.com/munki_repo` for example.
+
+
+Point your browser to `http://munki.example.com/client-app` and test.
+
+
+For the sake of human readability, you might consider renaming the client-app
+directory to `munkiface` or something similar.
 
 
 ## Requirements
@@ -48,10 +52,10 @@ Google Chrome at the moment.
 At the moment, it's a work in progress. What it will eventually become is a web
 application front end for [Munki](http://code.google.com/p/munki/).
 
-Greg Neagle, the creator of Munki and various other tools, just emailed a few
-links to me for reference. I'll clean this up a little later, but wanted to get
-them posted for reference.
 
+Here are a few links to some other projects that provide features similar to
+what MunkiFace has in mind. The last link is an excellent video of a
+presentation on Munki given by its creator, Greg Neagle.
 * munkiserver: https://github.com/jnraine/munkiserver
 * MunkiReport: http://code.google.com/p/munkireport/
 * MunkiReport-php: http://code.google.com/p/munkireport-php/
@@ -75,7 +79,7 @@ plists manually and send the filtered data on, which is just no fun.
 After the read-only functionality is pretty solid, I'll start working on some
 very basic read/write stuff. Basic as in, providing a mechanism for editing the
 description of the installer and hopefully adding drag-n-drop functionality such
-that catalogs can be created and modified by simply dragging packages from one
+that manifests can be created and modified by simply dragging packages from one
 list into another.
 
 
