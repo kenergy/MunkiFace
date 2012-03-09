@@ -645,6 +645,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="72094021"/>
 						<string key="NSReuseIdentifierKey">_NS:3944</string>
+						<int key="NSTag">1</int>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="579382856">
 							<int key="NSCellFlags">68288064</int>
@@ -666,6 +667,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:3944</string>
+						<int key="NSTag">2</int>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="956628651">
 							<int key="NSCellFlags">68288064</int>
@@ -770,22 +772,6 @@
 						<reference key="destination" ref="807353222"/>
 					</object>
 					<int key="connectionID">78</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">appNameLabel</string>
-						<reference key="source" ref="807353222"/>
-						<reference key="destination" ref="1069448961"/>
-					</object>
-					<int key="connectionID">256</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">appVersionLabel</string>
-						<reference key="source" ref="807353222"/>
-						<reference key="destination" ref="72094021"/>
-					</object>
-					<int key="connectionID">257</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -898,38 +884,6 @@
 						</object>
 					</object>
 					<int key="connectionID">247</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: representedObject.name</string>
-						<reference key="source" ref="1069448961"/>
-						<reference key="destination" ref="1029035801"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1069448961"/>
-							<reference key="NSDestination" ref="1029035801"/>
-							<string key="NSLabel">value: representedObject.name</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">representedObject.name</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">298</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: representedObject.version</string>
-						<reference key="source" ref="72094021"/>
-						<reference key="destination" ref="1029035801"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="72094021"/>
-							<reference key="NSDestination" ref="1029035801"/>
-							<string key="NSLabel">value: representedObject.version</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">representedObject.version</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">294</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1660,38 +1614,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">MFPkgsInfoCollectionViewItemView</string>
 					<string key="superclassName">NSView</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>appNameLabel</string>
-							<string>appVersionLabel</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>NSTextField</string>
-							<string>NSTextField</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>appNameLabel</string>
-							<string>appVersionLabel</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">appNameLabel</string>
-								<string key="candidateClassName">NSTextField</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">appVersionLabel</string>
-								<string key="candidateClassName">NSTextField</string>
-							</object>
-						</object>
-					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MFPkgsInfoCollectionViewItemView.h</string>
