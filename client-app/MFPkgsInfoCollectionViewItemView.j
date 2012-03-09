@@ -9,11 +9,15 @@
 {
 	if (isSelected)
 	{
-		console.log("Is selected");
+		[self setBackgroundColor:[CPColor alternateSelectedControlColor]];
+		[[self viewWithTag:1] setTextColor:[CPColor whiteColor]];
+		[[self viewWithTag:2] setTextColor:[CPColor whiteColor]];
 	}
 	else
 	{
-		console.log("Is not selected");
+		[self setBackgroundColor:[CPColor clearColor]];
+		[[self viewWithTag:1] setTextColor:[CPColor blackColor]];
+		[[self viewWithTag:2] setTextColor:[CPColor blackColor]];
 	}
 }
 
