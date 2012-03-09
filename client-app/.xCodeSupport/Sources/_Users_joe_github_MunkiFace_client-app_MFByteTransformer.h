@@ -1,0 +1,7 @@
+
+@interface MFByteTransformer : NSValueTransformer
+{
+
+}
+
+@end
