@@ -642,7 +642,7 @@
 					<object class="NSTextField" id="1069448961">
 						<reference key="NSNextResponder" ref="807353222"/>
 						<int key="NSvFlags">266</int>
-						<string key="NSFrame">{{46, 20}, {117, 17}}</string>
+						<string key="NSFrame">{{46, 20}, {76, 17}}</string>
 						<reference key="NSSuperview" ref="807353222"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="72094021"/>
@@ -654,7 +654,7 @@
 							<int key="NSCellFlags2">272632320</int>
 							<string key="NSContents"/>
 							<reference key="NSSupport" ref="26"/>
-							<string key="NSPlaceholderString">&lt;application name&gt;</string>
+							<string key="NSPlaceholderString">&lt;name&gt;</string>
 							<string key="NSCellIdentifier">_NS:3944</string>
 							<reference key="NSControlView" ref="1069448961"/>
 							<reference key="NSBackgroundColor" ref="89216201"/>
@@ -664,7 +664,7 @@
 					<object class="NSTextField" id="72094021">
 						<reference key="NSNextResponder" ref="807353222"/>
 						<int key="NSvFlags">266</int>
-						<string key="NSFrame">{{46, 4}, {117, 17}}</string>
+						<string key="NSFrame">{{46, 4}, {76, 17}}</string>
 						<reference key="NSSuperview" ref="807353222"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -680,7 +680,7 @@
 								<double key="NSSize">9</double>
 								<int key="NSfFlags">3614</int>
 							</object>
-							<string key="NSPlaceholderString">&lt;version string&gt;</string>
+							<string key="NSPlaceholderString">&lt;version&gt;</string>
 							<string key="NSCellIdentifier">_NS:3944</string>
 							<reference key="NSControlView" ref="72094021"/>
 							<reference key="NSBackgroundColor" ref="89216201"/>
@@ -720,7 +720,7 @@
 						<bool key="NSEditable">YES</bool>
 					</object>
 				</object>
-				<string key="NSFrameSize">{180, 44}</string>
+				<string key="NSFrameSize">{124, 44}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="470962590"/>
