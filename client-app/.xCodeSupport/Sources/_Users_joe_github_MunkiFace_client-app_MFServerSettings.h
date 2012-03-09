@@ -1,0 +1,7 @@
+
+@interface MFServerSettings : MFNetworkDataSource
+{
+
+}
+
+@end

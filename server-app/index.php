@@ -30,6 +30,9 @@ switch ($controller)
 			)
 		);
 		break;
+	case "settings":
+		echo Settings::sharedSettings();
+		break;
 	default:
 		echo "Have you ran the configure.sh script yet?";
 }

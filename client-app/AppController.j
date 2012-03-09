@@ -23,6 +23,9 @@
 
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
 {
+	// make sure the MFServerSettings class has a chance to load its data before
+	// anything in the application attempts to use that data.
+	[MFServerSettings sharedSettings];
 	var mainView = [[[CPApplication sharedApplication] arguments] firstObject];
 	if (mainView == "pkgsinfo")
 	{

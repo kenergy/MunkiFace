@@ -1,4 +1,5 @@
 @import "MFNetworkDataSource.j"
+@import "MFServerSettings.j"
 @import "MFApplicationViewController.j"
 @import "MFOutlineDataSource.j"
 @import "MFOutlineSelectedObject.j"

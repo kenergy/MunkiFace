@@ -4,5 +4,7 @@
 <dict>
 	<key>munki-repo</key>
 	<string>/Library/WebServer/Documents/munki_repo</string>
+	<key>SoftwareRepoURL</key>
+	<string>http://localhost/munki_repo</string>
 </dict>
 </plist>

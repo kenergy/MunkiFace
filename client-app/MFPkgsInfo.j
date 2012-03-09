@@ -101,8 +101,8 @@ var MFPKGSINFO_INSTANCE = nil;
 
 	// prefix the installer location path with the munki repo uri
 	var itemUri = [data objectForKey:@"installer_item_location"];
-	var munkiRepo = [[[CPBundle mainBundle] infoDictionary]
-		objectForKey:@"Munki Server URI"];
+	var munkiRepo = [[MFServerSettings sharedSettings]
+		objectForKey:@"SoftwareRepoURL"];
 	itemUri = [munkiRepo stringByAppendingString:@"pkgs/" + itemUri];
 	[data setObject:itemUri forKey:@"installer_item_location"];
 }
