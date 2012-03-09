@@ -12,7 +12,6 @@
 @import "MFManifestBackgroundView.j"
 @import "MFPkgsInfoCollectionViewItemView.j"
 @import "MFByteTransformer.j"
-@import "MFPackageView.j"
 
 MF_SERVER_URI = [[[CPBundle mainBundle] infoDictionary]
 	objectForKey:@"MunkiFace Server URI"];

@@ -565,6 +565,7 @@
 														<reference key="NSColor" ref="941199531"/>
 													</object>
 												</object>
+												<bool key="NSSelectable">YES</bool>
 												<int key="NSDraggingSourceMaskForLocal">-1</int>
 												<int key="NSDraggingSourceMaskForNonLocal">0</int>
 											</object>
