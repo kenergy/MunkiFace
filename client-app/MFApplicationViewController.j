@@ -13,8 +13,7 @@ MFApplicationViewPkgsInfo = 2;
 					CPViewController mainViewController;
 					CPViewController manifestsViewController;
 					CPViewController pkgsInfoViewController;
-	@outlet	MFManifestsOutlineDataSource manifestsOutlineDataSource;
-	@outlet	MFPkgsInfoOutlineDataSource pkgsInfoOutlineDataSource;
+	@outlet	MFOutlineDataSource outlineDataSource;
 }
 
 
@@ -48,12 +47,12 @@ MFApplicationViewPkgsInfo = 2;
 	{
 		// "Manifests" button
 		case MFApplicationViewManifests:
-			[manifestsOutlineDataSource setOutlineView:mainOutlineView];
+			[outlineDataSource representManifests];
 			mainViewController = manifestsViewController;
 			break;
 		// "Packages" button
 		case MFApplicationViewPkgsInfo:
-			[pkgsInfoOutlineDataSource setOutlineView:mainOutlineView];
+			[outlineDataSource representPkgsInfo];
 			mainViewController = pkgsInfoViewController;
 			break;
 		default:

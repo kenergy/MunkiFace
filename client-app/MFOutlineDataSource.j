@@ -29,46 +29,83 @@
 {
 	@outlet @accessors CPOutlineView outlineView;
 	@accessors MFTreeModel treeModel;
-	@accessors BOOL alsoBecomeDelegate;
+	CPString _manifestsURI;
+	CPString _pkgsinfoURI;
+}
+
+
+
+
+
+/**
+	Configures the instance as needed from the CIB.
+	Sets the URI for the manifests and pkgsinfo data sources on the server.
+ */
+-(void)awakeFromCib
+{
+	var baseURI = [[[CPBundle mainBundle] infoDictionary]
+		objectForKey:@"MunkiFace Server URI"];
+	_manifestsURI = [baseURI stringByAppendingString:@"?controller=manifests"];
+	_pkgsinfoURI = [baseURI stringByAppendingString:@"?controller=pkgsinfo"];
+}
+
+
+
+
+- (void)outlineViewSelectionDidChange:(id)aNotification
+{
+	var item = [outlineView itemAtRow:[outlineView selectedRow]];
+	if ([item isLeaf])
+	{
+		if ([[self dataSourceURI] isEqualToString:_manifestsURI])
+		{
+			[[MFManifest sharedInstance] setRepresentedModel:item];
+		}
+		else
+		{
+			[[MFPkgsInfo sharedInstance] setRepresentedModel:item];
+		}
+	}
 }
 
 
 
 
 /**
-	Returns the flag used to determine if the receiver should become the delegate
-	for the outline view when it becomes the datasource. Implementing classes that
-	want this behavior should set this value to YES during initialization using
-	[self setAlsoBecomeDelegate:YES];
+	Reconfigures the instance to represent manifests data and reloads the data
+	from the server.
  */
-- (BOOL)alsoBecomeDelegate
+- (void)representManifests
 {
-	return alsoBecomeDelegate == YES;
+	[self setDataSourceURI:_manifestsURI];
+	[self reloadData];
 }
 
 
 
-- (void)setOutlineView:(CPOutlineView)anOutlineView
+
+/**
+	Reconfigures the instance to represent pkgsinfo data and reloads the data from
+	the server.
+ */
+- (void)representPkgsInfo
 {
-	if (anOutlineView == nil)
-	{
-		outlineView = nil;
-		return;
-	}
-	outlineView = anOutlineView;
-	if ([outlineView dataSource] != nil)
-	{
-		[[outlineView dataSource] setOutlineView:nil];
-	}
-	[outlineView setDataSource:self];
+	[self setDataSourceURI:_pkgsinfoURI];
+	[self reloadData];
+}
 
 
-	if ([self alsoBecomeDelegate] == YES)
-	{
-		[outlineView setDelegate:self];
-	}
 
-	[outlineView reloadItem:nil];
+
+/**
+	Returns the last item that was selected according to
+	MFOutlineDataSource::setSelectedItem: or \c nil if no item has been set using
+	that method.
+ */
+- (MFTreeModel)selectedItem
+{
+	console.log("Selected item is", _selectedItem);
+	return _selectedItem;
 }
 
 

@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">11D50</string>
+		<string key="IBDocument.SystemVersion">11D50b</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
 		<string key="IBDocument.AppKitVersion">1138.32</string>
 		<string key="IBDocument.HIToolboxVersion">568.00</string>
@@ -56,7 +56,7 @@
 			<object class="NSWindowTemplate" id="972006081">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{696, 202}, {1024, 768}}</string>
+				<string key="NSWindowRect">{{696, 202}, {1024, 605}}</string>
 				<int key="NSWTFlags">1954021376</int>
 				<string key="NSWindowTitle">MunkiFace</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -286,7 +286,7 @@
 										<object class="NSOutlineView" id="106796885">
 											<reference key="NSNextResponder" ref="915249142"/>
 											<int key="NSvFlags">256</int>
-											<string key="NSFrameSize">{250, 719}</string>
+											<string key="NSFrameSize">{250, 556}</string>
 											<reference key="NSSuperview" ref="915249142"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="1052760605"/>
@@ -386,7 +386,7 @@
 													<bytes key="NSWhite">MC41AA</bytes>
 												</object>
 											</object>
-											<double key="NSRowHeight">24</double>
+											<double key="NSRowHeight">20</double>
 											<int key="NSTvFlags">-767557632</int>
 											<reference key="NSDelegate"/>
 											<reference key="NSDataSource"/>
@@ -402,7 +402,7 @@
 											<float key="NSOutlineViewIndentationPerLevelKey">14</float>
 										</object>
 									</object>
-									<string key="NSFrameSize">{250, 719}</string>
+									<string key="NSFrameSize">{250, 556}</string>
 									<reference key="NSSuperview" ref="336494841"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="106796885"/>
@@ -441,7 +441,7 @@
 									<double key="NSPercent">0.99328859060402686</double>
 								</object>
 							</object>
-							<string key="NSFrame">{{-1, -1}, {250, 719}}</string>
+							<string key="NSFrame">{{-1, -1}, {250, 556}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="915249142"/>
@@ -451,12 +451,12 @@
 							<reference key="NSVScroller" ref="1052760605"/>
 							<reference key="NSHScroller" ref="971878902"/>
 							<reference key="NSContentView" ref="915249142"/>
-							<bytes key="NSScrollAmts">QSAAAEEgAABBwAAAQcAAAA</bytes>
+							<bytes key="NSScrollAmts">QSAAAEEgAABBoAAAQaAAAA</bytes>
 						</object>
 						<object class="NSSearchField" id="161497918">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{5, 726}, {240, 22}}</string>
+							<string key="NSFrame">{{4, 563}, {240, 22}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="336494841"/>
@@ -532,7 +532,7 @@
 						<object class="NSCustomView" id="686080788">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">274</int>
-							<string key="NSFrame">{{248, 0}, {776, 768}}</string>
+							<string key="NSFrame">{{248, 0}, {776, 605}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
@@ -540,7 +540,7 @@
 							<string key="NSClassName">NSView</string>
 						</object>
 					</object>
-					<string key="NSFrameSize">{1024, 768}</string>
+					<string key="NSFrameSize">{1024, 605}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="161497918"/>
@@ -703,14 +703,11 @@
 				<reference key="NSNextKeyView" ref="884066346"/>
 				<string key="NSReuseIdentifierKey">_NS:224</string>
 			</object>
-			<object class="NSCustomObject" id="615560650">
-				<string key="NSClassName">MFManifestsOutlineDataSource</string>
-			</object>
-			<object class="NSCustomObject" id="867146344">
-				<string key="NSClassName">MFPkgsInfoOutlineDataSource</string>
-			</object>
 			<object class="NSCustomObject" id="792743242">
 				<string key="NSClassName">MFApplicationViewController</string>
+			</object>
+			<object class="NSCustomObject" id="396219295">
+				<string key="NSClassName">MFOutlineDataSource</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -765,6 +762,22 @@
 					<int key="connectionID">1670</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="106796885"/>
+						<reference key="destination" ref="396219295"/>
+					</object>
+					<int key="connectionID">1688</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="106796885"/>
+						<reference key="destination" ref="396219295"/>
+					</object>
+					<int key="connectionID">1689</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">dismissSheet:</string>
 						<reference key="source" ref="792743242"/>
@@ -782,22 +795,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">pkgsInfoOutlineDataSource</string>
-						<reference key="source" ref="792743242"/>
-						<reference key="destination" ref="867146344"/>
-					</object>
-					<int key="connectionID">1679</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">manifestsOutlineDataSource</string>
-						<reference key="source" ref="792743242"/>
-						<reference key="destination" ref="615560650"/>
-					</object>
-					<int key="connectionID">1680</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">mainView</string>
 						<reference key="source" ref="792743242"/>
 						<reference key="destination" ref="686080788"/>
@@ -811,6 +808,22 @@
 						<reference key="destination" ref="106796885"/>
 					</object>
 					<int key="connectionID">1682</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">outlineDataSource</string>
+						<reference key="source" ref="792743242"/>
+						<reference key="destination" ref="396219295"/>
+					</object>
+					<int key="connectionID">1686</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">outlineView</string>
+						<reference key="source" ref="396219295"/>
+						<reference key="destination" ref="106796885"/>
+					</object>
+					<int key="connectionID">1687</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -855,9 +868,9 @@
 						<reference key="object" ref="439893737"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="336494841"/>
-							<reference ref="161497918"/>
 							<reference ref="686080788"/>
+							<reference ref="161497918"/>
+							<reference ref="336494841"/>
 						</object>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -1060,18 +1073,13 @@
 						<reference key="parent" ref="439893737"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">1653</int>
-						<reference key="object" ref="615560650"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1656</int>
-						<reference key="object" ref="867146344"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">1662</int>
 						<reference key="object" ref="792743242"/>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1685</int>
+						<reference key="object" ref="396219295"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</object>
@@ -1117,9 +1125,8 @@
 					<string>1644.isInViewBasedMode</string>
 					<string>1645.IBPluginDependency</string>
 					<string>1646.IBPluginDependency</string>
-					<string>1653.IBPluginDependency</string>
-					<string>1656.IBPluginDependency</string>
 					<string>1662.IBPluginDependency</string>
+					<string>1685.IBPluginDependency</string>
 					<string>371.IBNSWindowAutoPositionCentersHorizontal</string>
 					<string>371.IBNSWindowAutoPositionCentersVertical</string>
 					<string>371.IBPluginDependency</string>
@@ -1171,7 +1178,6 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1195,7 +1201,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1682</int>
+			<int key="maxID">1689</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1300,6 +1306,7 @@
 							<string>mainOutlineView</string>
 							<string>mainView</string>
 							<string>manifestsOutlineDataSource</string>
+							<string>outlineDataSource</string>
 							<string>pkgsInfoOutlineDataSource</string>
 							<string>sheet</string>
 						</object>
@@ -1308,6 +1315,7 @@
 							<string>NSOutlineView</string>
 							<string>NSView</string>
 							<string>MFManifestsOutlineDataSource</string>
+							<string>MFOutlineDataSource</string>
 							<string>MFPkgsInfoOutlineDataSource</string>
 							<string>NSView</string>
 						</object>
@@ -1319,6 +1327,7 @@
 							<string>mainOutlineView</string>
 							<string>mainView</string>
 							<string>manifestsOutlineDataSource</string>
+							<string>outlineDataSource</string>
 							<string>pkgsInfoOutlineDataSource</string>
 							<string>sheet</string>
 						</object>
@@ -1335,6 +1344,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">manifestsOutlineDataSource</string>
 								<string key="candidateClassName">MFManifestsOutlineDataSource</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">outlineDataSource</string>
+								<string key="candidateClassName">MFOutlineDataSource</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">pkgsInfoOutlineDataSource</string>
@@ -1360,8 +1373,16 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">MFOutlineDataSource</string>
+					<string key="className">MFNetworkDataSource</string>
 					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MFNetworkDataSource.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MFOutlineDataSource</string>
+					<string key="superclassName">MFNetworkDataSource</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">outlineView</string>
 						<string key="NS.object.0">NSOutlineView</string>

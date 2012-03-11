@@ -4,8 +4,7 @@
     IBOutlet NSView* sheet;
     IBOutlet NSView* mainView;
     IBOutlet NSOutlineView* mainOutlineView;
-    IBOutlet MFManifestsOutlineDataSource* manifestsOutlineDataSource;
-    IBOutlet MFPkgsInfoOutlineDataSource* pkgsInfoOutlineDataSource;
+    IBOutlet MFOutlineDataSource* outlineDataSource;
 }
 - (IBAction)dismissSheet:(id)aSender;
 @end

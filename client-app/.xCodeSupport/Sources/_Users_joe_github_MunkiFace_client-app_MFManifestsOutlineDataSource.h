@@ -1,7 +1,0 @@
-
-@interface MFManifestsOutlineDataSource : MFOutlineDataSource
-{
-
-}
-
-@end

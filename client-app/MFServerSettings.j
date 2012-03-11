@@ -2,6 +2,8 @@ var MF_SERVER_SETTINGS_INSTANCE = nil;
 /**
 	MFServerSettings is exactly what is sounds like; it fetches the server-side
 	settings and makes them available through its singleton instance.
+	\class MFServerSettings
+	\extends MFNetworkDataSource
  */
 @implementation MFServerSettings : MFNetworkDataSource
 {
