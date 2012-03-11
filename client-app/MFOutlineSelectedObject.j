@@ -57,4 +57,15 @@
 	[self setData:someData];
 	[self updateURLHash];
 }
+
+
+
+
+- (void)data:(id)someData didReloadWithError:(id)anError
+{
+	var alertWindow = [CPAlert alertWithError:
+		@"Error Reading Server Response\n\n" + anError];
+	[alertWindow beginSheetModalForWindow:
+		[[CPApplication sharedApplication] mainWindow]];
+}
 @end

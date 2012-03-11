@@ -75,8 +75,23 @@
  */
 - (void)dataDidReload:(id)someData
 {
-	CPLog("MFNetworkDataSource::dataDidReload hasn't been overridden. "
+	CPLog.warn("MFNetworkDataSource::dataDidReload hasn't been overridden. "
 		+ "How will you know when the data has been received?");
+}
+
+
+
+
+/**
+	If the response was not JSON or was JSON but could not be parsed this method
+	will be called. The default implementation is to log an error via
+	CPLog.error(), but if you want to present a notification to the user, you
+	should override this method.
+ */
+- (void)data:(id)someData didReloadWithError:(id)anError
+{
+	CPLog.error("[" + [self className] + "] Parse error: " + anError);
+	CPLog.error("Data: " + someData);
 }
 
 
@@ -84,15 +99,23 @@
 /*------------------------CPConnection Delegate Methods-----------------------*/
 - (void)connection:(CPURLConnection) connection didReceiveData:(CPString)someData
 {
-	if (_convertDataToDictionary == YES)
+	var parsedData = nil;
+	try
 	{
-		var dict = [CPDictionary dictionaryWithJSObject:JSON.parse(someData)
-			recursively:YES];
-		[self dataDidReload:dict];
+		parsedData = JSON.parse(someData);
+		if (_convertDataToDictionary == YES)
+		{
+			var dict = [CPDictionary dictionaryWithJSObject:parsedData recursively:YES];
+			[self dataDidReload:dict];
+		}
+		else
+		{
+			[self dataDidReload:parsedData];
+		}
 	}
-	else
+	catch(e)
 	{
-		[self dataDidReload:JSON.parse(someData)];
+		[self data:someData didReloadWithError:e];
 	}
 }
 
