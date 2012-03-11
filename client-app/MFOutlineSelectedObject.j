@@ -64,6 +64,7 @@
 - (void)data:(id)someData didReloadWithError:(id)anError
 {
 	[self setData:nil];
+	[self updateURLHash];
 	var alertWindow = [CPAlert alertWithError:
 		@"Error Reading Server Response\n\n" + anError];
 	[alertWindow beginSheetModalForWindow:
