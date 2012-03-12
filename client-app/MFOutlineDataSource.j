@@ -58,16 +58,11 @@
 	[searchField removeFromSuperview];
 	[searchField release];
 
-	var newSearchField = [[CPSearchField alloc] initWithFrame:CGRectMake(
-		-157.0,
-		49.0,
-		248.0,
-		30.0
-	)];
+	var newSearchField = [[CPSearchField alloc] initWithFrame:oldFrame];
 	[newSearchField setSendsSearchStringImmediately:YES];
 	[newSearchField setTarget:self];
 	[newSearchField setAction:@selector(searchDidChange:)];
-  [newSearchField setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin | CPViewMaxYMargin];
+  [newSearchField setAutoresizingMask:CPViewMaxXMargin | CPViewMaxYMargin];
 
 	searchField = newSearchField;
 	[oldSuperview addSubview:newSearchField];
