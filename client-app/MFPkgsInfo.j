@@ -78,6 +78,20 @@ var MFPKGSINFO_INSTANCE = nil;
 
 
 
+	// add support for deprecated keys
+	if ([[data allKeys] containsObject:@"forced_install"])
+	{
+		[data setObject:[data objectForKey:@"forced_install"]
+		forKey:@"unattended_install"];
+	}
+	if ([[data allKeys] containsObject:@"forced_uninstall"])
+	{
+		[data setObject:[data objectForKey:@"forced_uninstall"]
+		forKey:@"unattended_uninstall"];
+	}
+
+
+
 
 	// translate the uninstall_method for bindings
 	var uninstallMethod = [data objectForKey:@"uninstall_method"];
