@@ -28,6 +28,7 @@
 @implementation MFOutlineDataSource : MFNetworkDataSource
 {
 	@outlet @accessors CPOutlineView outlineView;
+	@outlet CPSearchField searchField;
 	@accessors MFTreeModel treeModel;
 	CPString _manifestsURI;
 	CPString _pkgsinfoURI;
@@ -47,6 +48,30 @@
 		objectForKey:@"MunkiFace Server URI"];
 	_manifestsURI = [baseURI stringByAppendingString:@"?controller=manifests"];
 	_pkgsinfoURI = [baseURI stringByAppendingString:@"?controller=pkgsinfo"];
+
+	// ------- This whole section is a hack
+	// Something in nib2cib changes the CPSearchField in a way that it will never
+	// send search strings on anything other than hitting enter.
+	var oldFrame = [searchField frame];
+	var oldBounds = [searchField bounds];
+	var oldSuperview = [searchField superview];
+	[searchField removeFromSuperview];
+	[searchField release];
+
+	var newSearchField = [[CPSearchField alloc] initWithFrame:CGRectMake(
+		-157.0,
+		49.0,
+		248.0,
+		30.0
+	)];
+	[newSearchField setSendsSearchStringImmediately:YES];
+	[newSearchField setTarget:self];
+	[newSearchField setAction:@selector(searchDidChange:)];
+  [newSearchField setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin | CPViewMaxYMargin];
+
+	searchField = newSearchField;
+	[oldSuperview addSubview:newSearchField];
+	// ------- end hack
 }
 
 
@@ -167,5 +192,14 @@
 	{
 		[outlineView reloadItem:nil];
 	}
+}
+
+
+
+
+/*----------------------------CPTextFieldDelegate------------------------------*/
+-(void)searchDidChange:(id)aSender
+{
+	console.log([aSender stringValue]);
 }
 @end
