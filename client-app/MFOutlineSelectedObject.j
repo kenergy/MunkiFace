@@ -24,12 +24,14 @@
  */
 - (void)setRepresentedModel:(MFTreeModel)aTreeModel
 {
-	representedModel = aTreeModel;
-
-	var path = [aTreeModel itemNamespace];
-	[self setDataSourceURI:[MF_SERVER_URI stringByAppendingString:
-		@"?controller=readFile&file=" + path]];
-	[self reloadData];
+	if (representedModel != aTreeModel)
+	{
+		representedModel = aTreeModel;
+		var path = [aTreeModel itemNamespace];
+		[self setDataSourceURI:[MF_SERVER_URI stringByAppendingString:
+			@"?controller=readFile&file=" + path]];
+		[self reloadData];
+	}
 }
 
 
