@@ -55,6 +55,7 @@
 	var oldFrame = [searchField frame];
 	var oldBounds = [searchField bounds];
 	var oldSuperview = [searchField superview];
+	var oldAutoresizingMask = [searchField autoresizingMask];
 	[searchField removeFromSuperview];
 	[searchField release];
 
@@ -62,7 +63,7 @@
 	[newSearchField setSendsSearchStringImmediately:YES];
 	[newSearchField setTarget:self];
 	[newSearchField setAction:@selector(searchDidChange:)];
-  [newSearchField setAutoresizingMask:CPViewMaxXMargin | CPViewMaxYMargin];
+	[newSearchField setAutoresizingMask:oldAutoresizingMask];
 
 	searchField = newSearchField;
 	[oldSuperview addSubview:newSearchField];
