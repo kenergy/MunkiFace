@@ -6,5 +6,11 @@
 	<string>/Library/WebServer/Documents/munki_repo</string>
 	<key>SoftwareRepoURL</key>
 	<string>http://localhost/munki_repo</string>
+	<key>plist_extension</key>
+	<string></string>
+	<key>exclude_extensions</key>
+	<array>
+		<string>.html</string>
+	</array>
 </dict>
 </plist>

@@ -8,6 +8,8 @@
 abstract class AbstractModel extends RTObject
 {
 	protected static $_munkiDir;
+	protected static $_plistExtension;
+	protected static $_excludeExtensions;
 	protected $fullPathToModelRepo;
 
 
@@ -20,6 +22,42 @@ abstract class AbstractModel extends RTObject
 			self::$_munkiDir = Settings::sharedSettings()->objectForKey("munki-repo");
 		}
 		return self::$_munkiDir;
+	}
+
+
+
+
+	/**
+		Returns the file extension for valid plists that are to be included when
+		scanning a directory.
+		\returns RTString
+	 */
+	public function plistExtension()
+	{
+		if (self::$_plistExtension == null)
+		{
+			self::$_plistExtension =
+			Settings::sharedSettings()->objectForKey("plist_extension");
+		}
+		return self::$_plistExtension;
+	}
+
+
+
+
+	/**
+		Returns the array of file extensions that are to be ignored during a
+		directory scan.
+		\returns RTArray
+	 */
+	public function excludeExtensions()
+	{
+		if (self::$_excludeExtensions == null)
+		{
+			self::$_excludeExtensions =
+				Settings::sharedSettings()->objectForKey("exclude_extensions");
+		}
+		return self::$_excludeExtensions;
 	}
 
 
@@ -124,6 +162,28 @@ abstract class AbstractModel extends RTObject
 			}
 			else
 			{
+				$fileName = RTString::stringWithString($node);
+				// if Settings.plist specifies a valid plist extension and it's not an
+				// empty string, make sure the current file has that extension.
+				if ($this->plistExtension() != "" &&
+					$fileName->hasSuffix($this->plistExtension()) == NO)
+				{
+					continue;
+				}
+
+				// If Settings.plist specifies an array of file extensions that should
+				// be exclued, make sure the current file doesn't have any of those
+				// extensions.
+				for($i = 0; $i < $this->excludeExtensions()->count(); $i++)
+				{
+					if (
+						YES == $fileName->hasSuffix($this->excludeExtensions()->objectAtIndex($i))
+					)
+					{
+						continue 2;
+					}
+				}
+
 				try
 				{
 					$dict = RTDictionary::dictionaryWithContentsOfFile(
@@ -135,6 +195,7 @@ abstract class AbstractModel extends RTObject
 				}
 				catch(Exception $e)
 				{
+					$results[$currentDirectory][] = "(PARSE_ERROR) " . $node;
 				}
 			}
 		}
