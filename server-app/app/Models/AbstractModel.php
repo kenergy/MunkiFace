@@ -124,7 +124,18 @@ abstract class AbstractModel extends RTObject
 			}
 			else
 			{
-				$results[$currentDirectory][] = $node;
+				try
+				{
+					$dict = RTDictionary::dictionaryWithContentsOfFile(
+						RTString::stringWithString($fullPathToNode));
+					if ($dict->count() !== 0)
+					{
+						$results[$currentDirectory][] = $node;
+					}
+				}
+				catch(Exception $e)
+				{
+				}
 			}
 		}
 	}
