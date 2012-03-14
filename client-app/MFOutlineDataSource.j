@@ -30,6 +30,7 @@
 	@outlet @accessors CPOutlineView outlineView;
 	@outlet CPSearchField searchField;
 	@accessors MFTreeModel treeModel;
+	MFTreeModel arrangedObjects;
 	CPString _manifestsURI;
 	CPString _pkgsinfoURI;
 }
@@ -140,7 +141,7 @@
 {
 	if (item == nil)
 	{
-		return [[[self treeModel] childItems] objectAtIndex:index];
+		return [[arrangedObjects childItems] objectAtIndex:index];
 	}
 	return [[item childItems] objectAtIndex:index];
 }
@@ -160,7 +161,7 @@
 {
 	if (item == nil)
 	{
-		return [[self treeModel] numberOfChildren];
+		return [arrangedObjects numberOfChildren];
 	}
 	else
 	{
@@ -186,6 +187,7 @@
 - (void)dataDidReload:(CPDictionary)someData
 {
 	[self setTreeModel:[[MFTreeModel alloc] initWithDictionary:someData]];
+	arrangedObjects = [treeModel copy];
 	if ([self outlineView] != nil)
 	{
 		[outlineView reloadItem:nil];
@@ -198,6 +200,31 @@
 /*----------------------------CPTextFieldDelegate------------------------------*/
 -(void)searchDidChange:(id)aSender
 {
-	console.log([aSender stringValue]);
+	var search = [aSender stringValue];
+	if ([search isEqualToString:@""])
+	{
+		arrangedObjects = [treeModel copy];
+	}
+	else
+	{
+		arrangedObjects = [[MFTreeModel alloc] initWithDictionary:nil];
+		var leafs = [treeModel leafItemsAsNormalizedArray];
+		for(var i = 0; i < [leafs count]; i++)
+		{
+			var model = [leafs objectAtIndex:i];
+			var range = [[model itemNamespace] rangeOfString:search
+				options:CPCaseInsensitiveSearch];
+
+			if (range.length > 0)
+			{
+				[[arrangedObjects childItems] addObject:model];
+			}
+		}
+	}
+	
+	if ([self outlineView] != nil)
+	{
+		[outlineView reloadItem:nil];
+	}
 }
 @end
