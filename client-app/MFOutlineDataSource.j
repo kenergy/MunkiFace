@@ -224,7 +224,10 @@
 	
 	if ([self outlineView] != nil)
 	{
+		[outlineView deselectAll];
 		[outlineView reloadItem:nil];
+		[outlineView selectRowIndexes:[CPIndexSet indexSetWithIndex:0]
+		byExtendingSelection:NO];
 	}
 }
 @end
