@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">11D50b</string>
+		<string key="IBDocument.SystemVersion">11D50</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
 		<string key="IBDocument.AppKitVersion">1138.32</string>
 		<string key="IBDocument.HIToolboxVersion">568.00</string>
@@ -434,7 +434,7 @@
 																<object class="NSTableView" id="958465000">
 																	<reference key="NSNextResponder" ref="21724577"/>
 																	<int key="NSvFlags">256</int>
-																	<string key="NSFrameSize">{778, 323}</string>
+																	<string key="NSFrameSize">{778, 285}</string>
 																	<reference key="NSSuperview" ref="21724577"/>
 																	<reference key="NSNextKeyView" ref="1015543349"/>
 																	<string key="NSReuseIdentifierKey">_NS:1828</string>
@@ -520,7 +520,7 @@
 																	<int key="NSTableViewGroupRowStyle">1</int>
 																</object>
 															</object>
-															<string key="NSFrame">{{1, 17}, {778, 323}}</string>
+															<string key="NSFrame">{{1, 17}, {778, 285}}</string>
 															<reference key="NSSuperview" ref="1061161981"/>
 															<reference key="NSNextKeyView" ref="958465000"/>
 															<string key="NSReuseIdentifierKey">_NS:1826</string>
@@ -567,7 +567,7 @@
 														</object>
 														<reference ref="1015698006"/>
 													</object>
-													<string key="NSFrame">{{17, 17}, {780, 341}}</string>
+													<string key="NSFrame">{{17, 17}, {780, 303}}</string>
 													<reference key="NSSuperview" ref="462215661"/>
 													<reference key="NSNextKeyView" ref="381508307"/>
 													<string key="NSReuseIdentifierKey">_NS:1824</string>
@@ -578,6 +578,25 @@
 													<reference key="NSHeaderClipView" ref="381508307"/>
 													<reference key="NSCornerView" ref="1015698006"/>
 													<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
+												</object>
+												<object class="NSTextField" id="622174518">
+													<reference key="NSNextResponder" ref="462215661"/>
+													<int key="NSvFlags">266</int>
+													<string key="NSFrame">{{14, 320}, {786, 34}}</string>
+													<reference key="NSSuperview" ref="462215661"/>
+													<string key="NSReuseIdentifierKey">_NS:360</string>
+													<string key="NSAntiCompressionPriority">{250, 750}</string>
+													<bool key="NSEnabled">YES</bool>
+													<object class="NSTextFieldCell" key="NSCell" id="827699542">
+														<int key="NSCellFlags">67239424</int>
+														<int key="NSCellFlags2">138543104</int>
+														<string key="NSContents">Items listed here will be installed if not found on the client and will have all available updates applied.</string>
+														<reference key="NSSupport" ref="26"/>
+														<string key="NSCellIdentifier">_NS:360</string>
+														<reference key="NSControlView" ref="622174518"/>
+														<reference key="NSBackgroundColor" ref="89216201"/>
+														<reference key="NSTextColor" ref="481436346"/>
+													</object>
 												</object>
 											</object>
 											<string key="NSFrame">{{10, 33}, {814, 380}}</string>
@@ -607,7 +626,7 @@
 																<object class="NSTableView" id="826619886">
 																	<reference key="NSNextResponder" ref="125058106"/>
 																	<int key="NSvFlags">256</int>
-																	<string key="NSFrameSize">{778, 323}</string>
+																	<string key="NSFrameSize">{778, 285}</string>
 																	<reference key="NSSuperview" ref="125058106"/>
 																	<reference key="NSNextKeyView" ref="785825372"/>
 																	<string key="NSReuseIdentifierKey">_NS:1828</string>
@@ -676,7 +695,7 @@
 																	<int key="NSTableViewGroupRowStyle">1</int>
 																</object>
 															</object>
-															<string key="NSFrame">{{1, 17}, {778, 323}}</string>
+															<string key="NSFrame">{{1, 17}, {778, 285}}</string>
 															<reference key="NSSuperview" ref="90975214"/>
 															<reference key="NSNextKeyView" ref="826619886"/>
 															<string key="NSReuseIdentifierKey">_NS:1826</string>
@@ -723,7 +742,7 @@
 														</object>
 														<reference ref="1021940833"/>
 													</object>
-													<string key="NSFrame">{{17, 17}, {780, 341}}</string>
+													<string key="NSFrame">{{17, 17}, {780, 303}}</string>
 													<reference key="NSSuperview" ref="201590260"/>
 													<reference key="NSNextKeyView" ref="742126961"/>
 													<string key="NSReuseIdentifierKey">_NS:1824</string>
@@ -735,9 +754,29 @@
 													<reference key="NSCornerView" ref="1021940833"/>
 													<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 												</object>
+												<object class="NSTextField" id="998353603">
+													<reference key="NSNextResponder" ref="201590260"/>
+													<int key="NSvFlags">266</int>
+													<string key="NSFrame">{{14, 320}, {786, 34}}</string>
+													<reference key="NSSuperview" ref="201590260"/>
+													<reference key="NSNextKeyView" ref="90975214"/>
+													<string key="NSReuseIdentifierKey">_NS:360</string>
+													<string key="NSAntiCompressionPriority">{250, 750}</string>
+													<bool key="NSEnabled">YES</bool>
+													<object class="NSTextFieldCell" key="NSCell" id="191874299">
+														<int key="NSCellFlags">67239424</int>
+														<int key="NSCellFlags2">138543104</int>
+														<string key="NSContents">These items will be made available for self-service install and removal via Managed Software Update.</string>
+														<reference key="NSSupport" ref="26"/>
+														<string key="NSCellIdentifier">_NS:360</string>
+														<reference key="NSControlView" ref="998353603"/>
+														<reference key="NSBackgroundColor" ref="89216201"/>
+														<reference key="NSTextColor" ref="481436346"/>
+													</object>
+												</object>
 											</object>
 											<string key="NSFrame">{{10, 33}, {814, 380}}</string>
-											<reference key="NSNextKeyView" ref="90975214"/>
+											<reference key="NSNextKeyView" ref="998353603"/>
 										</object>
 										<string key="NSLabel">Optional Installs</string>
 										<reference key="NSColor" ref="89216201"/>
@@ -762,7 +801,7 @@
 																<object class="NSTableView" id="930645552">
 																	<reference key="NSNextResponder" ref="953930450"/>
 																	<int key="NSvFlags">256</int>
-																	<string key="NSFrameSize">{778, 323}</string>
+																	<string key="NSFrameSize">{778, 285}</string>
 																	<reference key="NSSuperview" ref="953930450"/>
 																	<reference key="NSNextKeyView" ref="45334468"/>
 																	<string key="NSReuseIdentifierKey">_NS:1828</string>
@@ -831,7 +870,7 @@
 																	<int key="NSTableViewGroupRowStyle">1</int>
 																</object>
 															</object>
-															<string key="NSFrame">{{1, 17}, {778, 323}}</string>
+															<string key="NSFrame">{{1, 17}, {778, 285}}</string>
 															<reference key="NSSuperview" ref="386453295"/>
 															<reference key="NSNextKeyView" ref="930645552"/>
 															<string key="NSReuseIdentifierKey">_NS:1826</string>
@@ -878,7 +917,7 @@
 														</object>
 														<reference ref="617406626"/>
 													</object>
-													<string key="NSFrame">{{17, 17}, {780, 341}}</string>
+													<string key="NSFrame">{{17, 17}, {780, 303}}</string>
 													<reference key="NSSuperview" ref="719323052"/>
 													<reference key="NSNextKeyView" ref="930374457"/>
 													<string key="NSReuseIdentifierKey">_NS:1824</string>
@@ -890,9 +929,29 @@
 													<reference key="NSCornerView" ref="617406626"/>
 													<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 												</object>
+												<object class="NSTextField" id="133054047">
+													<reference key="NSNextResponder" ref="719323052"/>
+													<int key="NSvFlags">266</int>
+													<string key="NSFrame">{{14, 320}, {786, 34}}</string>
+													<reference key="NSSuperview" ref="719323052"/>
+													<reference key="NSNextKeyView" ref="386453295"/>
+													<string key="NSReuseIdentifierKey">_NS:360</string>
+													<string key="NSAntiCompressionPriority">{250, 750}</string>
+													<bool key="NSEnabled">YES</bool>
+													<object class="NSTextFieldCell" key="NSCell" id="690048568">
+														<int key="NSCellFlags">67239424</int>
+														<int key="NSCellFlags2">138543104</int>
+														<string key="NSContents">Items listed here will be kept updated if already installed on a client, but will not be installed if they are not found on the client.</string>
+														<reference key="NSSupport" ref="26"/>
+														<string key="NSCellIdentifier">_NS:360</string>
+														<reference key="NSControlView" ref="133054047"/>
+														<reference key="NSBackgroundColor" ref="89216201"/>
+														<reference key="NSTextColor" ref="481436346"/>
+													</object>
+												</object>
 											</object>
 											<string key="NSFrame">{{10, 33}, {814, 380}}</string>
-											<reference key="NSNextKeyView" ref="386453295"/>
+											<reference key="NSNextKeyView" ref="133054047"/>
 										</object>
 										<string key="NSLabel">Managed Updates</string>
 										<reference key="NSColor" ref="89216201"/>
@@ -907,7 +966,7 @@
 												<object class="NSTextField" id="284625070">
 													<reference key="NSNextResponder" ref="518420455"/>
 													<int key="NSvFlags">266</int>
-													<string key="NSFrame">{{14, 318}, {786, 34}}</string>
+													<string key="NSFrame">{{14, 320}, {786, 34}}</string>
 													<reference key="NSSuperview" ref="518420455"/>
 													<reference key="NSNextKeyView" ref="330408712"/>
 													<string key="NSReuseIdentifierKey">_NS:360</string>
@@ -916,7 +975,7 @@
 													<object class="NSTextFieldCell" key="NSCell" id="441822100">
 														<int key="NSCellFlags">67239424</int>
 														<int key="NSCellFlags2">138543104</int>
-														<string key="NSContents">Packages listed here will be removed from the client if they are detected.</string>
+														<string key="NSContents">Items listed here will be removed from the client if they are detected.</string>
 														<reference key="NSSupport" ref="26"/>
 														<string key="NSCellIdentifier">_NS:360</string>
 														<reference key="NSControlView" ref="284625070"/>
@@ -1487,6 +1546,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1061161981"/>
+							<reference ref="622174518"/>
 						</object>
 						<reference key="parent" ref="1038026624"/>
 					</object>
@@ -1525,6 +1585,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="386453295"/>
+							<reference ref="133054047"/>
 						</object>
 						<reference key="parent" ref="415467031"/>
 					</object>
@@ -1913,6 +1974,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="90975214"/>
+							<reference ref="998353603"/>
 						</object>
 						<reference key="parent" ref="121688002"/>
 					</object>
@@ -1994,6 +2056,48 @@
 						<reference key="object" ref="173490991"/>
 						<reference key="parent" ref="1002"/>
 						<string key="objectName">Managed Uninstalls</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">413</int>
+						<reference key="object" ref="133054047"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="690048568"/>
+						</object>
+						<reference key="parent" ref="719323052"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">414</int>
+						<reference key="object" ref="690048568"/>
+						<reference key="parent" ref="133054047"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">415</int>
+						<reference key="object" ref="998353603"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="191874299"/>
+						</object>
+						<reference key="parent" ref="201590260"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">416</int>
+						<reference key="object" ref="191874299"/>
+						<reference key="parent" ref="998353603"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">417</int>
+						<reference key="object" ref="622174518"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="827699542"/>
+						</object>
+						<reference key="parent" ref="462215661"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">418</int>
+						<reference key="object" ref="827699542"/>
+						<reference key="parent" ref="622174518"/>
 					</object>
 				</object>
 			</object>
@@ -2082,6 +2186,12 @@
 					<string>396.IBPluginDependency</string>
 					<string>397.IBPluginDependency</string>
 					<string>398.IBPluginDependency</string>
+					<string>413.IBPluginDependency</string>
+					<string>414.IBPluginDependency</string>
+					<string>415.IBPluginDependency</string>
+					<string>416.IBPluginDependency</string>
+					<string>417.IBPluginDependency</string>
+					<string>418.IBPluginDependency</string>
 					<string>50.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
@@ -2168,6 +2278,12 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -2182,7 +2298,7 @@
 				<reference key="dict.values" ref="1002"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">412</int>
+			<int key="maxID">418</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
