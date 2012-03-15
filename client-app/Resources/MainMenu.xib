@@ -564,41 +564,9 @@
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSTextField" id="136071399">
-							<reference key="NSNextResponder" ref="663311111"/>
-							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{110, -7}, {147, 65}}</string>
-							<reference key="NSSuperview" ref="663311111"/>
-							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
-							<string key="NSReuseIdentifierKey">_NS:3944</string>
-							<bool key="NSEnabled">YES</bool>
-							<object class="NSTextFieldCell" key="NSCell" id="86732193">
-								<int key="NSCellFlags">67239424</int>
-								<int key="NSCellFlags2">71303168</int>
-								<string key="NSContents">MunkiFace</string>
-								<object class="NSFont" key="NSSupport">
-									<string key="NSName">Noteworthy-Light</string>
-									<double key="NSSize">33</double>
-									<int key="NSfFlags">16</int>
-								</object>
-								<string key="NSCellIdentifier">_NS:3944</string>
-								<reference key="NSControlView" ref="136071399"/>
-								<object class="NSColor" key="NSBackgroundColor" id="444119693">
-									<int key="NSColorSpace">6</int>
-									<string key="NSCatalogName">System</string>
-									<string key="NSColorName">controlColor</string>
-									<reference key="NSColor" ref="18133906"/>
-								</object>
-								<object class="NSColor" key="NSTextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4zMjc4NDkwMTQ5IDAuMjY4MDA0Njk0NyAwLjE5ODcwODQyODgAA</bytes>
-								</object>
-							</object>
-						</object>
 						<object class="NSImageView" id="637471013">
 							<reference key="NSNextResponder" ref="663311111"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">292</int>
 							<object class="NSMutableSet" key="NSDragTypes">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSArray" key="set.sortedObjects">
@@ -611,10 +579,10 @@
 									<string>NeXT TIFF v4.0 pasteboard type</string>
 								</object>
 							</object>
-							<string key="NSFrame">{{-14, -43}, {151, 96}}</string>
+							<string key="NSFrameSize">{265, 58}</string>
 							<reference key="NSSuperview" ref="663311111"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="136071399"/>
+							<reference key="NSNextKeyView"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<string key="NSReuseIdentifierKey">_NS:2141</string>
 							<bool key="NSEnabled">YES</bool>
@@ -623,11 +591,11 @@
 								<int key="NSCellFlags2">33554432</int>
 								<object class="NSCustomResource" key="NSContents">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">munki11-surpised-wandering_eye</string>
+									<string key="NSResourceName">MFLogo</string>
 								</object>
 								<string key="NSCellIdentifier">_NS:2141</string>
-								<int key="NSAlign">1</int>
-								<int key="NSScale">0</int>
+								<int key="NSAlign">6</int>
+								<int key="NSScale">3</int>
 								<int key="NSStyle">0</int>
 								<bool key="NSAnimates">NO</bool>
 							</object>
@@ -668,7 +636,12 @@
 							<reference key="NSSupport" ref="105039744"/>
 							<string key="NSCellIdentifier">_NS:3944</string>
 							<reference key="NSControlView" ref="884066346"/>
-							<reference key="NSBackgroundColor" ref="444119693"/>
+							<object class="NSColor" key="NSBackgroundColor">
+								<int key="NSColorSpace">6</int>
+								<string key="NSCatalogName">System</string>
+								<string key="NSColorName">controlColor</string>
+								<reference key="NSColor" ref="18133906"/>
+							</object>
 							<reference key="NSTextColor" ref="438388411"/>
 						</object>
 					</object>
@@ -902,37 +875,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="637471013"/>
-							<reference ref="136071399"/>
 						</object>
 						<reference key="parent" ref="500074380"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">593</int>
-						<reference key="object" ref="637471013"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="100125526"/>
-						</object>
-						<reference key="parent" ref="663311111"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">594</int>
-						<reference key="object" ref="100125526"/>
-						<reference key="parent" ref="637471013"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1040</int>
-						<reference key="object" ref="136071399"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="86732193"/>
-						</object>
-						<reference key="parent" ref="663311111"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1041</int>
-						<reference key="object" ref="86732193"/>
-						<reference key="parent" ref="136071399"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1592</int>
@@ -1090,6 +1034,20 @@
 						<reference key="object" ref="396219295"/>
 						<reference key="parent" ref="0"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">593</int>
+						<reference key="object" ref="637471013"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="100125526"/>
+						</object>
+						<reference key="parent" ref="663311111"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">594</int>
+						<reference key="object" ref="100125526"/>
+						<reference key="parent" ref="637471013"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1099,8 +1057,6 @@
 					<string>-1.IBPluginDependency</string>
 					<string>-2.IBPluginDependency</string>
 					<string>-3.IBPluginDependency</string>
-					<string>1040.IBPluginDependency</string>
-					<string>1041.IBPluginDependency</string>
 					<string>1590.IBNSWindowAutoPositionCentersHorizontal</string>
 					<string>1590.IBNSWindowAutoPositionCentersVertical</string>
 					<string>1590.IBPluginDependency</string>
@@ -1147,8 +1103,6 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1424,21 +1378,21 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>MFLogo</string>
 				<string>NSMenuCheckmark</string>
 				<string>NSMenuMixedState</string>
 				<string>__icon__manifest</string>
 				<string>__icon__pkgs</string>
 				<string>__icon__rebuildCatalogs</string>
-				<string>munki11-surpised-wandering_eye</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{250, 58}</string>
 				<string>{11, 11}</string>
 				<string>{10, 3}</string>
 				<string>{50, 50}</string>
 				<string>{40, 40}</string>
 				<string>{50, 50}</string>
-				<string>{732, 507}</string>
 			</object>
 		</object>
 	</data>
