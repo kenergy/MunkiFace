@@ -119,5 +119,15 @@ var MFPKGSINFO_INSTANCE = nil;
 		objectForKey:@"SoftwareRepoURL"];
 	itemUri = [munkiRepo stringByAppendingString:@"pkgs/" + itemUri];
 	[data setObject:itemUri forKey:@"installer_item_location"];
+
+
+	// make bindings happy with supported_architectures
+	var archs = [data objectForKey:@"supported_architectures"];
+	var ppc = [archs containsObject:@"Power Macintosh"];
+	var intel32 = [archs containsObject:@"x86"];
+	var intel64 = [archs containsObject:@"x86_64"];
+	[data setObject:ppc forKey:@"MFSupportedArchitecturesPPC"];
+	[data setObject:intel32 forKey:@"MFSupportedArchitecturesIntel32"];
+	[data setObject:intel64 forKey:@"MFSupportedArchitecturesIntel64"];
 }
 @end
