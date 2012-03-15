@@ -1,6 +1,3 @@
-# Basic Installation Notes #
-
-
 # What's MunkiFace? #
 At the moment, it's a work in progress. What it will eventually become is a web
 application front end for [Munki](http://code.google.com/p/munki/).
