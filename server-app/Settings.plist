@@ -6,8 +6,8 @@
 	<string>/Users/Shared/munki_repo</string>
 	<key>SoftwareRepoURL</key>
 	<string>http://munki/repo</string>
-	<key>plist_extension</key>
-	<string></string>
+	<key>plist_extensions</key>
+	<array/>
 	<key>exclude_extensions</key>
 	<array>
 		<string>.html</string>
