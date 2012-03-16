@@ -8,14 +8,12 @@
 - (void)drawRect:(CGRect)aRect
 {
 	[super drawRect:aRect];
-	//var startColor = CGColorCreateGenericGray(1.0, 0.7);
-	var startColor = CGColorCreateGenericRGB(0.44, 0.23, 0.00, 0.9);
-	var endColor = CGColorCreateGenericRGB(0.34, 0.10, 0.0, 0.9);
-	//var endColor = CGColorCreateGenericGray(1.0, 0.3);
+	var startColor = CGColorCreateGenericRGB(0.4, 0.4, 0.4, 0.75);
+	var endColor = CGColorCreateGenericRGB(0, 0, 0, 0.75);
 	var gradient = CGGradientCreateWithColors(
 		CGColorSpaceCreateDeviceRGB(),
 		[startColor, endColor],
-		[0,1]
+		[0,0.75]
 	);
 	var context = [[CPGraphicsContext currentContext] graphicsPort];
 	CGContextAddRect(context, aRect);
