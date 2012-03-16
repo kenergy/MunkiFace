@@ -11,7 +11,7 @@ $excludeExtensions = array();
 
 $munkiRepo = $settings->objectForKey("munki-repo");
 $softwareRepoURL = $settings->objectForKey("SoftwareRepoURL");
-$plistExtension = $settings->objectForKey("plist_extension");
+$plistExtensions = $settings->objectForKey("plist_extensions");
 $excludeExtensions = $settings->objectForKey("exclude_extensions");
 
 if (is_dir($munkiRepo) && is_readable($munkiRepo))
@@ -37,15 +37,20 @@ echo "<h2>SoftwareRepoURL</h2>";
 echo " - '" . $softwareRepoURL . "'<br />";
 echo " - is " . ($softwareRepoURLIsReachable ? '' : '<b>not</b> ') . "reachable<br />";
 
-echo "<h2>plist_extension</h2>";
-if ($plistExtension == "")
+echo "<h2>plist_extensions</h2>";
+if ($plistExtensions->count() > 0)
 {
-	echo " - none specified; all files will be parsed according to this rule";
+	echo "MunkiFace will <b>only inclue</b> files ending with the following patterns:"
+		. "<ul>";
+	foreach($plistExtensions as $ext)
+	{
+		echo "<li>" . $ext . "</li>";
+	}
+	echo "</ul>";
 }
 else
 {
-	echo " - '" . $plistExtension
-		. "'; MunkiFace will <b>only</b> parse files with this extension";
+	echo " - All files will be iincluded according to this rule.";
 }
 
 
