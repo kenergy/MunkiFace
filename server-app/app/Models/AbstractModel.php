@@ -8,7 +8,7 @@
 abstract class AbstractModel extends RTObject
 {
 	protected static $_munkiDir;
-	protected static $_plistExtension;
+	protected static $_plistExtensions;
 	protected static $_excludeExtensions;
 	protected $fullPathToModelRepo;
 
@@ -32,14 +32,14 @@ abstract class AbstractModel extends RTObject
 		scanning a directory.
 		\returns RTString
 	 */
-	public function plistExtension()
+	public function plistExtensions()
 	{
-		if (self::$_plistExtension == null)
+		if (self::$_plistExtensions == null)
 		{
-			self::$_plistExtension =
-			Settings::sharedSettings()->objectForKey("plist_extension");
+			self::$_plistExtensions =
+			Settings::sharedSettings()->objectForKey("plist_extensions");
 		}
-		return self::$_plistExtension;
+		return self::$_plistExtensions;
 	}
 
 
@@ -116,86 +116,69 @@ abstract class AbstractModel extends RTObject
 
 
 
+	protected function _fixUpPath($aPath)
+	{
+		$path = RTString::stringWithString($aPath);
+		if ($path->hasSuffix("/") == NO)
+		{
+			$path = $path->stringByAppendingString("/");
+		}
+
+		if ($path->hasPrefix("/") == NO)
+		{
+			$path = RTString::stringWithFormat("/%s", $path);
+		}
+		return $path;
+	}
+
+
+
+
 	protected function _globDir($aDir, &$results)
 	{
 		if (!is_dir($aDir))
 		{
 			return;
 		}
-		if (strrpos($aDir, "/") != strlen($aDir)-1)
-		{
-			$aDir .= "/";
-		}
+		$aDir = $this->_fixUpPath($aDir);
 
-		// Make a working copy of the full path that doesn't have the leading and
-		// trailing "/" characters.
-		$trimmedPath = $aDir;
-		if (strpos($trimmedPath, "/") === 0)
-		{
-			$trimmedPath = substr($trimmedPath, 1);
-		}
-		if (strrpos($trimmedPath, "/") === strlen($trimmedPath)-1)
-		{
-			$trimmedPath = substr($trimmedPath, 0, -1);
-		}
+		$aRange = RTMakeRange(1, $aDir->length() - 2);
+		$trimmedPath = $aDir->subStringWithRange($aRange);
 
 		// Find the current working directory.
-		$pathParts = explode("/", $trimmedPath);
-		$currentDirectory = $pathParts[count($pathParts)-1];
+		$pathParts = $trimmedPath->componentsSeparatedByString("/");
 
-		$results[$currentDirectory] = array();
+		$currentDirectory = $pathParts->lastObject();
+		$currentIndex = $currentDirectory->description();
+		$results[$currentIndex] = array();
 
 		$contents = scandir($aDir);
+		$validator = FileNameValidator::alloc()->init();
 		foreach($contents as $node)
 		{
-			// skip hidden nodes
-			if (strpos($node, ".") === 0)
-			{
-				continue;
-			}
-
-
 			$fullPathToNode = $aDir . $node;
-			if (is_dir($fullPathToNode))
+			if (is_dir($fullPathToNode) && strpos($node, ".") !== 0)
 			{
-				$this->_globDir($fullPathToNode . "/", $results[$currentDirectory][]);
+				$this->_globDir(
+					$fullPathToNode . "/",
+					$results[$currentIndex][]
+				);
 			}
-			else
+
+			else if ($validator->isValidFileName($node) == YES)
 			{
-				$fileName = RTString::stringWithString($node);
-				// if Settings.plist specifies a valid plist extension and it's not an
-				// empty string, make sure the current file has that extension.
-				if ($this->plistExtension() != "" &&
-					$fileName->hasSuffix($this->plistExtension()) == NO)
-				{
-					continue;
-				}
-
-				// If Settings.plist specifies an array of file extensions that should
-				// be exclued, make sure the current file doesn't have any of those
-				// extensions.
-				for($i = 0; $i < $this->excludeExtensions()->count(); $i++)
-				{
-					if (
-						YES == $fileName->hasSuffix($this->excludeExtensions()->objectAtIndex($i))
-					)
-					{
-						continue 2;
-					}
-				}
-
 				try
 				{
 					$dict = RTDictionary::dictionaryWithContentsOfFile(
 						RTString::stringWithString($fullPathToNode));
 					if ($dict->count() !== 0)
 					{
-						$results[$currentDirectory][] = $node;
+						$results[$currentIndex][] = $node;
 					}
 				}
 				catch(Exception $e)
 				{
-					$results[$currentDirectory][] = "(PARSE_ERROR) " . $node;
+					$results[$currentIndex][] = "(PARSE_ERROR) " . $node;
 				}
 			}
 		}
