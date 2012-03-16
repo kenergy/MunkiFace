@@ -273,6 +273,16 @@
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSCustomView" id="995553597">
+							<reference key="NSNextResponder" ref="439893737"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{0, 554}, {249, 51}}</string>
+							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="686080788"/>
+							<string key="NSReuseIdentifierKey">_NS:1192</string>
+							<string key="NSClassName">MFManifestBackgroundView</string>
+						</object>
 						<object class="NSScrollView" id="336494841">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">276</int>
@@ -433,7 +443,7 @@
 									<string key="NSFrame">{{1, 119}, {238, 15}}</string>
 									<reference key="NSSuperview" ref="336494841"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView" ref="686080788"/>
+									<reference key="NSNextKeyView" ref="995553597"/>
 									<string key="NSReuseIdentifierKey">_NS:317</string>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="336494841"/>
@@ -456,7 +466,7 @@
 						<object class="NSSearchField" id="161497918">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{4, 563}, {240, 22}}</string>
+							<string key="NSFrame">{{6, 567}, {240, 22}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="336494841"/>
@@ -852,6 +862,7 @@
 							<reference ref="686080788"/>
 							<reference ref="161497918"/>
 							<reference ref="336494841"/>
+							<reference ref="995553597"/>
 						</object>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -1048,6 +1059,11 @@
 						<reference key="object" ref="100125526"/>
 						<reference key="parent" ref="637471013"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1692</int>
+						<reference key="object" ref="995553597"/>
+						<reference key="parent" ref="439893737"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1091,6 +1107,7 @@
 					<string>1646.IBPluginDependency</string>
 					<string>1662.IBPluginDependency</string>
 					<string>1685.IBPluginDependency</string>
+					<string>1692.IBPluginDependency</string>
 					<string>371.IBNSWindowAutoPositionCentersHorizontal</string>
 					<string>371.IBNSWindowAutoPositionCentersVertical</string>
 					<string>371.IBPluginDependency</string>
@@ -1140,6 +1157,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1163,7 +1181,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1691</int>
+			<int key="maxID">1692</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1310,6 +1328,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MFApplicationViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MFManifestBackgroundView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MFManifestBackgroundView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
