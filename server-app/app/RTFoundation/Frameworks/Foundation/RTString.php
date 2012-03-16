@@ -252,8 +252,8 @@ class RTString extends RTObject
 		Returns a new string containing the characters of the reciever that lie
 		within the given range.
 		\param $aRange
-		\throws RTRangeException if any part of aRange lies beying the end of
-		the receiver..
+		\throws RTRangeException if any part of aRange lies beyond the end of
+		the receiver.
 		\returns RTString
 	 */
 	public function substringWithRange(RTRange $aRange)
