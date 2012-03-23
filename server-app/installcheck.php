@@ -1,3 +1,12 @@
+<!doctype html>
+<html>
+<head>
+	<title>MunkiFace Server Install Check</title>
+	<?php include dirname(__FILE__) . "/app/Resources/style.php";?>
+</head>
+<body>
+<div id="body">
+
 <?php
 require_once (dirname(__FILE__) . "/app/bootstrap.php");
 
@@ -14,33 +23,31 @@ $softwareRepoURL = $settings->objectForKey("SoftwareRepoURL");
 $plistExtensions = $settings->objectForKey("plist_extensions");
 $excludeExtensions = $settings->objectForKey("exclude_extensions");
 
-if (is_dir($munkiRepo) && is_readable($munkiRepo))
-{
-	$munkiRepoIsReadable = YES;
-}
+$munkiRepoIsReadable = is_dir($munkiRepo) && is_readable($munkiRepo);
 
 
 $headers = get_headers($softwareRepoURL, 1);
 $h = $headers[0];
-if (strpos($h, "200") !== NO || strpos($h, "301") !== NO)
-{
-	$softwareRepoURLIsReachable = YES;
-}
+$softwareRepoURLIsReachable = strpos($h, "200") !== NO || strpos($h, "301") !== NO;
 
 
-echo "<h1>Settings.plist</h1>";
-echo "<h2>munki_repo</h2>";
-echo " - '" . $munkiRepo . "'<br />";
-echo " - is " . ($munkiRepoIsReadable == YES ? '' : '<b>not</b> ') . " readable<br />";
+echo "<h1>Settings.plist</h1>
+<a href='index.php'>Want to design your own client using MunkiFace Server?</a>
 
-echo "<h2>SoftwareRepoURL</h2>";
-echo " - '" . $softwareRepoURL . "'<br />";
-echo " - is " . ($softwareRepoURLIsReachable ? '' : '<b>not</b> ') . "reachable<br />";
+<h2>munki_repo</h2>
+<span class='" . ($munkiRepoIsReadable == YES ? 'ok' : 'error') . "'>"
+	. $munkiRepo . "</span>
 
-echo "<h2>plist_extensions</h2>";
+<h2>SoftwareRepoURL</h2>
+<span class='" . ($softwareRepoURLIsReachable ? 'ok':'error') . "'>"
+	. $softwareRepoURL . "</span>
+
+
+<h2>plist_extensions</h2>";
+
 if ($plistExtensions->count() > 0)
 {
-	echo "MunkiFace will <b>only inclue</b> files ending with the following patterns:"
+	echo "MunkiFace will <b>only include</b> files ending with the following patterns:"
 		. "<ul>";
 	foreach($plistExtensions as $ext)
 	{
@@ -50,7 +57,7 @@ if ($plistExtensions->count() > 0)
 }
 else
 {
-	echo " - All files will be iincluded according to this rule.";
+	echo " - All files will be included according to this rule.";
 }
 
 
@@ -70,3 +77,8 @@ else
 {
 	echo " - No files will be ignored according to this rule.";
 }
+?>
+
+</div>
+</body>
+</html>

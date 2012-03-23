@@ -34,5 +34,5 @@ switch ($controller)
 		echo Settings::sharedSettings();
 		break;
 	default:
-		echo "Have you ran the configure.sh script yet?";
+		include dirname(__FILE__) . "/app/help.php";
 }
