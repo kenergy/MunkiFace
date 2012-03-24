@@ -322,7 +322,7 @@ class RTString extends RTObject
 		{
 			return NO;
 		}
-		if (strpos($this->description(), $aPrefix) === 0)
+		if (strpos($this->description(), (string)$aPrefix) === 0)
 		{
 			return YES;
 		}
