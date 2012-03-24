@@ -4,9 +4,11 @@
 function JSONException($exception)
 {
 	$err = array(
-		"MFServerException" => $exception->getMessage()
+		"MFServerException" => array(
+			"code" => $exception->getCode(),
+			"message" => $exception->getMessage()
+		)
 	);
-	var_dump($exception);
 	error_log($exception);
 	echo json_encode($err);
 	exit;
