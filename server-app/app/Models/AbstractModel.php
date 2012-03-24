@@ -149,15 +149,14 @@ abstract class AbstractModel extends RTObject
 			throw new InvalidArgumentException("Target '" . $this->fullPathToTarget()
 				. "' is a file and cannot be recursively scanned");
 		}
+
+		$arr = RTMutableArray::anArray();
+		$this->_globDir($this->fullPathToTarget(), $arr);
 		$results = RTMutableDictionary::dictionaryWithObject_forKey(
-			RTMutableArray::anArray(),
+			$arr,
 			$this->fullPathToTarget()->lastPathComponent()
 		);
 		
-		$this->_globDir(
-			$this->fullPathToTarget(),
-			$results->objectForKey($results->allKeys()->firstObject())
-		);
 
 		return $results;
 	}
