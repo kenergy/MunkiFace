@@ -47,6 +47,10 @@ abstract class AbstractModel extends RTObject
 	 */
 	public function target()
 	{
+		if ($this->target == null)
+		{
+			return RTString::stringWithString("");
+		}
 		return $this->target;
 	}
 
@@ -96,12 +100,7 @@ abstract class AbstractModel extends RTObject
 	 */
 	public function fullPathToTarget()
 	{
-		if ($this->fullPathToTarget == null)
-		{
-			$this->fullPathToTarget
-				= $this->munkiDir()->stringByAppendingPathComponent($this->target());
-		}
-		return $this->fullPathToTarget;
+		return $this->munkiDir()->stringByAppendingPathComponent($this->target());
 	}
 
 
