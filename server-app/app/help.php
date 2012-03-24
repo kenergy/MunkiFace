@@ -77,9 +77,10 @@
 	<h3>setObject...forKey</h3>
 	<p>
 		Like the other actions, this combination will work on a spcific file
-		specified by <code>target</code>. But these two arguments must be present at
-		the same time. The notion is very similar to the setObject:forKey: method
-		found in <a
+		specified by <code>target</code>. If <code>target</code> file doesn't exist,
+		it will be created with the single value specified. These two arguments
+		must be present at the same time. The notion is very similar to the
+		setObject:forKey: method found in <a
 		href="http://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSMutableDictionary_Class/Reference/Reference.html#//apple_ref/doc/uid/20000141-BABBDAFD"
 		target="_blank">NSMutableDictionary</a>.
 	</p>
