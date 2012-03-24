@@ -291,6 +291,14 @@ class RTArray extends RTObject implements
 
 
 
+	public function asJSON()
+	{
+		return json_encode($this->phpArray());
+	}
+
+
+
+
 	/**
 		Returns the first object contained within the sender, or null of there are
 		no objecs.
