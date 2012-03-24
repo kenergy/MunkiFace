@@ -179,6 +179,112 @@ class RTString extends RTObject
 
 
 	/**
+		Returns a new string made by appending to the receiver a given string. Path
+		separators will be automatically calculated and added where appropriate.
+		\param $aString
+		\returns RTString
+	 */
+	public function stringByAppendingPathComponent(RTString $aString)
+	{
+		if ($this->length() == 0)
+		{
+			return $aString;
+		}
+
+		if ($this->hasSuffix("/") && $aString->hasPrefix("/"))
+		{
+			$aString = $aString->substringFromIndex(1);
+		}
+		else if ($this->hasSuffix("/") == NO && $aString->hasPrefix("/") == NO)
+		{
+			$aString = RTString::stringWithString("/")->stringByAppendingString($aString);
+		}
+		return $this->stringByAppendingString($aString);
+	}
+
+
+
+
+	/**
+		Returns the last path component of the receiver.
+		The following table illustrates the effect of \c lastPathComponent on a
+		variety of different paths:
+		<table>
+			<tr>
+				<th>Receiver's String Value</th>
+				<th>String Returned</th>
+			</tr>
+			<tr>
+				<td>"/tmp/scratch.tiff"</td>
+				<td>"scratch.tiff</td>
+			</tr>
+			<tr>
+				<td>"/tmp/scratch"</td>
+				<td>"scratch"</td>
+			</tr>
+			<tr>
+				<td>"/tmp/"</td>
+				<td>"tmp"</td>
+			</tr>
+			<tr>
+				<td>"scratch"</td>
+				<td>"scratch"</td>
+			</tr>
+			<tr>
+				<td>"/"</td>
+				<td>"/"</td>
+			</tr>
+		</table>
+		\returns RTString
+	 */
+	public function lastPathComponent()
+	{
+		$str = RTString::stringWithString($this);
+
+		// String is "/"
+		if ($str->isEqualToString("/"))
+		{
+			return RTString::stringWithString("/");
+		}
+		
+		if ($str->hasPrefix("/"))
+		{
+			$str = $str->substringFromIndex(1);
+		}
+		if ($str->hasSuffix("/"))
+		{
+			$str = $str->substringToIndex($str->length()-2);
+		}
+
+		$components = $str->componentsSeparatedByString("/");
+		
+		// String is "scratch", "tmp"
+		if ($components->count() == 1)
+		{
+			return $components->firstObject();
+		}
+
+		// String is "tmp/scratch", "tmp/scratch.tiff"
+		return $components->lastObject();
+	}
+
+
+
+
+	/**
+		Returns a Boolean value that indicates whether a given string is equal to
+		the reveiver using a literal comparison.
+		\returns BOOL
+	 */
+	public function isEqualToString($aString)
+	{
+		return $this->description() === (string)$aString;
+	}
+
+
+
+
+	/**
 		Returns a new RTString with the given string appended to the contents of the
 		sender.
 		\returns RTString
@@ -267,6 +373,32 @@ class RTString extends RTObject
 		return RTString::stringWithString(
 			substr($this->_string, $aRange->location, $aRange->length)
 		);
+	}
+
+
+
+
+	/**
+		Returns a new string containing the characters of the receiver from the one
+		at a given index to the end.
+	 */
+	public function substringFromIndex($anIndex)
+	{
+		$range = RTMakeRange($anIndex, $this->length()-$anIndex);
+		return $this->substringWithRange($range);
+	}
+
+
+
+
+	/**
+		Returns a new string containing the characters of the receiver up to, but
+		not including, the one at a given index.
+	 */
+	public function substringToIndex($anIndex)
+	{
+		$range = RTMakeRange(0, $anIndex);
+		return $this->substringWithRange($range);
 	}
 
 
