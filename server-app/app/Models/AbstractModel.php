@@ -104,7 +104,13 @@ abstract class AbstractModel extends RTObject
 	 */
 	public function fullPathToTarget()
 	{
-		return $this->munkiDir()->stringByAppendingPathComponent($this->target());
+		$path = $this->munkiDir()->stringByAppendingPathComponent($this->target());
+		if ($path->hasPrefix($this->munkiDir()) == NO)
+		{
+			throw new Exception("Blocked attempt to read files above the munki repo.",
+				MSecurityError);
+		}
+		return $path;
 	}
 
 
