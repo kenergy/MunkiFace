@@ -12,14 +12,20 @@ class ReadAction extends AbstractModel
 		}
 		try
 		{
-			return RTDictionary::dictionaryWithContentsOfFile(
+			$dict = RTDictionary::dictionaryWithContentsOfFile(
 				$this->fullPathToTarget()
-			)->asJSON();
+			);
+			if ($dict->allKeys()->count() == 0)
+			{
+				throw new Exception(
+					"Invalid plist specified in '" . $this->fullPathToTarget() . "'",
+					MFParseError);
+			}
 		}
 		catch(Exception $e)
 		{
-			throw new Exception("ReadError", "Unable to parse plist at '"
-				. $this->fullPathToTarget() . "'");
+			throw new Exception("Unable to parse plist at '"
+				. $this->fullPathToTarget() . "'", MFParseError);
 		}
 	}
 }
