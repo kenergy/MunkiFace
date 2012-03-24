@@ -318,13 +318,14 @@ class RTString extends RTObject
 	 */
 	public function hasPrefix($aPrefix)
 	{
-		$range = RTMakeRange(0, strlen($aPrefix));
 		if ($aPrefix == "")
 		{
 			return NO;
 		}
-		return $this->substringWithRange($range)->description()
-			== $aPrefix;
+		if (strpos($this->description(), $aPrefix) === 0)
+		{
+			return YES;
+		}
 	}
 
 
