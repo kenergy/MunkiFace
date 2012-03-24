@@ -21,6 +21,7 @@ class ReadAction extends AbstractModel
 					"Invalid plist specified in '" . $this->fullPathToTarget() . "'",
 					MFParseError);
 			}
+			echo $dict->asJSON();
 		}
 		catch(Exception $e)
 		{
