@@ -34,6 +34,10 @@ abstract class AbstractModel extends RTObject
 	 */
 	public function setTarget(RTString $aTarget)
 	{
+		while($aTarget->hasPrefix("../"))
+		{
+			$aTarget = $aTarget->substringFromIndex(3);
+		}
 		$this->target = $aTarget;
 	}
 
