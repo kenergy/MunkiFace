@@ -14,6 +14,15 @@ class IndexController extends AbstractController
 				$model->setTarget($target);
 				echo $model->read();
 				break;
+			case self::ACTION_READ_HEADERS:
+				$model = ReadHeadersAction::alloc()->init();
+				$model->setTarget($target);
+				echo $model->readHeaders();
+				break;
+			default:
+				throw new Exception("Unknown action '" . $this->getAction() . "'",
+					MFUnknownActionError
+				);
 		}
 		return $this;
 	}
