@@ -11,6 +11,8 @@ abstract class AbstractModel extends RTObject
 	protected static $_plistExtensions;
 	protected static $_excludeExtensions;
 	protected $fullPathToModelRepo;
+	protected $fullPathToTarget;
+	protected $target;
 
 
 
@@ -22,6 +24,30 @@ abstract class AbstractModel extends RTObject
 			self::$_munkiDir = Settings::sharedSettings()->objectForKey("munki-repo");
 		}
 		return self::$_munkiDir;
+	}
+
+
+
+
+	/**
+		Sets the target file or path on which the receiver will act.
+	 */
+	public function setTarget(RTString $aTarget)
+	{
+		$this->target = $aTarget;
+	}
+
+
+
+
+	/**
+		Returns the target upon which the receiver will act. This is a path that is
+		relative to the value of AbstractModel::munkiRepo.
+		\return RTString
+	 */
+	public function target()
+	{
+		return $this->target;
 	}
 
 
@@ -63,105 +89,96 @@ abstract class AbstractModel extends RTObject
 
 
 
-	public function fullPathToModelRepo()
+	/**
+		Calculates the full path to the target upon which the receiver will act by
+		prepending the value of AbstractModel::target.
+		\returns RTString
+	 */
+	public function fullPathToTarget()
 	{
-		if ($this->fullPathToModelRepo == null)
+		if ($this->fullPathToTarget == null)
 		{
-			return $this->munkiDir();
+			$this->fullPathToTarget
+				= $this->munkiDir()->stringByAppendingPathComponent($this->target());
 		}
-		return $this->fullPathToModelRepo;
+		return $this->fullPathToTarget;
 	}
 
 
 
+
 	/**
-		Allows the models that implement this class to append to the exising munki
-		repo path in order to specify a specific folder within that repo. For
-		example, you would pass 'pkgsinfo' to this method if you were calling it
-		from the PkgsInfoModel.
+		Returns a Boolean value indicating that the target is a directory or not.
+		\returns BOOL
 	 */
-	protected function buildFullPathToModelRepo($aPath)
+	public function targetIsDirectory()
 	{
-		$aPath = RTString::stringWithString($aPath);
-		$munkiPath = RTString::stringWithString($this->munkiDir());
-		if ($aPath->hasSuffix("/") == NO)
-		{
-			$aPath = $aPath->stringByAppendingString("/");
-		}
+		return is_dir($this->fullPathToTarget());
+	}
 
-		if ($this->munkiDir()->hasSuffix("/") == NO && $aPath->hasPrefix("/") == NO)
-		{
-			$munkiPath = $munkiPath->stringByAppendingString("/");
-		}
 
-		$this->fullPathToModelRepo = $munkiPath . $aPath;
+
+
+	/**
+		Returns a Boolean value indicating that the target is a file or not.
+	 */
+	public function targetIsFile()
+	{
+		return !$this->targetIsDirectory();
 	}
 
 
 
 	/**
 		Returns an array of dictionaries, each containing a 'path' and 'file' key.
-		\param $aDirectory
 		\returns RTDictionary
 	 */
-	protected function recursivelyScanDirectory($aDirectory)
+	public function recursivelyScanTarget()
 	{
-		$results = array();
+		if ($this->targetIsFile())
+		{
+			throw new InvalidArgumentException("Target '" . $this->fullPathToTarget()
+				. "' is a file and cannot be recursively scanned");
+		}
+		$results = RTMutableDictionary::dictionaryWithObject_forKey(
+			RTMutableArray::anArray(),
+			$this->fullPathToTarget()->lastPathComponent()
+		);
 		
-		$this->_globDir($aDirectory, $results);
+		$this->_globDir(
+			$this->fullPathToTarget(),
+			$results->objectForKey($results->allKeys()->firstObject())
+		);
 
-		return json_encode($results);
+		return $results;
 	}
 
 
 
 
-	protected function _fixUpPath($aPath)
-	{
-		$path = RTString::stringWithString($aPath);
-		if ($path->hasSuffix("/") == NO)
-		{
-			$path = $path->stringByAppendingString("/");
-		}
-
-		if ($path->hasPrefix("/") == NO)
-		{
-			$path = RTString::stringWithFormat("/%s", $path);
-		}
-		return $path;
-	}
-
-
-
-
-	protected function _globDir($aDir, &$results)
+	protected function _globDir($aDir, RTArray &$results)
 	{
 		if (!is_dir($aDir))
 		{
 			return;
 		}
-		$aDir = $this->_fixUpPath($aDir);
-
-		$aRange = RTMakeRange(1, $aDir->length() - 2);
-		$trimmedPath = $aDir->subStringWithRange($aRange);
-
-		// Find the current working directory.
-		$pathParts = $trimmedPath->componentsSeparatedByString("/");
-
-		$currentDirectory = $pathParts->lastObject();
-		$currentIndex = $currentDirectory->description();
-		$results[$currentIndex] = array();
 
 		$contents = scandir($aDir);
 		$validator = FileNameValidator::alloc()->init();
+		$fullPathToNode = "";
 		foreach($contents as $node)
 		{
-			$fullPathToNode = $aDir . $node;
+			$fullPathToNode = $aDir->stringByAppendingPathComponent(
+				RTString::stringWithString($node));
+
+			// If the node represents a directory but does not start with a "."
+			// character...
 			if (is_dir($fullPathToNode) && strpos($node, ".") !== 0)
 			{
-				$this->_globDir(
-					$fullPathToNode . "/",
-					$results[$currentIndex][]
+				$arr = RTMutableArray::anArray();
+				$this->_globDir($fullPathToNode, $arr);
+				$results->addObject(
+					RTDictionary::dictionaryWithObject_forKey($arr, $node)
 				);
 			}
 
@@ -169,16 +186,20 @@ abstract class AbstractModel extends RTObject
 			{
 				try
 				{
+					// See if we can parse the plist file
 					$dict = RTDictionary::dictionaryWithContentsOfFile(
 						RTString::stringWithString($fullPathToNode));
+
+					// $node is a valid plist
 					if ($dict->count() !== 0)
 					{
-						$results[$currentIndex][] = $node;
+						$results->addObject($node);
 					}
 				}
 				catch(Exception $e)
 				{
-					$results[$currentIndex][] = "(PARSE_ERROR) " . $node;
+					// $node is not a valid plist
+					$results->addObject("(PARSE_ERROR) " . $node);
 				}
 			}
 		}
