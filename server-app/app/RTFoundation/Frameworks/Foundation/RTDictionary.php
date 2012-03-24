@@ -278,7 +278,7 @@ class RTDictionary extends RTObject implements ArrayAccess, IteratorAggregate
 				"Keys in an RTDictionary cannot be null"
 			);
 		}
-		else if (is_a($aKey, "RTObject"))
+		else if (is_object($aKey) && is_a($aKey, "RTObject"))
 		{
 			$aKey = $aKey->description();
 		}
