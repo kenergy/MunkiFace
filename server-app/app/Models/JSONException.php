@@ -17,12 +17,14 @@ function JSONException($exception)
 
 
 
-function JSONError($code, $message)
+function JSONError($code, $message, $file, $line, $context)
 {
 	$err = array(
 		"MFServerError" => array(
 			"code" => $code,
-			"message" => $message
+			"message" => $message,
+			"file" => $file,
+			"line" => $line
 		)
 	);
 	error_log(json_encode($err));
