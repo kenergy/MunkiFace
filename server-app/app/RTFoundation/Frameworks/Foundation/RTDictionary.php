@@ -384,6 +384,18 @@ class RTDictionary extends RTObject implements ArrayAccess, IteratorAggregate
 
 
 	/**
+		Returns the JSON encoded value of the dictionary.
+		\returns string
+	 */
+	public function asJSON()
+	{
+		return json_encode($this->phpArray());
+	}
+
+
+
+
+	/**
 		Creates a newly allocated dictionary by placing in it the keys and values
 		contained in another given dictionary.
 		\param $aDict
