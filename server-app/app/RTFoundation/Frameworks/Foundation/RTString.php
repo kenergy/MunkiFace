@@ -206,6 +206,68 @@ class RTString extends RTObject
 
 
 	/**
+		Returns a new string made by deleting the last path component from the
+		receiver, along with any final path separator.
+	 */
+	public function stringByDeletingLastPathComponent()
+	{
+		$emptyRange = RTMakeRange(0.0, 0.0);
+		if (RTEqualRanges(
+			$this->rangeOfString(RTString::stringWithString("/")),
+			$emptyRange)
+		)
+		{
+			return RTString::stringWithString("");
+		}
+
+		if ($this->isEqualToString("/"))
+		{
+			return RTString::stringWithString("/");
+		}
+
+		$components = $this->pathComponents();
+		$str = "";
+		for($i = 0; $i < $components->count()-1; $i++)
+		{
+			$component = $components->objectAtIndex($i);
+			if ($component == "/")
+			{
+				continue;
+			}
+			$str .= "/" . $components->objectAtIndex($i);
+		}
+		return RTString::stringWithString($str);
+	}
+
+
+
+
+	/**
+		Returns an array of RTString objects containing, in order, each path
+		component of the receiver.
+		\returns RTArray
+	 */
+	public function pathComponents()
+	{
+		$components = array();
+		if ($this->hasPrefix("/"))
+		{
+			$components[] = "/";
+		}
+
+		$parts = $this->componentsSeparatedByString("/");
+		foreach($parts as $part)
+		{
+			if ($part == "") continue;
+			$components[] = $part;
+		}
+		return RTArray::arrayWithArray($components);
+	}
+
+
+
+
+	/**
 		Returns the last path component of the receiver.
 		The following table illustrates the effect of \c lastPathComponent on a
 		variety of different paths:
