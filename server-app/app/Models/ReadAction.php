@@ -8,7 +8,7 @@ class ReadAction extends AbstractModel
 		if ($this->targetIsDirectory())
 		{
 			throw new Exception("Class 'Read' cannot parse a directory '"
-				. $this->fullPathToTarget() . "'", 1);
+				. $this->fullPathToTarget() . "'", MFInvalidTargetForActionError);
 		}
 		try
 		{
@@ -21,7 +21,7 @@ class ReadAction extends AbstractModel
 					"Invalid plist specified in '" . $this->fullPathToTarget() . "'",
 					MFParseError);
 			}
-			echo $dict->asJSON();
+			return $dict;
 		}
 		catch(Exception $e)
 		{

@@ -7,7 +7,7 @@ abstract class AbstractController extends RTObject
 {
 	const ACTION_READ = 0;
 	const ACTION_READ_HEADERS = 1;
-	const ACTION_SET_OBJECT_FOR_KEY = 2;
+	const ACTION_SET = 2;
 	const ACTION_UNDEFINED = 3;
 	protected static $_HTTPRequest;
 	protected static $_action;
@@ -28,10 +28,9 @@ abstract class AbstractController extends RTObject
 			{
 				self::$_action = self::ACTION_READ_HEADERS;
 			}
-			else if ($args->containsObject("setObject") &&
-			$args->containsObject("forKey"))
+			else if ($args->containsObject("set"))
 			{
-				self::$_action = self::ACTION_SET_OBJECT_FOR_KEY;
+				self::$_action = self::ACTION_SET;
 			}
 			else
 			{

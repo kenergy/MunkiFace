@@ -8,9 +8,9 @@ class ReadHeadersAction extends AbstractModel
 		if ($this->targetIsFile())
 		{
 			throw new Exception("Class 'ReadHeadersAction' cannot scan a file '"
-				. $this->fullPathToTarget() . "'", 1);
+				. $this->fullPathToTarget() . "'", MFInvalidTargetForActionError);
 		}
 
-		return $this->recursivelyScanTarget()->asJSON();
+		return $this->recursivelyScanTarget();
 	}
 }

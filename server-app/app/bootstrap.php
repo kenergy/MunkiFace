@@ -9,6 +9,7 @@ define("MFParseError", 1);
 define("MFInvalidTargetForAction", 2);
 define("MFSecurityError", 3);
 define("MFUnknownActionError", 4);
+define("MFPermissionsError", 5);
 
 
 
@@ -22,6 +23,7 @@ require_once($appDir . "Models/FileNameValidator.php");
 require_once($appDir . "Models/AbstractModel.php");
 require_once($appDir . "Models/ReadAction.php");
 require_once($appDir . "Models/ReadHeadersAction.php");
+require_once($appDir . "Models/SetAction.php");
 
 
 

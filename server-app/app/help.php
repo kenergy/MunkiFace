@@ -19,19 +19,15 @@
 		<code>action</code>. A target is a relative path (relative to the base of
 		the munki repo on the local filesystem) to a specific file or a directory of
 		files. Actions are a little more abstract, and are currently defined as one
-		of <code>read</code>, <code>readHeaders</code>, or the combination
-		<code>setObject</code><code>forKey</code>.
+		of <code>read</code>, <code>readHeaders</code>, or <code>set</code>.
 	</p>
 	<p>
 		Here's an example of each supported argument list.
 	</p>
 	<ul>
 		<li>?target=manifests&amp;readHeaders</li>
-		<li>?target=manifests/<code>a-specific-manifest</code>&amp;read</li>
-		<li>?target=manifests/<code>a-specific-manifest</code>&amp;setObject=<code>some-json-data</code>&amp;forKey=<code>some-key</code></li>
-		<li>?target=pkgsinfo&amp;readHeaders</li>
-		<li>?target=pkgsinfo/<code>a-specific-pkgsinfo-file</code>&amp;read</li>
-		<li>?target=pkgsinfo/<code>a-specific-pkgsinfo-file</code>&amp;setObject=<code>some-json-data</code>&amp;forKey=<code>some-key</code></li>
+		<li>?target=catalogs/all&amp;read</li>
+		<li>?target=pkgsinfo/<code>a-specific-pkgsinfo-file</code>&amp;set=<code>some-json-data</code></li>
 	</ul>
 
 	<h2>More on <code>target</code>s</h2>
@@ -85,33 +81,15 @@
 		value structure in JSON format.
 	</p>
 
-	<h3>setObject...forKey</h3>
+	<h3>set</h3>
 	<p>
-		Like the other actions, this combination will work on a spcific file
-		specified by <code>target</code>. If <code>target</code> file doesn't exist,
-		it will be created with the single value specified. These two arguments
-		must be present at the same time. The notion is very similar to the
-		setObject:forKey: method found in <a
-		href="http://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSMutableDictionary_Class/Reference/Reference.html#//apple_ref/doc/uid/20000141-BABBDAFD"
-		target="_blank">NSMutableDictionary</a>.
+		Like the other actions, this will work on a specific file identified in
+		<code>target</code>. If <code>target</code> file doesn't exist, it will be
+		created and populated with the specified value. <b>To be clear: this will
+		<i>replace</i> the contents of <code>target</code></b>. Therefore, you must
+		<i>always</i> provide the complete structure of the file exactly (in JSON
+		notation) as you want it to be stored.
 	</p>
-	<p>
-		Say for example you want to change the <code>display_name</code> in the
-		pkgsinfo file located at the path <code>pkgsinfo/chrome</code> to the value
-		"Google Chrome". The argument should look like this:
-	</p>
-	<p>
-		<code>?target=pkgsinfo/chrome&amp;setObject:"Google Chrome"&amp;forKey:display_name</code>
-	</p>
-	<p>
-		<code>forKey</code> also supports key paths so you can access nested
-		data. Let's say you want to change the <code>attribute_setting</code> of the
-		first <code>installer_choices_xml</code> item from <code>false</code> to
-		<code>true</code>. You could do provide a key that looks something like
-		<code>installer_choices_xml.0.attribute_setting</code>. Note that true key
-		paths don't support array indexes, but MunkiFace Server does!
-	</p>
-
 </div>
 </body>
 </html>
