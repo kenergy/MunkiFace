@@ -28,7 +28,7 @@ $munkiRepoIsReadable = is_dir($munkiRepo) && is_readable($munkiRepo);
 
 $headers = get_headers($softwareRepoURL, 1);
 $h = $headers[0];
-$softwareRepoURLIsReachable = strpos($h, "200") !== NO || strpos($h, "301") !== NO;
+$softwareRepoURLIsReachable = strpos($h, "200") == YES || strpos($h, "301") == YES;
 
 
 echo "<h1>Settings.plist</h1>
@@ -77,6 +77,88 @@ else
 {
 	echo " - No files will be ignored according to this rule.";
 }
+
+
+
+
+echo "<h2>munki_repo Permissions</h2>";
+echo "<h3>Read Permissions</h3>";
+$dirs = array(
+	$munkiRepo . "/manifests",
+	$munkiRepo . "/pkgsinfo",
+	$munkiRepo . "/catalogs"
+);
+
+
+function scandirr($aDir)
+{
+	$root = scandir($aDir);
+	$results = array();
+	foreach($root as $node)
+	{
+		$nodePath = $aDir . "/" . $node;
+		if (strpos($node, ".") === 0)
+		{
+			continue;
+		}
+		if (is_file($nodePath))
+		{
+			$result[] = $nodePath;
+			continue;
+		}
+		foreach(scandirr($nodePath) as $subNodes)
+		{
+			$result[] = $subNodes;
+		}
+	}
+	return $result;
+}
+
+echo '<ul>';
+foreach ($dirs as $dir)
+{
+	$parentDir = array($dir);
+	$scanDirs = array_merge($parentDir, scandirr($dir));
+	$didFindError = NO;
+	foreach($scanDirs as $d)
+	{
+		if (is_readable($d) === NO)
+		{
+			$didFindError = YES;
+			echo '<li><span class="error">' . $d . '</span></li>';
+		}
+	}
+}
+if ($didFindError == NO)
+{
+	echo '<li><span class="ok">MunkiFace as read rights to '
+		.implode(", ", $dirs) . '</span></li>';
+}
+echo '</ul>';
+
+
+echo "<h3>Write Permissions</h3>";
+echo '<ul>';
+foreach ($dirs as $dir)
+{
+	$parentDir = array($dir);
+	$scanDirs = array_merge($parentDir, scandirr($dir));
+	$didFindError = NO;
+	foreach($scanDirs as $d)
+	{
+		if (is_writable($d) === NO)
+		{
+			$didFindError = YES;
+			echo '<li><span class="error">' . $d . '</span></li>';
+		}
+	}
+}
+if ($didFindError == NO)
+{
+	echo '<li><span class="ok">MunkiFace as read rights to '
+		.implode(", ", $dirs) . '</span></li>';
+}
+echo '</ul>';
 ?>
 
 </div>
