@@ -26,15 +26,4 @@ class IndexController extends AbstractController
 		}
 		return $this;
 	}
-
-
-
-
-	protected function sendErrorToClient($anError)
-	{
-		$err = array("MFError" => $anError);
-		error_log($anError);
-		echo json_encode($err);
-		exit;
-	}
 }
