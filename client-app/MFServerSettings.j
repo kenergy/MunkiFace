@@ -23,7 +23,7 @@ var MF_SERVER_SETTINGS_INSTANCE = nil;
 	{
 		var instance = [[MFServerSettings alloc] init];
 		[instance setDataSourceURI:
-			[MF_SERVER_URI stringByAppendingString:@"?controller=settings"]];
+			[MF_SERVER_URI stringByAppendingString:@"?MFTarget=settings&read"]];
 		[instance reloadData];
 		MF_SERVER_SETTINGS_INSTANCE = instance;
 	}

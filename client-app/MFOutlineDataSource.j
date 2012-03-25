@@ -47,8 +47,9 @@
 {
 	var baseURI = [[[CPBundle mainBundle] infoDictionary]
 		objectForKey:@"MunkiFace Server URI"];
-	_manifestsURI = [baseURI stringByAppendingString:@"?controller=manifests"];
-	_pkgsinfoURI = [baseURI stringByAppendingString:@"?controller=pkgsinfo"];
+	_manifestsURI = [baseURI
+	stringByAppendingString:@"?target=manifests&readHeaders"];
+	_pkgsinfoURI = [baseURI stringByAppendingString:@"?target=pkgsinfo&readHeaders"];
 
 	// ------- This whole section is a hack
 	// Something in nib2cib changes the CPSearchField in a way that it will never

@@ -20,7 +20,7 @@ var MFCATALOG_INSTANCE = nil;
 	[super awakeFromCib];
 	[self setPackages:[CPArray array]];
 	[self setDataSourceURI:
-		[MF_SERVER_URI stringByAppendingString:@"?controller=readFile&file=catalogs/all"]];
+		[MF_SERVER_URI stringByAppendingString:@"?target=catalogs/all&read"]];
 	[self reloadRawData];
 	MFCATALOG_INSTANCE = self;
 

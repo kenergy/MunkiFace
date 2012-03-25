@@ -29,7 +29,7 @@
 		representedModel = aTreeModel;
 		var path = [aTreeModel itemNamespace];
 		[self setDataSourceURI:[MF_SERVER_URI stringByAppendingString:
-			@"?controller=readFile&file=" + path]];
+			@"?target=" + path + "&read"]];
 		[self reloadData];
 	}
 }
