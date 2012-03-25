@@ -361,7 +361,8 @@ class CFPropertyList extends CFBinaryPropertyList implements Iterator {
     }
     else if(!is_writable($file)) throw IOException::notWritable($file);
 
-    $content = $format == self::FORMAT_BINARY ? $this->toBinary() : $this->toXML();
+    $content = $format == self::FORMAT_BINARY ? $this->toBinary() :
+		$this->toXML(true);
 
     $fh = fopen($file, 'wb');
     fwrite($fh,$content);
