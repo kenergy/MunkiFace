@@ -10,6 +10,7 @@ define("MFInvalidTargetForAction", 2);
 define("MFSecurityError", 3);
 define("MFUnknownActionError", 4);
 define("MFPermissionsError", 5);
+define("MFBadRequestTypeError", 400);
 
 
 

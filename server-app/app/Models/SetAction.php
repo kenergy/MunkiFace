@@ -5,6 +5,16 @@ class SetAction extends AbstractModel
 {
 	public function set()
 	{
+		// Check the request method. If it isn't POST or PUT, return a 400.
+		if ($_SERVER['REQUEST_METHOD'] != "POST"
+			&& $_SERVER['REQUEST_METHOD'] != "PUT")
+		{
+			header("HTTP/1.0 400 Bad Request");
+			throw new Exception(
+				"Requests to modify files must be sent either via PUT or POST",
+				MFBadRequestTypeError);
+			exit;
+		}
 		if ($this->targetIsDirectory())
 		{
 			throw new Exception("Class 'SetAction' cannot treat directories as files '"
