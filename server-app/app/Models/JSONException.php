@@ -19,6 +19,12 @@ function JSONException($exception)
 
 function JSONError($code, $message, $file, $line, $context)
 {
+	// Bypass default error logic for functions called with the prepended '@'
+	// symbol.
+	if (error_reporting() === 0)
+	{
+		return NO;
+	}
 	$err = array(
 		"MFServerError" => array(
 			"code" => $code,
