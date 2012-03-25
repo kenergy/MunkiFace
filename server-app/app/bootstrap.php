@@ -17,6 +17,7 @@ require_once($appDir . "RTFoundation/Frameworks/Foundation/Foundation.php");
 require_once($appDir . "Settings.php");
 require_once($appDir . "Controllers/AbstractController.php");
 require_once($appDir . "Controllers/IndexController.php");
+require_once($appDir . "Controllers/MFTargetController.php");
 require_once($appDir . "Models/FileNameValidator.php");
 require_once($appDir . "Models/AbstractModel.php");
 require_once($appDir . "Models/ReadAction.php");
