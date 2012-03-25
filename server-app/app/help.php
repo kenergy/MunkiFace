@@ -36,7 +36,10 @@
 
 	<h2>More on <code>target</code>s</h2>
 	<p>
-		Targets specify either a file or directory.
+		Normal targets specify either a file or directory. An <code>MFTarget</code>
+		is a MunkiFace-specific meta location. Currently, the only supported
+		<code>MFTarget</code> value is 'settings' and the only supported action for
+		that value is <code>read</code>.
 	</p>
 	<p>
 		What you specify in the <code>target</code> argument depends upon what
@@ -50,6 +53,14 @@
 		values are currently <code>manifests</code> and <code>pkgsinfo</code>, though
 		support for all four munki repo directories will probably be added for the
 		sake of completeness.
+	</p>
+	<p>
+		<code>MFTarget</code> can currently be used to retrieve the settings that
+		are in use by server-app. The argument list to gain that data should look
+		exactly like this:
+		<ul>
+			<li><a href="?MFTarget=settings&read">?MFTarget=settings&amp;read</a></li>
+		</ul>
 	</p>
 
 	<h2>More on <code>action</code>s</h2>

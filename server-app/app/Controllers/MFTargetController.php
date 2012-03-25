@@ -11,6 +11,7 @@ class MFTargetController extends AbstractController
 		{
 			case "settings":
 				echo Settings::sharedSettings()->asJSON();
+				break;
 			default:
 				throw new Exception("Unknown MFAction '" . $this->getAction() . "'",
 					MFUnknownActionError
