@@ -9,7 +9,7 @@
 	<h1>MunkiFace Server Help</h1>
 	<p>
 		Before you get started, you should first visit <a
-		href="installCheck.php">installCheck.php</a> to make sure you've got
+		href="installcheck.php">installcheck.php</a> to make sure you've got
 		MunkiFace Server configured properly.
 	</p>
 
