@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>munki-repo</key>
-	<string>/Library/WebServer/Documents/munki_repo</string>
+	<string>/Users/Shared/munki_repo</string>
 	<key>SoftwareRepoURL</key>
-	<string>http://localhost/munki_repo</string>
+	<string>http://munki/repo</string>
 	<key>plist_extensions</key>
 	<array/>
 	<key>exclude_extensions</key>

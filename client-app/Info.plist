@@ -7,6 +7,6 @@
 	<key>CPBundleName</key>
 	<string>MunkiFace</string>
 	<key>MunkiFace Server URI</key>
-	<string>http://localhost/github/MunkiFace/server-app/</string>
+	<string>http://munkiface/server-app/</string>
 </dict>
 </plist>
