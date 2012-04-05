@@ -1,5 +1,5 @@
 <?php
-require_once (dirname(__FILE__) . "/Drivers/AuthDriverInterface.php");
+require_once (dirname(__FILE__) . "/Drivers/AbstractAuthDriver.php");
 /**
 	AuthenticationController reads Settings.plist to determine what authentication
 	driver to use, if any.
@@ -35,19 +35,9 @@ class AuthenticationController extends RTObject
 				$this->driver = WebServerAuthDriver::alloc()->init();
 				break;
 			default:
+				throw new Exception("Unsupported authentication driver in "
+					. "Settings.plist '" . $authenticationMethod . "'");
 				// ldap
-		}
-
-		$driverPath = dirname(__FILE__) . "/Drivers"
-			. $d . "AuthenticationDriver.php";
-		if (is_file($driverPath))
-		{
-			require_once($driverPath);
-
-		}
-		else
-		{
-			throw new Exception("Unable to load authentication driver '" . $d . "'");
 		}
 		return $this;
 	}
