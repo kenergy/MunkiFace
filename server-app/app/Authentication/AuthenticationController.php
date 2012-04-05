@@ -1,4 +1,5 @@
 <?php
+require_once (dirname(__FILE__) . "/Drivers/AuthDriverInterface.php");
 /**
 	AuthenticationController reads Settings.plist to determine what authentication
 	driver to use, if any.
@@ -22,7 +23,6 @@ class AuthenticationController extends RTObject
 		parent::init();
 		$settings = Settings::sharedSettings();
 		$authenticationMethod = $settings->objectForKey("authentication_method");
-		echo "Hi";
 
 		switch($authenticationMethod)
 		{
