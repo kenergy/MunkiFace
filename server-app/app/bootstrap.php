@@ -17,6 +17,7 @@ define("MFBadRequestTypeError", 400);
 require_once($appDir . "Models/JSONException.php");
 require_once($appDir . "RTFoundation/Frameworks/Foundation/Foundation.php");
 require_once($appDir . "Settings.php");
+require_once($appDir . "Authentication/AuthenticationController.php");
 require_once($appDir . "Controllers/AbstractController.php");
 require_once($appDir . "Controllers/IndexController.php");
 require_once($appDir . "Controllers/MFTargetController.php");
