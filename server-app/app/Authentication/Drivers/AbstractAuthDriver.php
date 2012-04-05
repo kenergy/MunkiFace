@@ -1,15 +1,30 @@
 <?php
-
-
-
-interface AuthDriverInterface extends RTObject
+abstract class AbstractAuthDriver extends RTObject
 {
+	protected $_username;
+	protected $_password;
+	protected $_accountAuthority;
+	
+	
+	
+	
+	protected function setAccountAuthority($anAuthorityString)
+	{
+		$this->_accountAuthority = RTString::stringWithString($anAuthorityString);
+	}
+	
+	
+	
+	
 	/**
 		Returns the username portion of the authentication request, or "guest" if no
 		username is required.
 		\returns RTString
 	 */
-	public function username();
+	public function username()
+	{
+		return $this->_username;
+	}
 
 
 
@@ -21,7 +36,10 @@ interface AuthDriverInterface extends RTObject
 		the server's signature should be returned.
 		\returns RTString
 	 */
-	public function accountAuthority();
+	public function accountAuthority()
+	{
+		return $this->_accountAuthority;
+	}
 
 
 
@@ -32,7 +50,7 @@ interface AuthDriverInterface extends RTObject
 		authentication.
 		\returns BOOL
 	 */
-	public function hasSession();
+	abstract public function hasSession();
 
 
 
@@ -40,7 +58,7 @@ interface AuthDriverInterface extends RTObject
 	/**
 		Destroys the current session, assuming that hasSession returns YES.
 	 */
-	public function destroySession();
+	abstract public function destroySession();
 
 
 
@@ -51,16 +69,19 @@ interface AuthDriverInterface extends RTObject
 		that do not require authentication.
 		\returns BOOL
 	 */
-	public function createSession();
-
-
-
-
+	abstract public function createSession();
+	
+	
+	
+	
 	/**
 		Sets the username portion of the authentication request.
 		\param $aUsername
 	 */
-	public function setUsername($aUsername);
+	public function setUsername($aUsername)
+	{
+		$this->_username = RTString::stringWithString($aUsername);
+	}
 
 
 
@@ -69,5 +90,8 @@ interface AuthDriverInterface extends RTObject
 		Sets the password portion of the authentication request.
 		\param $aPassword
 	 */
-	public function setPassword($aPassword);
+	public function setPassword($aPassword)
+	{
+		$this->_password = RTString::stringWithString($aPassword);
+	}
 }
