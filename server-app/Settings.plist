@@ -12,5 +12,9 @@
 	<array>
 		<string>.html</string>
 	</array>
+	<key>authentication_method</key>
+	<string>AllowAll</string>
+	<!--<string>WebServer</string>-->
+	<!--<string>ldap://host:port/basedn?attribute?scope?filter</string>-->
 </dict>
 </plist>
