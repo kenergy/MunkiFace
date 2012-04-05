@@ -20,8 +20,9 @@ class AuthenticationController extends RTObject
 	public function init()
 	{
 		parent::init();
-		$authenticationMethod
-			= RTSettings::sharedSettings()->objectForKey("authentication_method");
+		$settings = Settings::sharedSettings();
+		$authenticationMethod = $settings->objectForKey("authentication_method");
+		echo "Hi";
 
 		switch($authenticationMethod)
 		{
@@ -51,3 +52,6 @@ class AuthenticationController extends RTObject
 		return $this;
 	}
 }
+
+
+$c = AuthenticationController::alloc()->init();
