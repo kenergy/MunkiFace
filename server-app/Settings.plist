@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+...an explanation of keys
+
+munki-repo
+	The path to your munki repo on the local filesystem.
+
+SoftwareRepoURL
+	The base URI where the packages used by Munki can be downloaded by the Munki
+	client.
+
+plist_extensions
+	If left blank, all files encountered are assumed to be plists. Otherwise, only
+	files with the extenions listed will be considered plists while all other will
+	be skipped.
+
+exclude_extensions
+	If left blank, all files encountered are assumed to be plists. Otherwise, only
+	files without the extenions listed will be considered plists while all others
+	will be included as long as they match the plist_extensions rule.
+
+authentication_method
+	A dicitonary containing information about how MunkiFace server-app should
+	handle user sessions.
+
+	driver
+		The name of the driver to use. One of "AllowAll", "WebServer", "LDAP",
+		"ActiveDirectory" or "OpenDirectory".
+		-	AllowAll is basically a no-authentication driver - not recommended since
+			it leaves your Munki repo open to editing by anyone.
+		- WebServer tells MunkiFace server-app to rely on the web server to provide
+			and enforce authentication. It is limited in that it cannot destroy a
+			session.
+		- LDAP, ActiveDirectory and OpenDirectory provide MunkiFace server-app with
+			the most control over user sessions.
+	url
+		This key is ignored when using AllowAll or WebServer drivers. Otherwise, it
+		is the url that should be used by MunkiFace server-app to test
+		authentication requests against. The format of the url should conform to
+		ldap://host:port/basedn?attribute?scope?filter. The use of ldaps:// for
+		secure authentication is suggested.
+-->
 <plist version="1.0">
 <dict>
 	<key>munki-repo</key>
@@ -13,8 +54,9 @@
 		<string>.html</string>
 	</array>
 	<key>authentication_method</key>
-	<string>AllowAll</string>
-	<!--<string>WebServer</string>-->
-	<!--<string>ldap://host:port/basedn?attribute?scope?filter</string>-->
+	<dict>
+		<key>driver</key>
+		<string>AllowAll</string>
+	</dict>
 </dict>
 </plist>

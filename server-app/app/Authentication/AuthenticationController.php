@@ -22,7 +22,8 @@ class AuthenticationController extends RTObject
 	{
 		parent::init();
 		$settings = Settings::sharedSettings();
-		$authenticationMethod = $settings->objectForKey("authentication_method");
+		$authenticationMethod =
+		$settings->objectForKey("authentication_method")->objectForKey("driver");
 
 		switch($authenticationMethod)
 		{
