@@ -6,7 +6,7 @@ $appDir = dirname(__FILE__) . "/";
 
 
 define("MFParseError", 1);
-define("MFInvalidTargetForAction", 2);
+define("MFInvalidTargetForActionError", 2);
 define("MFSecurityError", 3);
 define("MFUnknownActionError", 4);
 define("MFPermissionsError", 5);
