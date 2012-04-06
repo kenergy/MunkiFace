@@ -38,6 +38,8 @@ authentication_method
 		authentication requests against. The format of the url should conform to
 		ldap://host:port/basedn?attribute?scope?filter. The use of ldaps:// for
 		secure authentication is suggested.
+	domain
+		This key is ONLY used by the ActiveDirectory driver.
 -->
 <plist version="1.0">
 <dict>
