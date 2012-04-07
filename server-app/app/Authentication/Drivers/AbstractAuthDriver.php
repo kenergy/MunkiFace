@@ -4,6 +4,23 @@ abstract class AbstractAuthDriver extends RTObject
 	protected $_username;
 	protected $_password;
 	protected $_accountAuthority;
+
+
+
+
+	public function init()
+	{
+		parent::init();
+		if (isset($_SERVER['PHP_AUTH_USER']))
+		{
+			$this->setUsername($_SERVER['PHP_AUTH_USER']);
+		}
+		if (isset($_SERVER['PHP_AUTH_PW']))
+		{
+			$this->setPassword($_SERVER['PHP_AUTH_PW']);
+		}
+		return $this;
+	}
 	
 	
 	
@@ -24,6 +41,14 @@ abstract class AbstractAuthDriver extends RTObject
 	public function username()
 	{
 		return $this->_username;
+	}
+
+
+
+
+	protected function password()
+	{
+		return $this->_password;
 	}
 
 

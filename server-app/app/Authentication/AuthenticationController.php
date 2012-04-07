@@ -31,18 +31,54 @@ class AuthenticationController extends RTObject
 				require_once dirname(__FILE__) . "/Drivers/AllowAllAuthDriver.php";
 				$this->driver = AllowAllAuthDriver::alloc()->init();
 				break;
+
 			case "WebServer":
 				require_once dirname(__FILE__) . "/Drivers/WebServerAuthDriver.php";
 				$this->driver = WebServerAuthDriver::alloc()->init();
 				break;
+
+			case "LDAP":
+				require_once dirname(__FILE__) . "/Drivers/LDAPAuthDriver.php";
+				$this->driver = LDAPAuthDriver::alloc()->init();
+				$this->requireBasicAuthentication();
+				break;
+
+			case "ActiveDirectory":
+				require_once dirname(__FILE__) . "/Drivers/ActiveDirectoryAuthDriver.php";
+				$this->driver = ActiveDirectoryAuthDriver::alloc()->init();
+				$this->requireBasicAuthentication();
+				break;
+
 			default:
 				throw new Exception("Unsupported authentication driver in "
 					. "Settings.plist '" . $authenticationMethod . "'");
-				// ldap
+		}
+
+		if ($this->driver->hasSession() == NO)
+		{
+			echo "Failed to bind";
+			exit;
 		}
 		return $this;
 	}
-}
 
+
+
+
+	protected function requireBasicAuthentication()
+	{
+		if (!isset($_SERVER['PHP_AUTH_USER']) || $this->driver->hasSession() == NO)
+		{
+			if (headers_sent())
+			{
+				throw new Exception(
+					"Garbage already sent in the headers; unable to request authentication");
+			}
+			header('WWW-Authenticate: Basic realm="MunkiFace Server"');
+			header('HTTP/1.0 401 Unauthorized');
+			die("Authorization required");
+		}
+	}
+}
 
 $c = AuthenticationController::alloc()->init();
