@@ -10,6 +10,7 @@ define("MFInvalidTargetForActionError", 2);
 define("MFSecurityError", 3);
 define("MFUnknownActionError", 4);
 define("MFPermissionsError", 5);
+define("MFAuthDriverError", 6);
 define("MFBadRequestTypeError", 400);
 
 
@@ -26,6 +27,8 @@ require_once($appDir . "Models/AbstractModel.php");
 require_once($appDir . "Models/ReadAction.php");
 require_once($appDir . "Models/ReadHeadersAction.php");
 require_once($appDir . "Models/SetAction.php");
+
+
 
 
 
