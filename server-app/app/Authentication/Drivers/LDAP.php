@@ -19,7 +19,14 @@ class LDAP extends RTObject
 	public function setURL(RTURL $aURL)
 	{
 		$this->_ldapURL = $aURL;
-		$queryArray = $aURL->query()->componentsSeparatedByString("?");
+		if ($aURL->query() == NULL)
+		{
+			$queryArray = RTArray::anArray();
+		}
+		else
+		{
+			$queryArray = $aURL->query()->componentsSeparatedByString("?");
+		}
 		if ($queryArray->count() < 2)
 		{
 			throw new Exception(
