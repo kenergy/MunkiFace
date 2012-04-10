@@ -74,7 +74,13 @@ class AuthenticationController extends RTObject
 				throw new Exception(
 					"Garbage already sent in the headers; unable to request authentication");
 			}
-			header('WWW-Authenticate: Basic realm="MunkiFace Server"');
+			$XHRKey = "HTTP_X_REQUESTED_WITH";
+			$isXHR = isset($_SERVER[$XHRKey]) && $_SERVER[$XHRKey] == "XMLHttpRequest";
+			var_dump($_SERVER);
+			if ($isXHR == NO)
+			{
+				header('WWW-Authenticate: Basic realm="MunkiFace Server"');
+			}
 			header('HTTP/1.0 401 Unauthorized');
 			die("Authorization required");
 		}
