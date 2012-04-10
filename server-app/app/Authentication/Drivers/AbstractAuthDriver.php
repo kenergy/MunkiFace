@@ -1,6 +1,9 @@
 <?php
+session_start();
+
 abstract class AbstractAuthDriver extends RTObject
 {
+	protected $_sess;
 	protected $_username;
 	protected $_password;
 	protected $_accountAuthority;
@@ -11,13 +14,14 @@ abstract class AbstractAuthDriver extends RTObject
 	public function init()
 	{
 		parent::init();
-		if (isset($_SERVER['PHP_AUTH_USER']))
+		$this->sess = RTDictionary::dictionaryWithPHPArray($_SESSION);
+		if ($this->sess->allKeys()->containsObject("username"))
 		{
-			$this->setUsername($_SERVER['PHP_AUTH_USER']);
+			$this->setUsername($this->sess->objectForKey("username"));
 		}
-		if (isset($_SERVER['PHP_AUTH_PW']))
+		if ($this->sess->allKeys()->containsObject("pass"))
 		{
-			$this->setPassword($_SERVER['PHP_AUTH_PW']);
+			$this->setPassword($this->sess->objectForKey("pass"));
 		}
 		return $this;
 	}
@@ -75,7 +79,11 @@ abstract class AbstractAuthDriver extends RTObject
 		authentication.
 		\returns BOOL
 	 */
-	abstract public function hasSession();
+	public function hasSession()
+	{
+		$keys = $this->_sess->allKeys();
+		return $keys->containsObject("username") && $keys->containsObject("pass");
+	}
 
 
 
@@ -83,7 +91,11 @@ abstract class AbstractAuthDriver extends RTObject
 	/**
 		Destroys the current session, assuming that hasSession returns YES.
 	 */
-	abstract public function destroySession();
+	public function destroySession()
+	{
+		unset($_SESSION['username']);
+		unset($_SESSION['pass']);
+	}
 
 
 
@@ -94,7 +106,11 @@ abstract class AbstractAuthDriver extends RTObject
 		that do not require authentication.
 		\returns BOOL
 	 */
-	abstract public function createSession();
+	public function createSession()
+	{
+		$_SESSION['username'] = $this->username();
+		$_SESSION['pass'] = $this->password();
+	}
 	
 	
 	
