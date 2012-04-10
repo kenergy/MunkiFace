@@ -16,7 +16,7 @@ class LDAPAuthDriver extends AbstractAuthDriver
 		parent::init();
 		$settings = Settings::sharedSettings();
 		$url = RTURL::URLWithString(
-			$settings->objectForKey("authentication_method")->objectForKey("url")
+			$settings->objectForKey("authentication_method")->objectForKey("AuthLDAPURL")
 		);
 		$this->_ldap->setURL($url);
 
@@ -47,6 +47,11 @@ class LDAPAuthDriver extends AbstractAuthDriver
 
 	public function createSession()
 	{
+		if ($this->hasSession())
+		{
+			return YES;
+		}
+
 		$results = $this->_ldap->search($this->username());
 		if ($results->count() == 0)
 		{
@@ -70,20 +75,8 @@ class LDAPAuthDriver extends AbstractAuthDriver
 
 
 
-	public function destroySession()
-	{
-		$this->_authenticationDone = NO;
-	}
-
-
-
-
 	public function hasSession()
 	{
-		if ($this->_authenticationDone == NO)
-		{
-			$this->createSession();
-		}
-		return $this->_authenticationDone;
+		return $this->_authenticationDone === YES;
 	}
 }
