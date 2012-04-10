@@ -32,7 +32,7 @@ authentication_method
 			session.
 		- LDAP, ActiveDirectory and OpenDirectory provide MunkiFace server-app with
 			the most control over user sessions.
-	url
+	AuthLDAPURL
 		This key is ignored when using AllowAll or WebServer drivers. Otherwise, it
 		is the url that should be used by MunkiFace server-app to test
 		authentication requests against. The format of the url should conform to
