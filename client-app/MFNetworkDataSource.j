@@ -270,6 +270,34 @@ var MFNetworkDataSource_INDETERMINATE_SHEET_INSTANCE = nil;
 	try
 	{
 		parsedData = JSON.parse(someData);
+		if (parsedData.MFServerError || parsedData.MFServerException)
+		{
+			var errorMessage = "";
+			var errorTitle = "";
+			if (parsedData.MFServerError)
+			{
+				errorTitle = "MunkiFace Server Error " + parsedData.MFServerError.code;
+				errorMessage = parsedData.MFServerError.message;
+			}
+			else
+			{
+				errorTitle = "MunkiFace Server Exception " +
+					parsedData.MFServerException.code;
+				errorMessage = parsedData.MFServerException.message;
+			}
+
+			var anAlert = [CPAlert alertWithMessageText:errorTitle
+				defaultButton:@"Okay"
+				alternateButton:nil
+				otherButton:nil
+				informativeTextWithFormat:errorMessage];
+			[anAlert setAlertStyle:CPCriticalAlertStyle];
+			[anAlert setTheme:[CPTheme defaultHudTheme]];
+			[anAlert runModal];
+			console.log(anAlert);
+			console.log("Displayed an alert");
+			return;
+		}
 		if (_convertDataToDictionary == YES)
 		{
 			var dict = [CPDictionary dictionaryWithJSObject:parsedData recursively:YES];
