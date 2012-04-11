@@ -46,8 +46,9 @@ class HTTPRequest extends RTDictionary
 	 */
 	public function requestBody()
 	{
-		$body = @file_get_contents(STDIN);
-		if ($body->length() > 0)
+		$body = @file_get_contents('php://input');
+		if (strlen($body) > 0 && isset($_SERVER['CONTENT_TYPE']) &&
+			$_SERVER['CONTENT_TYPE'] == "application/json")
 		{
 			$parsedBody = @json_decode($body, YES);
 			if ($parsedBody != NULL)
@@ -58,5 +59,3 @@ class HTTPRequest extends RTDictionary
 		return $body;
 	}
 }
-
-var_dump($_SERVER);
