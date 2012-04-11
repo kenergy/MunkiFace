@@ -76,7 +76,6 @@ class AuthenticationController extends RTObject
 			}
 			$XHRKey = "HTTP_X_REQUESTED_WITH";
 			$isXHR = isset($_SERVER[$XHRKey]) && $_SERVER[$XHRKey] == "XMLHttpRequest";
-			var_dump($_SERVER);
 			if ($isXHR == NO)
 			{
 				header('WWW-Authenticate: Basic realm="MunkiFace Server"');
