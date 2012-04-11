@@ -59,6 +59,10 @@ var MF_SERVER_SETTINGS_INSTANCE = nil;
  */
 - (CPArray)allKeys
 {
+	if (_settings == nil)
+	{
+		_settings = [CPDictionary dictionary];
+	}
 	return [_settings allKeys];
 }
 
