@@ -56,7 +56,7 @@ class AuthenticationController extends RTObject
 
 		if ($this->driver->hasSession() == NO)
 		{
-			echo "Failed to bind";
+			error_log("Failed to bind");
 			exit;
 		}
 		return $this;
@@ -74,12 +74,15 @@ class AuthenticationController extends RTObject
 				throw new Exception(
 					"Garbage already sent in the headers; unable to request authentication");
 			}
-			$XHRKey = "HTTP_X_REQUESTED_WITH";
-			$isXHR = isset($_SERVER[$XHRKey]) && $_SERVER[$XHRKey] == "XMLHttpRequest";
-			if ($isXHR == NO)
-			{
+			// uncomment the lines below to enable XHR requests - prevents the browser
+			// from handling authentication requests and lets the javascript app have
+			// a crack at it.
+			//$XHRKey = "HTTP_X_REQUESTED_WITH";
+			//$isXHR = isset($_SERVER[$XHRKey]) && $_SERVER[$XHRKey] == "XMLHttpRequest";
+			//if ($isXHR == NO)
+			//{
 				header('WWW-Authenticate: Basic realm="MunkiFace Server"');
-			}
+			//}
 			header('HTTP/1.0 401 Unauthorized');
 			die("Authorization required");
 		}
