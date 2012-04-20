@@ -14,6 +14,10 @@ class LDAPAuthDriver extends AbstractAuthDriver
 	{
 		$this->_ldap = LDAP::alloc()->init();
 		parent::init();
+		if (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']))
+		{
+			$this->_authenticationDone = YES;
+		}
 		$settings = Settings::sharedSettings();
 		$url = RTURL::URLWithString(
 			$settings->objectForKey("authentication_method")->objectForKey("AuthLDAPURL")
