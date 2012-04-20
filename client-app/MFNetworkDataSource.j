@@ -174,19 +174,6 @@ var MFNetworkDataSource_INDETERMINATE_SHEET_INSTANCE = nil;
 		return;
 	}
 	
-	var authMethod = [settings objectForKey:@"authentication_method"];
-	var authDriver = [authMethod objectForKey:@"driver"];
-	var authStatus = [[SCUserSessionManager defaultManager] status];
-	
-	if ([authDriver isEqualToString:@"AllowAll"] == NO && authStatus == 0)
-	{
-		// There's no session, but one is required which means the SCAuth window
-		// will be appearing soon. Given that, we don't want this sheet to steal
-		// focus from the SCAuth window.
-		return;
-	}
-	
-
 	MFNetworkDataSource_SECONDS_SINCE_FIRST_REQUEST += 0.1;
 	if (MFNetworkDataSource_ACTIVE_REQUEST_COUNT > 0)
 	{

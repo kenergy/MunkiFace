@@ -8,7 +8,6 @@
 
 @import <Foundation/CPObject.j>
 @import <LPKit/LPKit.j>
-@import <SCAuth/SCUSerSessionManager.j>
 @import "MunkiFace.j"
 @import "DownloadableTextField.j"
 
