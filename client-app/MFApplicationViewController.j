@@ -22,9 +22,11 @@ MFApplicationViewPkgsInfo = 2;
 - (void)awakeFromCib
 {
 	manifestsViewController = [[CPViewController alloc]
-		initWithCibName:@"Manifests" bundle:nil];
+		initWithCibName:@"Manifests" bundle:[CPBundle mainBundle]];
 	pkgsInfoViewController = [[CPViewController alloc]
-		initWithCibName:@"Packages" bundle:nil];
+		initWithCibName:@"Packages" bundle:[CPBundle mainBundle]];
+	[manifestsViewController view];
+	[pkgsInfoViewController view];
 }
 
 
