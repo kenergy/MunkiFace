@@ -8,8 +8,6 @@
 /**
 	Redirects the user to the stringValue of the receiver when the user clicks and
 	then releases the mouse on this object.
-	\todo This is currently updaing window.location, there has to be a better way
-	to present the user with a file to download than this.
  */
 - (void)mouseUp:(CPEvent)anEvent
 {
@@ -17,11 +15,37 @@
 
 	if (url != "")
 	{
-		// \TODO This is totally not the best way to resolve this problem in a
-		// cappuccino app, but it works in a pinch to convert a CPTextField into a
-		// clickable label.
-		window.location = [self stringValue];
+		if (!self.iFrame)
+		{
+			self.iFrame = document.createElement('iframe');
+			self.iFrame.style.position = "absolute";
+			self.iFrame.style.top = "-100px";
+			self.iFrame.style.left = "-100px";
+			self.iFrame.style.height = "0px";
+			self.iFrame.style.width = "0px";
+			document.body.appendChild(self.iFrame);
+		}
+		self.iFrame.src = [self stringValue];
 	}
+}
+
+
+
+
+- (void)mouseEntered:(CPEvent)anEvent
+{
+	if ([self stringValue] != "")
+	{
+		[[CPCursor pointingHandCursor] set];
+	}
+}
+
+
+
+
+- (void)mouseExited:(CPEvent)anEvent
+{
+	[[CPCursor arrowCursor] set];
 }
 
 @end
