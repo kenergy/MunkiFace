@@ -10,12 +10,15 @@
 @import <LPKit/LPKit.j>
 @import "MunkiFace.j"
 @import "DownloadableTextField.j"
+@import "CKJSONKeyedArchiver.j"
+@import "MFManifestObserver.j"
 
 
 @implementation AppController : CPObject
 {
 	@outlet	MFApplicationViewController appViewController;
 	@outlet	CPWindow theWindow;
+	MFManifestObserver manifestObserver;
 }
 
 
@@ -26,6 +29,7 @@
 	// make sure the MFServerSettings class has a chance to load its data before
 	// anything in the application attempts to use that data.
 	[MFServerSettings sharedSettings];
+	manifestObserver = [[MFManifestObserver alloc] init];
 	var mainView = [[[CPApplication sharedApplication] arguments] firstObject];
 	if (mainView == "pkgsinfo")
 	{
