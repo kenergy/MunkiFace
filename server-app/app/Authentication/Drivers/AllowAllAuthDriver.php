@@ -9,28 +9,4 @@ class AllowAllAuthDriver extends AbstractAuthDriver
 		$this->setUsername("guest");
 		return $this;
 	}
-
-
-
-
-	public function createSession()
-	{
-		//
-	}
-
-
-
-
-	public function destroySession()
-	{
-		//
-	}
-
-
-
-
-	public function hasSession()
-	{
-		return YES;
-	}
 }

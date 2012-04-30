@@ -23,7 +23,28 @@ class AuthenticationController extends RTObject
 		parent::init();
 		$settings = Settings::sharedSettings();
 		$authenticationMethod =
-		$settings->objectForKey("authentication_method")->objectForKey("driver");
+			$settings->objectForKey("authentication_method")->objectForKey("driver");
+
+		if (isset($_GET['logout']))
+		{
+			if (ini_get("session.use_cookies"))
+			{
+				$params = session_get_cookie_params();
+				setcookie(
+					session_name(), '', time() - 42000,
+					$params["path"], $params["domain"],
+					$params["secure"], $params["httponly"]
+				);
+			}
+			else
+			{
+				unset($_SESSION['u']);
+				unset($_SESSION['p']);
+			}
+			header("Location: http://" . $_SERVER['HTTP_HOST']
+				. "/" . $_SERVER['PHP_SELF']);
+			exit;
+		}
 
 		switch($authenticationMethod)
 		{
@@ -54,11 +75,6 @@ class AuthenticationController extends RTObject
 					. "Settings.plist '" . $authenticationMethod . "'");
 		}
 
-		if ($this->driver->hasSession() == NO)
-		{
-			error_log("Failed to bind");
-			exit;
-		}
 		return $this;
 	}
 
@@ -67,25 +83,45 @@ class AuthenticationController extends RTObject
 
 	protected function requireBasicAuthentication()
 	{
-		if (!isset($_SERVER['PHP_AUTH_USER']) || $this->driver->hasSession() == NO)
+		$hasSession = isset($_SESSION['u']) && isset($_SESSION['p']);
+		if ($hasSession == NO)
 		{
-			if (headers_sent())
+			$credsExistInPost = isset($_POST['u']) && isset($_POST['p']);
+			if ($credsExistInPost == YES)
 			{
-				throw new Exception(
-					"Garbage already sent in the headers; unable to request authentication");
+				$this->driver->setUsername($_POST['u']);
+				$this->driver->setPassword($_POST['p']);
+				if ($this->driver->createSession() == NO)
+				{
+					$this->askForAuthentication();
+				}
+				else
+				{
+					$_SESSION['u'] = $_POST['u'];
+					$_SESSION['p'] = $_POST['p'];
+				}
 			}
-			// uncomment the lines below to enable XHR requests - prevents the browser
-			// from handling authentication requests and lets the javascript app have
-			// a crack at it.
-			//$XHRKey = "HTTP_X_REQUESTED_WITH";
-			//$isXHR = isset($_SERVER[$XHRKey]) && $_SERVER[$XHRKey] == "XMLHttpRequest";
-			//if ($isXHR == NO)
-			//{
-				header('WWW-Authenticate: Basic realm="MunkiFace Server"');
-			//}
-			header('HTTP/1.0 401 Unauthorized');
-			die("Authorization required");
+			else
+			{
+				$this->askForAuthentication();
+			}
 		}
+	}
+
+
+
+
+	protected function askForAuthentication()
+	{
+		if (headers_sent())
+		{
+			throw new Exception(
+				"Garbage already sent in the headers; unable to requrest authentication"
+			);
+		}
+		header("HTTP/1.0 401 Unauthorized");
+		throw new Exception("Authorization required", MFUnauthorizedError);
+		die("Authorization required");
 	}
 }
 

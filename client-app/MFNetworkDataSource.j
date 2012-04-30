@@ -268,6 +268,14 @@ var MFNetworkDataSource_INDETERMINATE_SHEET_INSTANCE = nil;
 			}
 			else
 			{
+				if (parsedData.MFServerException.code == 401)
+				{
+					alert("login required - The login window is coming soon. "
+					 + "Revert to commit c8f70b6054, wait for the next update, or "
+					 + "switch to the AllowAll authentication driver to restore "
+					 + "functionality.");
+					return;
+				}
 				errorTitle = "MunkiFace Server Exception " +
 					parsedData.MFServerException.code;
 				errorMessage = parsedData.MFServerException.message;

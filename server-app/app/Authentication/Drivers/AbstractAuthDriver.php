@@ -74,33 +74,6 @@ abstract class AbstractAuthDriver extends RTObject
 
 
 	/**
-		Returns a BOOL value indicating that the user is currently authenticated or
-		not. This will always return true for drivers that do not require
-		authentication.
-		\returns BOOL
-	 */
-	public function hasSession()
-	{
-		$keys = $this->_sess->allKeys();
-		return $keys->containsObject("username") && $keys->containsObject("pass");
-	}
-
-
-
-
-	/**
-		Destroys the current session, assuming that hasSession returns YES.
-	 */
-	public function destroySession()
-	{
-		unset($_SESSION['username']);
-		unset($_SESSION['pass']);
-	}
-
-
-
-
-	/**
 		Returns a BOOL value indicating that the user was able to create a session
 		based on the credentials provided. This will always reurn true for drivers
 		that do not require authentication.

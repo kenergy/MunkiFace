@@ -12,6 +12,7 @@ define("MFUnknownActionError", 4);
 define("MFPermissionsError", 5);
 define("MFAuthDriverError", 6);
 define("MFBadRequestTypeError", 400);
+define("MFUnauthorizedError", 401);
 
 
 

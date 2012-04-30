@@ -14,28 +14,4 @@ class WebServerAuthDriver extends AbstractAuthDriver
 		$this->setPassword($p);
 		return $this;
 	}
-
-
-
-
-	public function createSession()
-	{
-		//
-	}
-
-
-
-
-	public function destroySession()
-	{
-		//
-	}
-
-
-
-
-	public function hasSession()
-	{
-		return isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']);
-	}
 }
