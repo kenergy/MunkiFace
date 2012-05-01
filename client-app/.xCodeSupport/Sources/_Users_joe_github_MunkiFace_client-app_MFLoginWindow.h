@@ -1,0 +1,7 @@
+
+@interface MFLoginWindow : NSObject
+{
+
+}
+
+@end

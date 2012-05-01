@@ -29,6 +29,7 @@ var MFNetworkDataSource_SECONDS_ALLOWED_BEFORE_SHEET = 0.5;
  */
 var MFNetworkDataSource_INDETERMINATE_SHEET_INSTANCE = nil;
 
+var MFLoginWindowIsVisible = NO;
 
 
 
@@ -219,6 +220,7 @@ var MFNetworkDataSource_INDETERMINATE_SHEET_INSTANCE = nil;
 
 
 
+
 /**
 	This should be overridden by the implementing class in order to obtain the
 	data object returned by the server. This class will always attempt to parse
@@ -253,6 +255,7 @@ var MFNetworkDataSource_INDETERMINATE_SHEET_INSTANCE = nil;
 - (void)connection:(CPURLConnection) connection didReceiveData:(CPString)someData
 {
 	MFNetworkDataSource_ACTIVE_REQUEST_COUNT--;
+	console.log(someData);
 	var parsedData = nil;
 	try
 	{
@@ -270,10 +273,7 @@ var MFNetworkDataSource_INDETERMINATE_SHEET_INSTANCE = nil;
 			{
 				if (parsedData.MFServerException.code == 401)
 				{
-					alert("login required - The login window is coming soon. "
-					 + "Revert to commit c8f70b6054, wait for the next update, or "
-					 + "switch to the AllowAll authentication driver to restore "
-					 + "functionality.");
+					[[MFLoginWindow sharedLoginWindow] addConnectionToQueue];
 					return;
 				}
 				errorTitle = "MunkiFace Server Exception " +

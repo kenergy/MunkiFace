@@ -1,3 +1,4 @@
+@import "MFLoginWindow.j"
 @import "MFNetworkDataSource.j"
 @import "MFServerSettings.j"
 @import "MFApplicationViewController.j"
