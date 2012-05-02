@@ -255,7 +255,6 @@ var MFLoginWindowIsVisible = NO;
 - (void)connection:(CPURLConnection) connection didReceiveData:(CPString)someData
 {
 	MFNetworkDataSource_ACTIVE_REQUEST_COUNT--;
-	console.log(someData);
 	var parsedData = nil;
 	try
 	{
@@ -271,11 +270,6 @@ var MFLoginWindowIsVisible = NO;
 			}
 			else
 			{
-				if (parsedData.MFServerException.code == 401)
-				{
-					[[MFLoginWindow sharedLoginWindow] addConnectionToQueue];
-					return;
-				}
 				errorTitle = "MunkiFace Server Exception " +
 					parsedData.MFServerException.code;
 				errorMessage = parsedData.MFServerException.message;
@@ -289,8 +283,6 @@ var MFLoginWindowIsVisible = NO;
 			[anAlert setAlertStyle:CPCriticalAlertStyle];
 			[anAlert setTheme:[CPTheme defaultHudTheme]];
 			[anAlert runModal];
-			console.log(anAlert);
-			console.log("Displayed an alert");
 			return;
 		}
 		if (_convertDataToDictionary == YES)
