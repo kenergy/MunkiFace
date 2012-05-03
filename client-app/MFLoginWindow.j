@@ -48,12 +48,12 @@ var MFLoginWindowIsVisible = NO;
 	theWindow = [[CPWindow alloc] initWithContentRect:CGRectMakeZero()
 			styleMask:CPBorderlessBridgeWindowMask];
 	var contentView = [theWindow contentView];
+	var autoResizingMask = CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin | CPViewMaxYMargin;
 
 	var img = [[CPImage alloc] initWithContentsOfFile:[[CPBundle mainBundle]
 		pathForResource:@"NSTexturedFullScreenBackgroundColor.png"]];
 	var bgColor = [CPColor colorWithPatternImage:img];
 	[contentView setBackgroundColor:bgColor];
-
 
 	username = [CPTextField textFieldWithStringValue:nil
 		placeholder:@"username" width:250.0];
@@ -66,8 +66,8 @@ var MFLoginWindowIsVisible = NO;
 	[username sizeToFit];
 	[password sizeToFit];
 	
-	[username setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin | CPViewMaxYMargin];
-	[password setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin | CPViewMaxYMargin];
+	[username setAutoresizingMask:autoResizingMask];
+	[password setAutoresizingMask:autoResizingMask];
 	[username setCenter:[contentView center]];
 	var centerFrame = [username frame];
 	var usernameFrame = centerFrame;
@@ -80,7 +80,21 @@ var MFLoginWindowIsVisible = NO;
 	[password setDelegate:self];
 	[username setNextKeyView:password];
 	[password setNextKeyView:username];
+	
+	
+	var logoImage = [[CPImage alloc] initWithContentsOfFile:[[CPBundle mainBundle]
+	pathForResource:@"MFRoundLogo.png"]];
+	var logo = [[CPImageView alloc] initWithFrame:CGRectMake(
+		[username frame].origin.x + [username frame].size.width/2 - 75/2,
+		[username frame].origin.y - 100.0,
+		75.0,
+		76.0)];
+	[logo setImage:logoImage];
+	[logo setAutoresizingMask:autoResizingMask];
 
+
+
+	[contentView addSubview:logo];
 	[contentView addSubview:username];
 	[contentView addSubview:password];
 	
