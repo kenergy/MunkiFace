@@ -1,3 +1,6 @@
+
+@import <EKShakeAnimation.j>
+
 var MFLoginWindowInstance = nil;
 var MFLoginWindowIsVisible = NO;
 
@@ -61,8 +64,8 @@ var MFLoginWindowIsVisible = NO;
 		placeholder:@"password" width:250.0];
 	[password setSecure:YES];
 
-	[username setFont:[CPFont boldSystemFontOfSize:24.0]];
-	[password setFont:[CPFont boldSystemFontOfSize:24.0]];
+	[username setFont:[CPFont boldSystemFontOfSize:18.0]];
+	[password setFont:[CPFont boldSystemFontOfSize:18.0]];
 	[username sizeToFit];
 	[password sizeToFit];
 	
@@ -122,6 +125,8 @@ var MFLoginWindowIsVisible = NO;
 	if (isPasswordControl && [[username stringValue] isEqualToString:@""] == NO)
 	{
 		// Logging in
+		[username setEnabled:NO];
+		[password setEnabled:NO];
 		var settings = [[CPBundle mainBundle] infoDictionary];
 		var content = [CPString stringWithFormat:@"u=%@&p=%@",
 			encodeURIComponent([username stringValue]),
@@ -162,7 +167,9 @@ var MFLoginWindowIsVisible = NO;
 	}
 	else
 	{
-		alert("Authentication Failed");
+		[username setEnabled:YES];
+		[password setEnabled:YES];
+		[[EKShakeAnimation alloc] initWithView:password];
 	}
 }
 @end
