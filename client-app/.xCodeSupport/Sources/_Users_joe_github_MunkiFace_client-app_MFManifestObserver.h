@@ -1,0 +1,7 @@
+
+@interface MFManifestObserver : NSObject
+{
+
+}
+
+@end

@@ -1,7 +1,0 @@
-
-@interface MFPkgsInfoCollectionViewItemView : NSView
-{
-
-}
-
-@end

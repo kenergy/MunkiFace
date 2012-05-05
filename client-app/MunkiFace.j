@@ -9,7 +9,6 @@
 @import "MFPkgsInfo.j"
 @import "MFTreeModel.j"
 @import "MFManifestBackgroundView.j"
-@import "MFPkgsInfoCollectionViewItemView.j"
 @import "MFByteTransformer.j"
 
 MF_SERVER_URI = [[[CPBundle mainBundle] infoDictionary]
