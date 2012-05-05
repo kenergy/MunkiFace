@@ -12,6 +12,7 @@
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<string>NSUserDefaultsController</string>
 			<string>NSScroller</string>
 			<string>NSArrayController</string>
 			<string>NSTokenFieldCell</string>
@@ -536,6 +537,7 @@
 																	</object>
 																	<int key="NSResizingMask">3</int>
 																	<bool key="NSIsResizeable">YES</bool>
+																	<bool key="NSIsEditable">YES</bool>
 																	<reference key="NSTableView" ref="958465000"/>
 																</object>
 															</object>
@@ -552,13 +554,13 @@
 																</object>
 															</object>
 															<double key="NSRowHeight">17</double>
-															<int key="NSTvFlags">1119911936</int>
+															<int key="NSTvFlags">1388347392</int>
 															<reference key="NSDelegate"/>
 															<reference key="NSDataSource"/>
 															<int key="NSColumnAutoresizingStyle">1</int>
 															<int key="NSDraggingSourceMaskForLocal">15</int>
 															<int key="NSDraggingSourceMaskForNonLocal">0</int>
-															<bool key="NSAllowsTypeSelect">YES</bool>
+															<bool key="NSAllowsTypeSelect">NO</bool>
 															<int key="NSTableViewDraggingDestinationStyle">0</int>
 															<int key="NSTableViewGroupRowStyle">1</int>
 														</object>
@@ -1231,6 +1233,9 @@
 				<bool key="NSFilterRestrictsInsertion">YES</bool>
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
+			<object class="NSUserDefaultsController" id="868724653">
+				<bool key="NSSharedInstance">YES</bool>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -1325,6 +1330,22 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: values.canEditManifest</string>
+						<reference key="source" ref="958465000"/>
+						<reference key="destination" ref="868724653"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="958465000"/>
+							<reference key="NSDestination" ref="868724653"/>
+							<string key="NSLabel">enabled: values.canEditManifest</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">values.canEditManifest</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">464</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: arrangedObjects.description</string>
 						<reference key="source" ref="207948552"/>
 						<reference key="destination" ref="305192200"/>
@@ -1354,6 +1375,22 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: values.canEditManifest</string>
+						<reference key="source" ref="930645552"/>
+						<reference key="destination" ref="868724653"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="930645552"/>
+							<reference key="NSDestination" ref="868724653"/>
+							<string key="NSLabel">enabled: values.canEditManifest</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">values.canEditManifest</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">468</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: arrangedObjects.description</string>
 						<reference key="source" ref="48433885"/>
 						<reference key="destination" ref="409535814"/>
@@ -1367,6 +1404,22 @@
 						</object>
 					</object>
 					<int key="connectionID">407</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: values.canEditManifest</string>
+						<reference key="source" ref="156931413"/>
+						<reference key="destination" ref="868724653"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="156931413"/>
+							<reference key="NSDestination" ref="868724653"/>
+							<string key="NSLabel">enabled: values.canEditManifest</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">values.canEditManifest</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">470</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1402,6 +1455,22 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: values.canEditManifest</string>
+						<reference key="source" ref="999151060"/>
+						<reference key="destination" ref="868724653"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="999151060"/>
+							<reference key="NSDestination" ref="868724653"/>
+							<string key="NSLabel">enabled: values.canEditManifest</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">values.canEditManifest</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">458</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: data.included_manifests</string>
 						<reference key="source" ref="440574280"/>
 						<reference key="destination" ref="681296182"/>
@@ -1415,6 +1484,46 @@
 						</object>
 					</object>
 					<int key="connectionID">379</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: values.canEditManifest</string>
+						<reference key="source" ref="440574280"/>
+						<reference key="destination" ref="868724653"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="440574280"/>
+							<reference key="NSDestination" ref="868724653"/>
+							<string key="NSLabel">enabled: values.canEditManifest</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">values.canEditManifest</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">457</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="440574280"/>
+						<reference key="destination" ref="999151060"/>
+					</object>
+					<int key="connectionID">471</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: values.canEditManifest</string>
+						<reference key="source" ref="826619886"/>
+						<reference key="destination" ref="868724653"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="826619886"/>
+							<reference key="NSDestination" ref="868724653"/>
+							<string key="NSLabel">enabled: values.canEditManifest</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">values.canEditManifest</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">466</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1511,6 +1620,39 @@
 						</object>
 					</object>
 					<int key="connectionID">428</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">editable: values.canEditManifest</string>
+						<reference key="source" ref="788729639"/>
+						<reference key="destination" ref="868724653"/>
+						<object class="NSNibBindingConnector" key="connector" id="643668290">
+							<reference key="NSSource" ref="788729639"/>
+							<reference key="NSDestination" ref="868724653"/>
+							<string key="NSLabel">editable: values.canEditManifest</string>
+							<string key="NSBinding">editable</string>
+							<string key="NSKeyPath">values.canEditManifest</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">450</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: values.canEditManifest</string>
+						<reference key="source" ref="788729639"/>
+						<reference key="destination" ref="868724653"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="788729639"/>
+							<reference key="NSDestination" ref="868724653"/>
+							<string key="NSLabel">enabled: values.canEditManifest</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">values.canEditManifest</string>
+							<reference key="NSPreviousConnector" ref="643668290"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">456</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2167,6 +2309,11 @@
 						<reference key="object" ref="335611173"/>
 						<reference key="parent" ref="90975214"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">445</int>
+						<reference key="object" ref="868724653"/>
+						<reference key="parent" ref="1002"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -2264,6 +2411,7 @@
 					<string>424.IBPluginDependency</string>
 					<string>425.IBPluginDependency</string>
 					<string>429.IBPluginDependency</string>
+					<string>445.IBPluginDependency</string>
 				</object>
 				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2358,6 +2506,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -2372,7 +2521,7 @@
 				<reference key="dict.values" ref="1002"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">444</int>
+			<int key="maxID">471</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
