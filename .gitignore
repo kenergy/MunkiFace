@@ -2,3 +2,5 @@
 *.swp
 html/
 saved_configs/
+
+client-app/debug.txt

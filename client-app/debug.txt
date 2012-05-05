@@ -1,5 +1,0 @@
-warning: source ./Tools/Documentation/README.html is not a readable file or directory... skipping.
-warning: source ./LICENSE is not a readable file or directory... skipping.
-warning: source AppKit.doc is not a readable file or directory... skipping.
-warning: source Foundation.doc is not a readable file or directory... skipping.
-Project logo './logo.png' specified by PROJECT_LOGO does not exist!
