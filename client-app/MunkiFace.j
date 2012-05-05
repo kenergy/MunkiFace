@@ -4,7 +4,6 @@
 @import "MFApplicationViewController.j"
 @import "MFOutlineDataSource.j"
 @import "MFOutlineSelectedObject.j"
-@import "MFCatalog.j"
 @import "MFManifest.j"
 @import "MFPkgsInfo.j"
 @import "MFTreeModel.j"
