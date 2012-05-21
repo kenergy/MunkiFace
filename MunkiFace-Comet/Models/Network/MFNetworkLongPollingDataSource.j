@@ -8,9 +8,10 @@
 
 - (void)dataDidReload:(id)someData
 {
-	[self setData:someData];
+	CPLog("Data loaded from server");
 	if (shouldStopPolling == nil)
 	{
+		CPLog(" -- reconnecting");
 		var newURI = [self dataSourceURI];
 		if (URIConverted == nil)
 		{
@@ -19,7 +20,9 @@
 		}
 		[self setDataSourceURI:newURI];
 		[self reloadData];
+		CPLog(" -- Connection requested");
 	}
+	[self setData:someData];
 }
 
 

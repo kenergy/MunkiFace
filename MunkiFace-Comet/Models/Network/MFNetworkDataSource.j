@@ -108,6 +108,7 @@
 {
 	CPLog.error("[" + [self className] + "] Parse error: " + anError);
 	CPLog.error("Data: " + someData);
+	[self dataDidReload:nil];
 }
 
 

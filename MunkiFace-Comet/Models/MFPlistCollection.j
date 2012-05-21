@@ -67,9 +67,13 @@ var MFPlistCollectionINSTANCE = nil;
  */
 - (void)dataDidReload:(id)someData
 {
+	[super dataDidReload:someData];
+	if (someData == nil)
+	{
+		return;
+	}
 	// Let MFNetworkLongPollingDataSource store the results in the data ivar and
 	// reinitiate the connection for future change notifications.
-	[super dataDidReload:someData];
 
 	var changedObj = [[self data] objectForKey:@"changed"];
 	var createdObj = [[self data] objectForKey:@"created"];
