@@ -2726,7 +2726,7 @@ function StaticResource( aURL, aParent, isDirectory, isResolved)
 StaticResource.rootResources = function()
 {
     return rootResources;
-};
+}
 exports.StaticResource = StaticResource;
 function resolveStaticResource( aResource)
 {
@@ -2760,35 +2760,35 @@ StaticResource.prototype.resolve = function()
         }
         new FileRequest(this.URL(), onsuccess, onfailure);
     }
-};
+}
 StaticResource.prototype.name = function()
 {
     return this._name;
-};
+}
 StaticResource.prototype.URL = function()
 {
     return this._URL;
-};
+}
 StaticResource.prototype.contents = function()
 {
     return this._contents;
-};
+}
 StaticResource.prototype.children = function()
 {
     return this._children;
-};
+}
 StaticResource.prototype.parent = function()
 {
     return this._parent;
-};
+}
 StaticResource.prototype.isResolved = function()
 {
     return this._isResolved;
-};
+}
 StaticResource.prototype.write = function( aString)
 {
     this._contents += aString;
-};
+}
 function rootResourceForAbsoluteURL( anAbsoluteURL)
 {
     var schemeAndAuthority = anAbsoluteURL.schemeAndAuthority(),
@@ -2819,20 +2819,20 @@ StaticResource.resourceAtURL = function( aURL, resolveAsDirectoriesIfNecessary)
             throw new Error("Static Resource at " + aURL + " is not resolved (\"" + name + "\")");
     }
     return resource;
-};
+}
 StaticResource.prototype.resourceAtURL = function( aURL, resolveAsDirectoriesIfNecessary)
 {
     return StaticResource.resourceAtURL(new CFURL(aURL, this.URL()), resolveAsDirectoriesIfNecessary);
-};
+}
 StaticResource.resolveResourceAtURL = function( aURL, isDirectory, aCallback)
 {
     aURL = makeAbsoluteURL(aURL).absoluteURL();
     resolveResourceComponents(rootResourceForAbsoluteURL(aURL), isDirectory, aURL.pathComponents(), 0, aCallback);
-};
+}
 StaticResource.prototype.resolveResourceAtURL = function( aURL, isDirectory, aCallback)
 {
     StaticResource.resolveResourceAtURL(new CFURL(aURL, this.URL()).absoluteURL(), isDirectory, aCallback);
-};
+}
 function resolveResourceComponents( aResource, isDirectory, components, index, aCallback)
 {
     var count = components.length;
@@ -2878,27 +2878,27 @@ function resolveResourceAtURLSearchingIncludeURLs( aURL, anIndex, aCallback)
 StaticResource.resolveResourceAtURLSearchingIncludeURLs = function( aURL, aCallback)
 {
     resolveResourceAtURLSearchingIncludeURLs(aURL, 0, aCallback);
-};
+}
 StaticResource.prototype.addEventListener = function( anEventName, anEventListener)
 {
     this._eventDispatcher.addEventListener(anEventName, anEventListener);
-};
+}
 StaticResource.prototype.removeEventListener = function( anEventName, anEventListener)
 {
     this._eventDispatcher.removeEventListener(anEventName, anEventListener);
-};
+}
 StaticResource.prototype.isNotFound = function()
 {
     return this._isNotFound;
-};
+}
 StaticResource.prototype.isFile = function()
 {
     return !this._isDirectory;
-};
+}
 StaticResource.prototype.isDirectory = function()
 {
     return this._isDirectory;
-};
+}
 StaticResource.prototype.toString = function( includeNotFounds)
 {
     if (this.isNotFound())
@@ -2916,13 +2916,13 @@ StaticResource.prototype.toString = function( includeNotFounds)
             }
     }
     return string;
-};
+}
 var includeURLs = NULL;
 StaticResource.includeURLs = function()
 {
-    if (includeURLs !== NULL)
+    if (includeURLs)
         return includeURLs;
-    includeURLs = [];
+    var includeURLs = [];
     if (!global.OBJJ_INCLUDE_PATHS && !global.OBJJ_INCLUDE_URLS)
         includeURLs = ["Frameworks", "Frameworks/Debug"];
     else
@@ -2931,7 +2931,7 @@ StaticResource.includeURLs = function()
     while (count--)
         includeURLs[count] = new CFURL(includeURLs[count]).asDirectoryPathURL();
     return includeURLs;
-};
+}
 var TOKEN_ACCESSORS = "accessors",
     TOKEN_CLASS = "class",
     TOKEN_END = "end",
@@ -3560,7 +3560,7 @@ Preprocessor.prototype.preprocess = function(tokens, aStringBuffer, terminator, 
             }
             else
             {
-                buffer.atoms[buffer.atoms.length] = token + " = function";
+                buffer.atoms[buffer.atoms.length] = token + "= function";
             }
         }
         else if (token == TOKEN_PREPROCESSOR)
@@ -3665,23 +3665,23 @@ exports.Executable = Executable;
 Executable.prototype.path = function()
 {
     return this.URL().path();
-};
+}
 Executable.prototype.URL = function()
 {
     return this._URL;
-};
+}
 Executable.prototype.URL.displayName = "Executable.prototype.URL";
 Executable.prototype.functionParameters = function()
 {
     var functionParameters = ["global", "objj_executeFile", "objj_importFile"];
     return functionParameters;
-};
+}
 Executable.prototype.functionParameters.displayName = "Executable.prototype.functionParameters";
 Executable.prototype.functionArguments = function()
 {
     var functionArguments = [global, this.fileExecuter(), this.fileImporter()];
     return functionArguments;
-};
+}
 Executable.prototype.functionArguments.displayName = "Executable.prototype.functionArguments";
 Executable.prototype.execute = function()
 {
@@ -3690,12 +3690,12 @@ Executable.prototype.execute = function()
     var result = this._function.apply(global, this.functionArguments());
     CONTEXT_BUNDLE = oldContextBundle;
     return result;
-};
+}
 Executable.prototype.execute.displayName = "Executable.prototype.execute";
 Executable.prototype.code = function()
 {
     return this._code;
-};
+}
 Executable.prototype.code.displayName = "Executable.prototype.code";
 Executable.prototype.setCode = function(code)
 {
