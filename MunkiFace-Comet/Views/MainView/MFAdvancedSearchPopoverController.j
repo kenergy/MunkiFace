@@ -42,7 +42,7 @@
 		popover = [[CPPopover alloc] init];
 		[popover setAnimates:YES];
 		[popover setContentViewController:self];
-		[popover setBehaviour:CPPopoverBehaviorTransient];
+		[popover setBehavior:CPPopoverBehaviorTransient];
 	}
 	return self;
 }
@@ -52,7 +52,7 @@
 
 - (void)showPopoverForView:(CPView)aView
 {
-	if ([popover shown] == NO)
+	if ([popover isShown] != YES)
 	{
 		[popover showRelativeToRect:nil ofView:aView
 			preferredEdge:CPMaxYEdge];
