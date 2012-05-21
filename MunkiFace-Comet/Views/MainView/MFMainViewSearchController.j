@@ -63,7 +63,6 @@
 
 - (void)advancedSearchButtonClicked:(id)aSender
 {
-	console.log("I know what you clicked last summer");
 	[popoverController showPopoverForView:[self view]];
 }
 @end
