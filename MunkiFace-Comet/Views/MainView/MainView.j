@@ -1,0 +1,5 @@
+@import "MFMainViewController.j"
+@import "MFMainViewSearchController.j"
+@import "MFAdvancedSearchPopoverController.j"
+@import "MFMainView.j"
+@import "MFPredicateRowTemplates.j"
