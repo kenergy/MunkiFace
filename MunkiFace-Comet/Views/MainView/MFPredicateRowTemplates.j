@@ -61,12 +61,13 @@
 	
 	var operators = [MFPredicateRowTemplates _buildOperatorsFromArray:
 		[CPArray arrayWithObjects:
-			CPEqualToPredicateOperatorType,
-			CPNotEqualToPredicateOperatorType,
-			CPBeginsWithPredicateOperatorType,
-			CPEndsWithPredicateOperatorType,
+			CPEqualToPredicateOperatorType, CPNotEqualToPredicateOperatorType,
+			CPBeginsWithPredicateOperatorType, CPEndsWithPredicateOperatorType,
 			CPContainsPredicateOperatorType,
-		nil]];
+			CPGreaterThanOrEqualToPredicateOperatorType,
+			CPGreaterThanPredicateOperatorType,
+			CPLessThanOrEqualToPredicateOperatorType,
+			CPLessThanPredicateOperatorType, nil]];
 	
 	var options = (CPCaseInsensitivePredicateOption | CPDiacriticInsensitivePredicateOption);
 
