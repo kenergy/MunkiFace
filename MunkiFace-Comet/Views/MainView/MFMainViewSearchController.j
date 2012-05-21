@@ -1,3 +1,14 @@
+/**
+	This controller represents the root of all logic that starts with its view,
+	which is the advanced search icon. You initialize it by giving it a
+	CPSearchField object and you end up with the icon being placed in the search
+	field's superview. When you click the icon, logic control is then passed on to
+	the MFAdvancedSearchPopoverController.
+
+	This controller also manages the provided search field's menu and populates it
+	with saved advances searches. The popover window will give the user the
+	ability to create, edit, or remove these saved searches.
+ */
 @implementation MFMainViewSearchController : CPViewController
 {
 	CPSearchField searchField @accessors;
@@ -7,7 +18,13 @@
 
 
 
-- (CPView)view
+/**
+	Creates the advanced search icon that is placed in the same superview as the
+	attached CPSearchField. This also instructs that button to send its click
+	actions back to this instance's advancedSearchButtonClicked: method.
+	\returns CPButton
+ */
+- (CPButton)view
 {
 	if (self.view == nil)
 	{
@@ -28,6 +45,12 @@
 }
 
 
+
+
+/**
+	Initializes a new instance of the receiver after creating a menu for the
+	provided CPSearchField.
+ */
 - (void)initWithSearchField:(CPSearchField)aSearchField
 {
 	self = [super init];
@@ -53,6 +76,10 @@
 
 
 
+/**
+	A placeholder target that is called when an item from the search field's menu
+	is clicked.
+ */
 - (void)recentSearchSelected:(id)aSender
 {
 	console.log("User selected a recent search:", aSender);
@@ -61,6 +88,11 @@
 
 
 
+/**
+	Called when the advanced search button is clicked. This instructs the
+	MFAdvancedSearchPopoverController to display the popover window and take
+	control.
+ */
 - (void)advancedSearchButtonClicked:(id)aSender
 {
 	[popoverController showPopoverForView:[self view]];

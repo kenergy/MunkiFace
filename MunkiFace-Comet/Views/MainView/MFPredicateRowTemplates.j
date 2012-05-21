@@ -1,8 +1,16 @@
+/**
+	A utility class that will provide the search row templates for the
+	CPPredicateEditor on the fly. Since manifests, catalogs and packages all look
+	a little different, they deserve custom search options.
+ */
 @implementation MFPredicateRowTemplates : CPObject
 {
 }
 
 
+/**
+	Provides the search row templates used when searching through pkgsinfo files.
+ */
 + (CPArray)pkgsinfoSearchRows
 {
 	var keyPaths = [CPArray arrayWithObjects:
