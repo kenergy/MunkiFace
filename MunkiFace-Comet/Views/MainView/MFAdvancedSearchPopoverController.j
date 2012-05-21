@@ -22,7 +22,7 @@
 		[predicateEditor setFormattingStringsFilename:nil];
 		[predicateEditor setRowTemplates:templateRows];
 		[predicateEditor setObjectValue:[CPPredicate predicateWithFormat:
-			@"%K BEGINSWITH ''", @"min_os_version"]];
+			@"%K CONTAINS ''", @"display_name"]];
 		[sv setDocumentView:predicateEditor];
 		
 
