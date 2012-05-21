@@ -10,28 +10,23 @@
 {
 	if (self.view == nil)
 	{
-		self.view = [CPTextField labelWithTitle:@"Predicate Editor (hopefully soon)"];
-		[self.view setFont:[CPFont boldSystemFontOfSize:24.0]];
-		[self.view sizeToFit];
-		
-		
-		/*
 		var frame = CGRectMake(0.0, 0.0, 500.0, 350.0);
-		var v = [[CPScrollView alloc] initWithFrame:frame];
+		self.view = [[CPView alloc] initWithFrame:frame];
+		var sv = [[CPScrollView alloc] initWithFrame:CGRectInset(frame, 2.0, 5.0)];
 
 		var templateRows = [MFPredicateRowTemplates pkgsinfoSearchRows];
 	
-		[v setAutoresizingMask: CPViewWidthSizable | CPViewHeightSizable];
-		console.log(templateRows);
+		[sv setAutoresizingMask: CPViewWidthSizable | CPViewHeightSizable];
 
-		predicateEditor = [[CPPredicateEditor alloc] initWithFrame:frame];
+		predicateEditor = [[CPPredicateEditor alloc] initWithFrame:[sv bounds]];
+		[predicateEditor setFormattingStringsFilename:nil];
 		[predicateEditor setRowTemplates:templateRows];
 		[predicateEditor setObjectValue:[CPPredicate predicateWithFormat:
-			@"%K BEGINSWITH '%@'", @"min_os_version", "10.7"]];
-		[v setDocumentView:predicateEditor];
+			@"%K BEGINSWITH ''", @"min_os_version"]];
+		[sv setDocumentView:predicateEditor];
 		
-		self.view = v;
-		*/
+
+		[self.view addSubview:sv];
 	}
 	return self.view;
 }
