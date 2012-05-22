@@ -79,38 +79,55 @@ var MFPlistCollectionINSTANCE = nil;
 	var createdObj = [[self data] objectForKey:@"created"];
 	var removedObj = [[self data] objectForKey:@"removed"];
 
-	var numChanged = [changedObj count];
-	var numCreated = [createdObj count];
-	var numRemoved = [removedObj count];
-
 	if ([self treeModel] == nil)
 	{
 		treeModel = [[MFTreeModel alloc] init];
 		[treeModel setItemName:@"ROOT"];
 	}
+
+
 	// First, we'll add in the new files
-	for (var i = 0; i < numCreated; i++)
+	var key = nil;
+	var obj = nil;
+	var createdKeys = [createdObj allKeys];
+	for (var i = 0; i < [createdObj count]; i++)
 	{
-		var key = [[createdObj allKeys] objectAtIndex:i];
-		var obj = [createdObj objectForKey:key];
-		[treeModel addDescendant:obj atNamespace:key];
+		key = [createdKeys objectAtIndex:i];
+		var keyComponents = [key componentsSeparatedByString:@"/"];
+		if ([keyComponents firstObject] == @"")
+		{
+			keyComponents = [keyComponents subarrayWithRange:CPMakeRange(
+				1, [keyComponents count] -1)];
+		}
+		obj = [createdObj objectForKey:key];
+		[treeModel addDescendant:obj atRelativeNamespace:keyComponents];
 	}
 
+	key = nil;
+	obj = nil;
 	// Next we'll look for any modified files and refresh them
-	for (var i = 0; i < numChanged; i++)
+	for (var i = 0; i < [changedObj count]; i++)
 	{
-		var key = [[changedObj allKeys] objectAtIndex:i];
-		var obj = [changedObj objectForKey:key];
-		[treeModel addDescendant:obj atNamespace:key];
+		key = [[changedObj allKeys] objectAtIndex:i];
+		var keyComponents = [key componentsSeparatedByString:@"/"];
+		if ([keyComponents firstObject] == @"")
+		{
+			keyComponents = [keyComponents subarrayWithRange:CPMakeRange(
+				1, [keyComponents count] -1)];
+		}
+		obj = [changedObj objectForKey:key];
+		[treeModel addDescendant:obj atRelativeNamespace:keyComponents];
 	}
 
 
+	key = nil;
+	obj = nil;
 	// Finally, we'll remove any objects that have been deleted.
-	for (var i = 0; i < numRemoved; i++)
+	for (var i = 0; i < [removedObj count]; i++)
 	{
-		var key = [@"ROOT" stringByAppendingString:
+		key = [@"ROOT" stringByAppendingString:
 			[[removedObj allKeys] objectAtIndex:i]];
-		var obj = [treeModel descendantWithNamespace:key];
+		obj = [treeModel descendantWithNamespace:key];
 		if (obj != nil)
 		{
 			var bereavedParent = [obj parentItem];

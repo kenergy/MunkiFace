@@ -20,7 +20,6 @@
 	if (self)
 	{
 		childItems = [CPMutableArray array];
-		[self setRepresentedObject:nil];
 	}
 	return self;
 }
@@ -37,13 +36,10 @@
 	self = [super init];
 	if (self)
 	{
-		childItems = [CPMutableArray array];
 		[self setRepresentedObject:anObject];
 	}
 	return self;
 }
-
-
 
 
 /**
@@ -53,13 +49,26 @@
  */
 - (id)initWithObject:(id)anObject parentItem:(MFTreeModel)aParentItem	itemName:(CPString)anItemName
 {
-	var obj = [self initWithObject:anObject];
-	if (obj)
+	var self = [self init];
+	if (self)
 	{
-		[obj setParentItem:aParentItem];
-		[obj setItemName:anItemName];
+		[self setRepresentedObject:anObject];
+		[self setParentItem:aParentItem];
+		[self setItemName:anItemName];
 	}
 	return obj;
+}
+
+
+
+
+- (void)setItemName:(CPString)aName
+{
+	if (aName == "")
+	{
+		[CPException raise:YES reason:@"itemName cannot be empty for an MFTreeModel"];
+	}
+	itemName = aName;
 }
 
 
@@ -71,6 +80,10 @@
  */
 - (MFTreeModel)rootItem
 {
+	if ([self parentItem] == nil)
+	{
+		return self;
+	}
 	var root = nil;
 	var parentNode = [self parentItem];
 	while(parentNode != nil)
@@ -78,14 +91,58 @@
 		root = parentNode;
 		parentNode = [parentNode parentItem];
 	}
-	if (root == nil)
+	return root;
+}
+
+
+
+
+/**
+	Adds a given object to the existing structure at the specified relative
+	namespace. This method will always add the object to the namespace starting at
+	the receiver. Therefore, you must always use a desired namespace that is
+	relative to the receiver's namespace.
+	\param anObject The object to wrap in an MFTreeModel object and add to the
+	structure.
+	\param aNamespace An array of path components representing the desired
+	namespace relative to the receiver.
+ */
+- (void)addDescendant:(id)anObject atRelativeNamespace:(CPArray)aNamespace
+{
+	var child = nil;
+	// If there's only one component, it goes here
+	if ([aNamespace count] == 1)
 	{
-		return self;
+		child = [[MFTreeModel alloc] initWithObject:anObject];
+		[child setItemName:[aNamespace firstObject]];
+		[self addChild:child];
+		return;
 	}
-	else
+
+	// Make the range needed in order to knock off the first object of the
+	// namespace array.
+	// - is this the proper range?
+	var range = CPMakeRange(1, [aNamespace count] - 1);
+	
+	
+	// if the first object of the namespace matches the itemName of one of this
+	// object's children, we'll descend.
+	for (var i = 0; i < [self numberOfChildren]; i++)
 	{
-		return root;
+		child = [childItems objectAtIndex:i];
+		if ([child itemName] == [aNamespace firstObject])
+		{
+			return [child addDescendant:anObject atRelativeNamespace:
+				[aNamespace subarrayWithRange:range]];
+		}
 	}
+
+	// No child was found with the name, so we'll make one.
+	child = [[MFTreeModel alloc] init];
+	[child setItemName:[aNamespace firstObject]];
+	[self addChild:child];
+	[child addDescendant:anObject atRelativeNamespace:
+		[aNamespace subarrayWithRange:range]];
 }
 
 
@@ -108,13 +165,15 @@
 	// first we need to make sure that the desired path to the object exists and
 	// create it if it doesn't.
 	var potentialParent = root;
+	var currentName = nil;
+	var ephemeralChild = nil;
 	for (var i = 0; i < [pathChunks count]-1; i++)
 	{
-		var currentName = [pathChunks objectAtIndex:i];
-		var ephemeralChild = [potentialParent childWithName:currentName];
+		currentName = [pathChunks objectAtIndex:i];
+		ephemeralChild = [potentialParent childWithName:currentName];
 		if (ephemeralChild == nil)
 		{
-			ephemeralChild = [[MFTreeModel alloc] initWithObject:nil];
+			ephemeralChild = [[MFTreeModel alloc] init];
 			[ephemeralChild setItemName:currentName];
 			[potentialParent addChild:ephemeralChild];
 		}
@@ -144,23 +203,18 @@
  */
 - (MFTreeModel)childWithNamespace:(CPString)aNamespace
 {
+	var result = nil;
+	var child = nil;
 	for (var i = 0; i < [childItems count]; i++)
 	{
-		var item = [childItems objectAtIndex:i];
-		if ([[item itemNamespace] isEqualToString:aNamespace])
+		child = [childItems objectAtIndex:i];
+		if ([child itemNamespace] == aNamespace)
 		{
-			return item;
-		}
-		else
-		{
-			var child = [item childWithNamespace:aNamespace];
-			if (child != nil)
-			{
-				return child;
-			}
+			result = child;
+			break;
 		}
 	}
-	return nil;
+	return result;
 }
 
 
@@ -174,23 +228,48 @@
  */
 - (MFTreeModel)childWithName:(CPString)aName
 {
+	var result = nil;
+	var child = nil;
 	for (var i = 0; i < [childItems count]; i++)
 	{
-		var item = [childItems objectAtIndex:i];
-		if ([[item itemName] isEqualToString:aName])
+		child = [childItems objectAtIndex:i];
+		if ([child itemName] == aName)
 		{
-			return item;
-		}
-		else
-		{
-			var child = [item childWithName:aName];
-			if (child != nil)
-			{
-				return child;
-			}
+			result = child;
+			break;
 		}
 	}
-	return nil;
+	return result;
+}
+
+
+
+
+/**
+	Returns any descendant of the receiver whose name is aName. If there are no
+	descendants of the receiver with a matching name, \c nil will be returned
+	instead.
+	\MFTreeModel
+ */
+- (MFTreeModel)descendantWithName:(CPString)aName
+{
+	var result = [self childWithName:aName];
+	var child = nil;
+	if (result != nil)
+	{
+		return result;
+	}
+
+	for (var i = 0; i < [childItems count]; i++)
+	{
+		child = [[childItems objectAtIndex:i] childWithName:aName];
+		if (child != nil)
+		{
+			result = child;
+			break;
+		}
+	}
+	return result;
 }
 
 
@@ -203,8 +282,12 @@
  */
 - (MFTreeModel)descendantWithNamespace:(CPString)aNamespace
 {
+	var descendant = [self childWithNamespace:aNamespace];
+	if (descendant != nil)
+	{
+		return descendant;
+	}
 	var leafs = [self leafItemsAsNormalizedArray];
-	var descendant = nil;
 	for (var i = 0; i < [leafs count]; i++)
 	{
 		var leaf = [leafs objectAtIndex:i];
@@ -225,6 +308,10 @@
  */
 - (void)addChild:(MFTreeModel)aTreeModel
 {
+	if (childItems == nil)
+	{
+		childItems = [CPMutable array];
+	}
 	[aTreeModel setParentItem:self];
 	[[self childItems] addObject:aTreeModel];
 }
@@ -234,13 +321,14 @@
 
 /**
 	Removes the child item from the receiver.
-	\returns MFTreeModel
  */
-- (MFTreeModel)removeChild:(MFTreeModel)aTreeModel
+- (void)removeChild:(MFTreeModel)aTreeModel
 {
-	[[self childItems] removeObject:aTreeModel];
-	[aTreeModel setParentItem:nil];
-	return aTreeModel;
+	if (childItems != nil)
+	{
+		[[self childItems] removeObject:aTreeModel];
+		[aTreeModel setParentItem:nil];
+	}
 }
 
 
@@ -284,10 +372,12 @@
  */
 - (CPArray)leafItemsAsNormalizedArray
 {
-	var items = [CPMutableArray array];
-	
 	function addLeafItemsForNode_toArray(aNode, anArray)
 	{
+		if (anArray == nil)
+		{
+			anArray = [CPMutableArray array];
+		}
 		var children = [aNode childItems];
 		for(var i = 0; i < [children count]; i++)
 		{
@@ -304,7 +394,7 @@
 		return anArray;
 	}
 
-	return addLeafItemsForNode_toArray(self, items);
+	return addLeafItemsForNode_toArray(self, nil);
 }
 
 
@@ -336,7 +426,7 @@
  */
 - (BOOL)isLeaf
 {
-	return childItems != nil && [self numberOfChildren] == 0;
+	return [self numberOfChildren] == 0;
 }
 
 
