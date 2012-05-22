@@ -92,7 +92,7 @@ class WatchPath
 			{
 				return $this->changes;
 			}
-			usleep(10000);
+			usleep(200000);
 		}
 	}
 
