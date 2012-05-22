@@ -123,6 +123,13 @@ class WatchPath
 
 	public function filesWereChanged($changes)
 	{
+		foreach($this->changes['created'] as $newFile => $val)
+		{
+			if (isset($changes[$newFile]))
+			{
+				unset($changes[$newFile]);
+			}
+		}
 		$this->changes["changed"] = $changes;
 	}
 
