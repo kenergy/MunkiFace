@@ -89,10 +89,9 @@ var MFPlistCollectionINSTANCE = nil;
 	// First, we'll add in the new files
 	var key = nil;
 	var obj = nil;
-	var createdKeys = [createdObj allKeys];
 	for (var i = 0; i < [createdObj count]; i++)
 	{
-		key = [createdKeys objectAtIndex:i];
+		key = [[createdObj allKeys] objectAtIndex:i];
 		var keyComponents = [key componentsSeparatedByString:@"/"];
 		if ([keyComponents firstObject] == @"")
 		{
@@ -127,6 +126,7 @@ var MFPlistCollectionINSTANCE = nil;
 	{
 		key = [@"ROOT" stringByAppendingString:
 			[[removedObj allKeys] objectAtIndex:i]];
+		CPLog("Should be removing '" + key + "'");
 		obj = [treeModel descendantWithNamespace:key];
 		if (obj != nil)
 		{
