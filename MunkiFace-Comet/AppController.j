@@ -11,6 +11,10 @@
 @import "Models/Models.j"
 
 
+/**
+	The primary application controller for the client app.
+	\ingroup client-app
+ */
 @implementation AppController : CPObject
 {
 	MainViewController mainViewController @accessors;

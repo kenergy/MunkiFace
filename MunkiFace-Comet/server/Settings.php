@@ -2,6 +2,12 @@
 
 require_once(dirname(__FILE__) . "/Library/CFPropertyList/CFPropertyList.php");
 /**
+	\defgroup server-app Server Application
+	The server application documentation group represents members written in PHP
+	which make up the server-side logic.
+	@{
+ */
+/**
 	Reads the settings from ../Resources/Settings.plist and makes the contents
 	available to the rest of the application.
  */
@@ -48,3 +54,5 @@ class Settings
 		return $this->_data[$aKey];
 	}
 }
+
+/** @} */

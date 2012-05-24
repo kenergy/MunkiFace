@@ -14,6 +14,7 @@
 	display a sheet window that lets the user know that the application is still
 	waiting on data. Once the last response is received, the sheet will
 	automatically be dismissed.
+	\ingroup client-models
  */
 @implementation MFNetworkDataSource : CPObject
 {

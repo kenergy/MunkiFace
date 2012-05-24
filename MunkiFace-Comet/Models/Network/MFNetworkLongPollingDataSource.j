@@ -1,3 +1,9 @@
+/**
+	Extends the functionality of MFNetworkDataSource by repeating the request as
+	soon as it ends. This should be used sparingly as it will eseentially hold one
+	connection to the server open for each instance that is created.
+	\ingroup client-models
+ */
 @implementation MFNetworkLongPollingDataSource : MFNetworkDataSource
 {
 	CPDictionary data @accessors;

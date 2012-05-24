@@ -16,6 +16,7 @@ var MFPlistCollectionINSTANCE = nil;
 	Whether Apache closes the connection or the connection is closed because the
 	server had data to send to us, another connection is immediately made to
 	continue the cycle and keep things in sync.
+	\ingroup client-models
  */
 @implementation MFPlistCollection : MFNetworkLongPollingDataSource
 {

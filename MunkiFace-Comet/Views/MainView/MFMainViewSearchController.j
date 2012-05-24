@@ -8,6 +8,7 @@
 	This controller also manages the provided search field's menu and populates it
 	with saved advances searches. The popover window will give the user the
 	ability to create, edit, or remove these saved searches.
+	\ingroup client-views
  */
 @implementation MFMainViewSearchController : CPViewController
 {

@@ -1,6 +1,7 @@
 /**
 	This view controller doe nothing but let the user know that they need to
 	select something before they will see any editor controls.
+	\ingroup client-views
  */
 @implementation MFEmptyViewController : CPViewController
 {

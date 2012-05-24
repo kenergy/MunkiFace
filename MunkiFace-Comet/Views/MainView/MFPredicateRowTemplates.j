@@ -2,6 +2,7 @@
 	A utility class that will provide the search row templates for the
 	CPPredicateEditor on the fly. Since manifests, catalogs and packages all look
 	a little different, they deserve custom search options.
+	\ingroup client-views
  */
 @implementation MFPredicateRowTemplates : CPObject
 {

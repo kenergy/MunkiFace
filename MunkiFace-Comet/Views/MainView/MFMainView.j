@@ -20,6 +20,7 @@ MFMainViewDefaultSelection = MFMainViewPkgsinfoSelection;
 	that the left pane is never smaller than 50px and never wider than 350px. When
 	this view changes superviews, it will reposition the divider of the split view
 	to 245px.
+	\ingroup client-views
  */
 @implementation MFMainView : CPView
 {

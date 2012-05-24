@@ -22,8 +22,7 @@
 	before a call to reloadData will return nil since there hasn't yet been a need
 	to created the object.
 
-	\class MFOutlineDataSource
-	\extends MFNetworkDataSource
+	\ingroup client-models
  */
 @implementation MFOutlineDataSource : MFNetworkDataSource
 {

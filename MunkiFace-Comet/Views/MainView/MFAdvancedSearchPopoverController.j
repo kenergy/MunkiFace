@@ -1,3 +1,8 @@
+/**
+	Represents the required CPViewController for the CPPopover view of the
+	advanced search.
+	\ingroup client-views
+ */
 @implementation MFAdvancedSearchPopoverController : CPViewController
 {
 	CPPopover popover @accessors;

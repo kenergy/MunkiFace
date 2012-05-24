@@ -11,6 +11,7 @@
 	whenever new data comes across the wire and gets piped into MFPlistCollection,
 	it will be updated graphically as well; at least as far as this controller is
 	capable of ensuring.
+	\ingroup client-views
  */
 @implementation MFMainViewController : CPViewController
 {
