@@ -32,7 +32,8 @@
 	its data source and delegate, and binds the adds that data source as a
 	listener to MFPlistCollection's "treeModel" keypath. It also sets itself as
 	the target for the segmented control changes so they can be registered and
-	appropriate actions taken.
+	appropriate actions taken. Those actions are decided in the
+	segmentedControlDidChange selector.
  */
 - (CPView)view
 {
