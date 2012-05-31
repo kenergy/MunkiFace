@@ -24,12 +24,38 @@
 
 	\ingroup client-models
  */
-@implementation MFOutlineDataSource : MFNetworkDataSource
+@implementation MFOutlineViewController : CPObject
 {
 	@accessors MFTreeModel treeModel;
 	MFTreeModel arrangedObjects;
 	CPOutlineView representedView @accessors;
 	int dataCategory @accessors;
+	BOOL sortsManifestsByInheritance @accessors;
+}
+
+
+
+
+/**
+	Constructs a new instance of the receiver using an existing CPOutlineView.
+ */
+- (id)initWithRepresentedView:(CPOutlineView)anOutlineView
+{
+	self = [super init];
+	if (self)
+	{
+		// setup the outline view's datasource and delegate
+		[self setRepresentedView:anOutlineView];
+		[self setSortsManifestsByInheritance:NO];
+		var collection = [MFPlistCollection sharedCollection];
+		[collection addObserver:self
+			forKeyPath:@"treeModel"
+			options:nil
+			context:nil];
+		[anOutlineView setDataSource:self];
+		[anOutlineView setDelegate:self];
+	}
+	return self;
 }
 
 
@@ -44,16 +70,68 @@
 	switch(aCategory)
 	{
 		case MFMainViewManifestSelection:
-			arrangedObjects = [treeModel childWithName:@"manifests"];
+			if ([self dataCategory] == MFMainViewManifestSelection)
+			{
+				break;
+			}
+			[self sortManifestsByFilesystem];
 			break;
 		case MFMainViewCatalogSelection:
 			arrangedObjects = [treeModel childWithName:@"catalogs"];
+			[[self representedView] reloadItem:nil];
 			break;
 		case MFMainViewPkgsinfoSelection:
 			arrangedObjects = [treeModel childWithName:@"pkgsinfo"];
+			[[self representedView] reloadItem:nil];
 			break;
 	}
+	dataCategory = aCategory;
+}
+
+
+
+
+- (void)sortManifestsByInheritance
+{
+	var childItems = [treeModel leafItemsAsNormalizedArray];
+	var newTree = [[MFTreeModel alloc] init];
+	[newTree setItemName:@"ROOT"];
+	for (var i = 0; i < [childItems count]; i++)
+	{
+		var child = [childItems objectAtIndex:i];
+		var obj = [child representedObject];
+		if ([obj respondsToSelector:@selector(objectForKey:)])
+		{
+			var newChild = [[MFTreeModel alloc] initWithObject:obj];
+			[newChild setItemName:[child itemNamespace]];
+			[newTree addChild:newChild];
+			var manifests = [obj objectForKey:@"included_manifests"];
+			for (var j = 0; i < [manifests count]; j++)
+			{
+				var manifest = [manifests objectAtIndex:j];
+				var manifestObj = [treeModel childWithNamespace:manifest];
+				var newManifest = [[MFTreeModel alloc] initWithObject:[manifestObj
+					representedObject]];
+				[newManifest setItemName:manifest];
+				[newChild addChild:newManifest];
+			}
+		}
+	}
+	console.log("Sorted by inheritance");
+	
+	arrangedObjects = newTree;
 	[[self representedView] reloadItem:nil];
+}
+
+
+
+
+- (void)sortManifestsByFilesystem
+{
+	arrangedObjects = [treeModel childWithName:@"manifests"];
+	[[self representedView] reloadItem:nil];
+	console.log("sorted by filesystem");
+}
 }
 
 

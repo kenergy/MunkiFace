@@ -18,6 +18,7 @@
 	int mainViewSelection @accessors;
 	CPSplitView splitView;
 	CPOutlineView outlineView @accessors;
+	CPOutlineViewController outlineViewController @accessors;
 	CPSearchField searchField @accessors;
 	CPSegmentedControl segmentedControl @accessors;
 	CPViewController contentViewController @accessors;
@@ -48,21 +49,13 @@
 		[self setSearchController:sc];
 		
 		// setup the outline view's datasource and delegate
-		var dataSource = [[MFOutlineDataSource alloc] init];
-		var collection = [MFPlistCollection sharedCollection];
-		[collection addObserver:dataSource
-			forKeyPath:@"treeModel"
-			options:nil
-			context:nil];
-		[dataSource setRepresentedView:outlineView];
-		[outlineView setDataSource:dataSource];
-		[outlineView setDelegate:dataSource];
+		outlineViewController = [[MFOutlineViewController alloc]
+			initWithRepresentedView:outlineView];
 		
 		// set this instance as the target for the segmented control
 		[segmentedControl setTarget:self];
 		[segmentedControl setAction:@selector(segmentedControlDidChange:)];
 		[segmentedControl setSelectedSegment:MFMainViewDefaultSelection];
-		[self segmentedControlDidChange:segmentedControl];
 	}
 	return self.view;
 }

@@ -1,6 +1,28 @@
+/**
+	Represents the Manifest category view
+	\var  MFMainViewManifestSelection
+	\ingroup client-views
+ */
 MFMainViewManifestSelection = 0;
+/**
+	Represents the Catalog category view
+	\var  MFMainViewCatalogSelection
+	\ingroup client-views
+ */
 MFMainViewCatalogSelection = 1;
+/**
+	Represents the Pkgsinfo category view
+	\var  MFMainViewPkgsinfoSelection
+	\ingroup client-views
+ */
 MFMainViewPkgsinfoSelection = 2;
+/**
+	Sets the default (not 'current') category view. Changing this to another value
+	will cause the corresponding tab to be selected by default when the applicaton
+	loads.
+	\var  MFMainViewDefaultSelection
+	\ingroup client-views
+ */
 MFMainViewDefaultSelection = MFMainViewPkgsinfoSelection;
 
 
@@ -92,15 +114,19 @@ MFMainViewDefaultSelection = MFMainViewPkgsinfoSelection;
 {
 	// Create the segmentedControl object
 	segmentedControl = [[CPSegmentedControl alloc] initWithFrame:
-		CGRectMake(30.0, 30.0, 0.0, 30.0)];
+		CGRectMake(22.0, 30.0, 0.0, 30.0)];
 	
 	[segmentedControl setSegmentCount:3];
-	[segmentedControl setLabel:@"Manifests" forSegment:0];
-	[segmentedControl setTag:0 forSegment:MFMainViewManifestSelection];
-	[segmentedControl setLabel:@"Catalogs" forSegment:1];
-	[segmentedControl setTag:1 forSegment:MFMainViewCatalogSelection];
-	[segmentedControl setLabel:@"PkgsInfo" forSegment:2];
-	[segmentedControl setTag:2 forSegment:MFMainViewPkgsinfoSelection];
+	[segmentedControl setLabel:@"Manifests" forSegment:MFMainViewManifestSelection];
+	[segmentedControl setTag:MFMainViewManifestSelection
+		forSegment:MFMainViewManifestSelection];
+	[segmentedControl setLabel:@"Catalogs" forSegment:MFMainViewCatalogSelection];
+	[segmentedControl setTag:MFMainViewCatalogSelection
+		forSegment:MFMainViewCatalogSelection];
+	[segmentedControl setLabel:@"PkgsInfo" forSegment:MFMainViewPkgsinfoSelection];
+	[segmentedControl setTag:MFMainViewPkgsinfoSelection
+		forSegment:MFMainViewPkgsinfoSelection];
+
 
 	[segmentedControl setAutoresizingMask: CPViewMinXMargin | CPViewMaxXMargin];
 	[[[splitView subviews] firstObject] addSubview:segmentedControl];

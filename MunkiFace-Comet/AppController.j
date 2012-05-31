@@ -7,8 +7,9 @@
  */
 
 @import <Foundation/CPObject.j>
-@import "Views/Views.j"
 @import "Models/Models.j"
+@import "Views/Views.j"
+@import "Controllers/Controllers.j"
 
 
 /**

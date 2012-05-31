@@ -4,4 +4,5 @@
 	\ingroup client-app
 	@{
  */
+@import "MFOutlineViewController.j"
 /** @} */
