@@ -114,7 +114,7 @@ MFMainViewDefaultSelection = MFMainViewPkgsinfoSelection;
 {
 	// Create the segmentedControl object
 	segmentedControl = [[CPSegmentedControl alloc] initWithFrame:
-		CGRectMake(22.0, 30.0, 0.0, 30.0)];
+		CGRectMake(31.0, 30.0, 0.0, 30.0)];
 	
 	[segmentedControl setSegmentCount:3];
 	[segmentedControl setLabel:@"Manifests" forSegment:MFMainViewManifestSelection];
@@ -173,7 +173,7 @@ MFMainViewDefaultSelection = MFMainViewPkgsinfoSelection;
 {
 	if (subviewIndex == 0)
 	{
-		return [segmentedControl frame].size.width - 1;
+		return [segmentedControl frame].size.width;
 	}
 	return proposedMin;
 }
