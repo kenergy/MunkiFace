@@ -1,3 +1,4 @@
+@import "MFOutlineDataView.j"
 @import "MFMainViewController.j"
 @import "MFMainViewSearchController.j"
 @import "MFAdvancedSearchPopoverController.j"

@@ -83,7 +83,7 @@
  */
 - (void)recentSearchSelected:(id)aSender
 {
-	console.log("User selected a recent search:", aSender);
+	CPLog.debug("User selected a recent search: %@", aSender);
 }
 
 

@@ -141,7 +141,6 @@ MFMainViewDefaultSelection = MFMainViewPkgsinfoSelection;
 	var leftView = [[splitView subviews] firstObject];
 	var outlineScrollView = [[CPScrollView alloc] initWithFrame:CGRectMake(
 		0.0, 60.0, 245.0, 140.0)];
-	//[outlineScrollView setBorderType:CPLineBorder];
 	[outlineScrollView setAutoresizingMask:
 		CPViewHeightSizable | CPViewWidthSizable];
 	
@@ -149,14 +148,14 @@ MFMainViewDefaultSelection = MFMainViewPkgsinfoSelection;
 	outlineView = [[CPOutlineView alloc] initWithFrame:CGRectMakeZero()];
 	var col = [[CPTableColumn alloc] initWithIdentifier:@"id"];
 
-	/* This isn't 350.0 because it was causing the contents of the outline
-	 * view to move when the left or right arrow was pressed, even if the pane was
-	 * open as wide as it could be.
-	 */
-	[col setMinWidth:347.0];
+	[outlineView setColumnAutoresizingStyle:
+		CPTableViewFirstColumnOnlyAutoresizingStyle];
+	[col setWidth:[outlineView frame].size.width];
+	[col setDataView:[[MFOutlineDataView alloc] init]];
 	[outlineView addTableColumn:col];
 	[outlineView setBackgroundColor:[CPColor clearColor]];
 	[outlineView setHeaderView:nil];
+	[outlineView setAutoresizingMask:CPViewWidthSizable];
 		
 	[outlineScrollView setDocumentView:outlineView];
 	[[[splitView subviews] firstObject] addSubview:outlineScrollView];

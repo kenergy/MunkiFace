@@ -74,7 +74,8 @@
 			{
 				break;
 			}
-			[self sortManifestsByFilesystem];
+			arrangedObjects = [treeModel childWithName:@"manifests"];
+			[[self representedView] reloadItem:nil];
 			break;
 		case MFMainViewCatalogSelection:
 			arrangedObjects = [treeModel childWithName:@"catalogs"];
@@ -91,59 +92,12 @@
 
 
 
-- (void)sortManifestsByInheritance
-{
-	var childItems = [treeModel leafItemsAsNormalizedArray];
-	var newTree = [[MFTreeModel alloc] init];
-	[newTree setItemName:@"ROOT"];
-	for (var i = 0; i < [childItems count]; i++)
-	{
-		var child = [childItems objectAtIndex:i];
-		var obj = [child representedObject];
-		if ([obj respondsToSelector:@selector(objectForKey:)])
-		{
-			var newChild = [[MFTreeModel alloc] initWithObject:obj];
-			[newChild setItemName:[child itemNamespace]];
-			[newTree addChild:newChild];
-			var manifests = [obj objectForKey:@"included_manifests"];
-			for (var j = 0; i < [manifests count]; j++)
-			{
-				var manifest = [manifests objectAtIndex:j];
-				var manifestObj = [treeModel childWithNamespace:manifest];
-				var newManifest = [[MFTreeModel alloc] initWithObject:[manifestObj
-					representedObject]];
-				[newManifest setItemName:manifest];
-				[newChild addChild:newManifest];
-			}
-		}
-	}
-	console.log("Sorted by inheritance");
-	
-	arrangedObjects = newTree;
-	[[self representedView] reloadItem:nil];
-}
-
-
-
-
-- (void)sortManifestsByFilesystem
-{
-	arrangedObjects = [treeModel childWithName:@"manifests"];
-	[[self representedView] reloadItem:nil];
-	console.log("sorted by filesystem");
-}
-}
-
-
-
-
-
 - (void)outlineViewSelectionDidChange:(id)aNotification
 {
 	var item = [representedView itemAtRow:[representedView selectedRow]];
 	if ([item isLeaf])
 	{
-		console.log("Outline view selection changed to" + [item itemName]);
+		CPLog.debug("Outline view selection changed to" + [item itemName]);
 	}
 }
 
@@ -190,7 +144,7 @@
 - (id)outlineView:(CPOutlineView) anOutlineView
   objectValueForTableColumn:(CPTableColumn) tableColumn byItem:(id)item
 {
-	return nil == item ? [[self treeModel] itemName] : [item itemName];
+	return nil == item ? [self treeModel] : item;
 }
 
 

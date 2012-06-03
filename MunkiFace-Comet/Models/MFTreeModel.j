@@ -419,6 +419,16 @@
 
 
 
+/**
+	Proxy to itemName to make MFOutlineDataView happy.
+ */
+- (CPString)title
+{
+	return [self itemName];
+}
+
+
+
 
 /**
 	Returns a boolean value indicating that the receiver is a leaf node, meaning
