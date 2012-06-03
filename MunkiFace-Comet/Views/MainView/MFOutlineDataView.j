@@ -162,6 +162,7 @@
 		titleView = [CPTextField labelWithTitle:title];
 		[titleView setAutoresizingMask:CPViewWidthSizable
 			| CPViewMaxYMargin | CPViewMaxXMargin];
+		[titleView setLineBreakMode:CPLineBreakByTruncatingTail];
 		[self addSubview:titleView];
 	}
 	if (badgeView == nil)
@@ -268,9 +269,11 @@
 	if (badgeValue == 0 || badgeValue == nil)
 	{
 		[badgeView setFrameSize:CGSizeMake(0.0, 0.0)];
+		[titleView setToolTip:title];
 	}
 	else
 	{
+		[titleView setToolTip:nil];
 		[badgeView sizeToFit];
 	}
 	[self setFrame:[self frame]];
