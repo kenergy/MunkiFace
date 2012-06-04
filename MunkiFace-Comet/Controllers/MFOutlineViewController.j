@@ -29,9 +29,15 @@
 	@accessors MFTreeModel treeModel;
 	MFTreeModel arrangedObjects;
 	CPOutlineView representedView @accessors;
+	CPPredicate filterPredicate @accessors;
 	int dataCategory @accessors;
 	BOOL sortsManifestsByInheritance @accessors;
 }
+
+
+
+
+#pragma mark - Initialization
 
 
 
@@ -46,7 +52,6 @@
 	{
 		// setup the outline view's datasource and delegate
 		[self setRepresentedView:anOutlineView];
-		[self setSortsManifestsByInheritance:NO];
 		var collection = [MFPlistCollection sharedCollection];
 		[collection addObserver:self
 			forKeyPath:@"treeModel"
@@ -61,32 +66,117 @@
 
 
 
+#pragma mark -
+#pragma mark - Data category switching logic
+
+
+
+
+/**
+	When the data category changes from the user selecting an option in the
+	segmented control, this method will modify its arrangedObjects to reflect the
+	appropriate data set. The arrangedObjects property is being observed by the
+	CPOutlineView and should update automatically when the arrangedObjects value
+	changes.
+ */
 - (void)setDataCategory:(int)aCategory
 {
 	if (aCategory == nil)
 	{
 		aCategory = MFMainViewDefaultSelection;
 	}
-	switch(aCategory)
+	dataCategory = aCategory;
+	[self refreshDataInCurrentCategory];
+	[[self representedView] reloadItem:nil];
+	if (filterPredicate != nil)
+	{
+		[self setFilterPredicate:filterPredicate];
+	}
+}
+
+
+
+
+/**
+	Ensures that the proper data category is loaded into arrangedObjects.
+ */
+- (void)refreshDataInCurrentCategory
+{
+	switch([self dataCategory])
 	{
 		case MFMainViewManifestSelection:
-			if ([self dataCategory] == MFMainViewManifestSelection)
-			{
-				break;
-			}
 			arrangedObjects = [treeModel childWithName:@"manifests"];
-			[[self representedView] reloadItem:nil];
 			break;
 		case MFMainViewCatalogSelection:
 			arrangedObjects = [treeModel childWithName:@"catalogs"];
-			[[self representedView] reloadItem:nil];
 			break;
 		case MFMainViewPkgsinfoSelection:
 			arrangedObjects = [treeModel childWithName:@"pkgsinfo"];
-			[[self representedView] reloadItem:nil];
 			break;
 	}
-	dataCategory = aCategory;
+}
+
+
+
+
+#pragma mark -
+#pragma mark Handle CPPredicate searches
+
+
+
+
+/**
+	Creates a CPPredicate object from the given string and passes it to
+	setFilterPredicate:. If the given string is empty, this will call
+	removeFilterPredicate.
+ */
+- (void)setFilterString:(CPString)aString
+{
+	if ([aString isKindOfClass:[CPSearchField class]])
+	{
+		aString = [aString stringValue];
+	}
+	if (aString == nil || [aString length] == 0)
+	{
+		[self removeFilterPredicate];
+	}
+	else
+	{
+		var predicate = [CPPredicate
+			predicateWithFormat:@"itemName contains[cd] %@", aString];
+		[self setFilterPredicate:predicate];
+	}
+}
+
+
+
+
+/**
+	Accepts a CPPredicate objects and filters the arranged objects based on
+	matches.
+ */
+- (void)setFilterPredicate:(CPPredicate)aPredicate
+{
+	filterPredicate = aPredicate;
+	// we have to reset the data set to the unfiltered version before we can
+	// filter, otherwise backspacing a search would do nothing until the saerch
+	// field is empty
+	[self refreshDataInCurrentCategory];
+	arrangedObjects = [arrangedObjects subtreeFilteredByPredicate:filterPredicate];
+	[[self representedView] reloadItem:nil];
+}
+
+
+
+
+/**
+	Removes any filtering and allows the objects to be arranged in tree-mode
+	again.
+ */
+- (void)removeFilterPredicate
+{
+	filterPredicate = nil;
+	[self setDataCategory:[self dataCategory]];
 }
 
 
@@ -104,7 +194,12 @@
 
 
 
-/*-----------------------CPOutlineView DataSource Methods---------------------*/
+#pragma mark -
+#pragma mark CPOutlineView DataSource
+
+
+
+
 - (id)outlineView:(CPOutlineView) anOutlineView child:(CPInteger)index
   ofItem:(id)item
 {
@@ -150,6 +245,12 @@
 
 
 
+#pragma mark -
+#pragma mark - KVO logic
+
+
+
+
 - (void)observeValueForKeyPath:(CPString)aPath ofObject:(id)anObject
 	change:(id)changes context:(void)theChanges
 {
@@ -159,4 +260,9 @@
 		[self setDataCategory:[self dataCategory]];
 	}
 }
+
+
+
+
+#pragma mark -
 @end

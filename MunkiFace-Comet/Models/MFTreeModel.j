@@ -6,12 +6,22 @@
  */
 @implementation MFTreeModel : CPObject
 {
+	/** The object represented by this tree */
 	id representedObject @accessors;
+	/** The parent MFTreeModel */
 	MFTreeModel parentItem @accessors;
+	/** The array of MFTreeModels that are children of the receiver */
 	CPMutableArray childItems @accessors;
+	/** The `name` of the receiver */
 	CPString itemName @accessors;
 }
 
+
+
+
+#pragma mark - Initialization
+/** @name Initialization
+@{*/
 
 
 
@@ -62,16 +72,24 @@
 
 
 
+/** @}*/
+#pragma mark -
+#pragma mark - Accessing data
+/** @name Accessing data
+@{*/
 
-- (void)setItemName:(CPString)aName
+
+
+
+/**
+	Returns the object that is represented by the receiver. setRepresentedObject
+	is also available via accessors.
+	\returns id
+ */
+- (id)representedObject
 {
-	if (aName == "")
-	{
-		[CPException raise:YES reason:@"itemName cannot be empty for an MFTreeModel"];
-	}
-	itemName = aName;
+	return representedObject;
 }
-
 
 
 
@@ -93,104 +111,6 @@
 		parentNode = [parentNode parentItem];
 	}
 	return root;
-}
-
-
-
-
-/**
-	Adds a given object to the existing structure at the specified relative
-	namespace. This method will always add the object to the namespace starting at
-	the receiver. Therefore, you must always use a desired namespace that is
-	relative to the receiver's namespace.
-	\param anObject The object to wrap in an MFTreeModel object and add to the
-	structure.
-	\param aNamespace An array of path components representing the desired
-	namespace relative to the receiver.
- */
-- (void)addDescendant:(id)anObject atRelativeNamespace:(CPArray)aNamespace
-{
-	var child = nil;
-	// If there's only one component, it goes here
-	if ([aNamespace count] == 1)
-	{
-		child = [[MFTreeModel alloc] initWithObject:anObject];
-		[child setItemName:[aNamespace firstObject]];
-		[self addChild:child];
-		return;
-	}
-
-	// Make the range needed in order to knock off the first object of the
-	// namespace array.
-	// - is this the proper range?
-	var range = CPMakeRange(1, [aNamespace count] - 1);
-	
-	
-	// if the first object of the namespace matches the itemName of one of this
-	// object's children, we'll descend.
-	for (var i = 0; i < [self numberOfChildren]; i++)
-	{
-		child = [childItems objectAtIndex:i];
-		if ([child itemName] == [aNamespace firstObject])
-		{
-			return [child addDescendant:anObject atRelativeNamespace:
-				[aNamespace subarrayWithRange:range]];
-		}
-	}
-
-	// No child was found with the name, so we'll make one.
-	child = [[MFTreeModel alloc] init];
-	[child setItemName:[aNamespace firstObject]];
-	[self addChild:child];
-	[child addDescendant:anObject atRelativeNamespace:
-		[aNamespace subarrayWithRange:range]];
-}
-
-
-
-
-/**
-	Adds a given object to the existing structure at the specified namespace. This
-	method will always add the object to the namespace provided starting at the
-	root object.
-*/ 
-- (void)addDescendant:(id)anObject atNamespace:(CPString)aNamespace
-{
-	var root = [self rootItem];
-	if ([aNamespace hasPrefix:@"/"])
-	{
-		aNamespace = [aNamespace substringFromIndex:1];
-	}
-	var pathChunks = [aNamespace componentsSeparatedByString:@"/"];
-
-	// first we need to make sure that the desired path to the object exists and
-	// create it if it doesn't.
-	var potentialParent = root;
-	var currentName = nil;
-	var ephemeralChild = nil;
-	for (var i = 0; i < [pathChunks count]-1; i++)
-	{
-		currentName = [pathChunks objectAtIndex:i];
-		ephemeralChild = [potentialParent childWithName:currentName];
-		if (ephemeralChild == nil)
-		{
-			ephemeralChild = [[MFTreeModel alloc] init];
-			[ephemeralChild setItemName:currentName];
-			[potentialParent addChild:ephemeralChild];
-		}
-		potentialParent = ephemeralChild;
-	}
-
-	// The target parent should now be stored in potentialParent, so we can add
-	// the leaf item and its corresponding object.
-	var ephemeralLeaf = [[MFTreeModel alloc] initWithObject:anObject];
-	[ephemeralLeaf setItemName:[pathChunks lastObject]];
-	var potentialUpdate = [potentialParent childWithName:[pathChunks lastObject]];
-	if (potentialUpdate != nil)
-	{
-		[potentialParent removeChild:potentialUpdate];
-	}
-	[potentialParent addChild:ephemeralLeaf];
 }
 
 
@@ -303,37 +223,6 @@
 
 
 
-/**
-	Adds a child to the end of the childItems array and sets the new child's
-	parentItem to the receiver.
- */
-- (void)addChild:(MFTreeModel)aTreeModel
-{
-	if (childItems == nil)
-	{
-		childItems = [CPMutable array];
-	}
-	[aTreeModel setParentItem:self];
-	[[self childItems] addObject:aTreeModel];
-}
-
-
-
-
-/**
-	Removes the child item from the receiver.
- */
-- (void)removeChild:(MFTreeModel)aTreeModel
-{
-	if (childItems != nil)
-	{
-		[[self childItems] removeObject:aTreeModel];
-		[aTreeModel setParentItem:nil];
-	}
-}
-
-
-
 
 /**
 	Calculates the textual path or namespace to this object within the
@@ -419,6 +308,7 @@
 
 
 
+
 /**
 	Proxy to itemName to make MFOutlineDataView happy.
  */
@@ -456,6 +346,179 @@
 
 
 
+/** @} */
+#pragma mark -
+#pragma mark - Modifying data
+/** @name Modifying data
+@{*/
+
+
+
+
+- (void)setItemName:(CPString)aName
+{
+	if (aName == "")
+	{
+		[CPException raise:YES reason:@"itemName cannot be empty for an MFTreeModel"];
+	}
+	itemName = aName;
+}
+
+
+
+
+/** @}*/
+#pragma mark -
+#pragma mark - Adding child items
+/** @name Adding child items
+@{*/
+
+
+
+/**
+	Adds a given object to the existing structure at the specified relative
+	namespace. This method will always add the object to the namespace starting at
+	the receiver. Therefore, you must always use a desired namespace that is
+	relative to the receiver's namespace.
+	\param anObject The object to wrap in an MFTreeModel object and add to the
+	structure.
+	\param aNamespace An array of path components representing the desired
+	namespace relative to the receiver.
+ */
+- (void)addDescendant:(id)anObject atRelativeNamespace:(CPArray)aNamespace
+{
+	var child = nil;
+	// If there's only one component, it goes here
+	if ([aNamespace count] == 1)
+	{
+		child = [[MFTreeModel alloc] initWithObject:anObject];
+		[child setItemName:[aNamespace firstObject]];
+		[self addChild:child];
+		return;
+	}
+
+	// Make the range needed in order to knock off the first object of the
+	// namespace array.
+	// - is this the proper range?
+	var range = CPMakeRange(1, [aNamespace count] - 1);
+	
+	
+	// if the first object of the namespace matches the itemName of one of this
+	// object's children, we'll descend.
+	for (var i = 0; i < [self numberOfChildren]; i++)
+	{
+		child = [childItems objectAtIndex:i];
+		if ([child itemName] == [aNamespace firstObject])
+		{
+			return [child addDescendant:anObject atRelativeNamespace:
+				[aNamespace subarrayWithRange:range]];
+		}
+	}
+
+	// No child was found with the name, so we'll make one.
+	child = [[MFTreeModel alloc] init];
+	[child setItemName:[aNamespace firstObject]];
+	[self addChild:child];
+	[child addDescendant:anObject atRelativeNamespace:
+		[aNamespace subarrayWithRange:range]];
+}
+
+
+
+
+/**
+	Adds a given object to the existing structure at the specified namespace. This
+	method will always add the object to the namespace provided starting at the
+	root object.
+*/ 
+- (void)addDescendant:(id)anObject atNamespace:(CPString)aNamespace
+{
+	var root = [self rootItem];
+	if ([aNamespace hasPrefix:@"/"])
+	{
+		aNamespace = [aNamespace substringFromIndex:1];
+	}
+	var pathChunks = [aNamespace componentsSeparatedByString:@"/"];
+
+	// first we need to make sure that the desired path to the object exists and
+	// create it if it doesn't.
+	var potentialParent = root;
+	var currentName = nil;
+	var ephemeralChild = nil;
+	for (var i = 0; i < [pathChunks count]-1; i++)
+	{
+		currentName = [pathChunks objectAtIndex:i];
+		ephemeralChild = [potentialParent childWithName:currentName];
+		if (ephemeralChild == nil)
+		{
+			ephemeralChild = [[MFTreeModel alloc] init];
+			[ephemeralChild setItemName:currentName];
+			[potentialParent addChild:ephemeralChild];
+		}
+		potentialParent = ephemeralChild;
+	}
+
+	// The target parent should now be stored in potentialParent, so we can add
+	// the leaf item and its corresponding object.
+	var ephemeralLeaf = [[MFTreeModel alloc] initWithObject:anObject];
+	[ephemeralLeaf setItemName:[pathChunks lastObject]];
+	var potentialUpdate = [potentialParent childWithName:[pathChunks lastObject]];
+	if (potentialUpdate != nil)
+	{
+		[potentialParent removeChild:potentialUpdate];
+	}
+	[potentialParent addChild:ephemeralLeaf];
+}
+
+
+
+
+/**
+	Adds a child to the end of the childItems array and sets the new child's
+	parentItem to the receiver.
+ */
+- (void)addChild:(MFTreeModel)aTreeModel
+{
+	if (childItems == nil)
+	{
+		childItems = [CPMutable array];
+	}
+	[aTreeModel setParentItem:self];
+	[[self childItems] addObject:aTreeModel];
+}
+
+
+
+/** @} */
+#pragma mark -
+#pragma mark - Removing child items
+/** @name Removing child items
+@{ */
+
+
+
+/**
+	Removes the child item from the receiver.
+ */
+- (void)removeChild:(MFTreeModel)aTreeModel
+{
+	if (childItems != nil)
+	{
+		[[self childItems] removeObject:aTreeModel];
+		[aTreeModel setParentItem:nil];
+	}
+}
+
+
+
+/** @} */
+#pragma mark -
+#pragma mark - Sorting and filtering
+/** @name Sorting and Filtering
+@{ */
+
+
+
 /**
 	Recursively sorts the child items of the current MFTreeModel instance. If you
 	need to sort the entire tree, you should send this message like so:
@@ -483,4 +546,41 @@
 	}
 	context:nil];
 }
+
+
+
+
+/**
+	Returns a new MFTreeModel that is filtered based on the given CPPredicate
+	object. A copy of the receiver will always be the root of the returned tree,
+	whether it matches the predicate or not.
+	\returns MFTreeModel
+ */
+- (MFTreeModel)subtreeFilteredByPredicate:(CPPredicate)aPredicate
+{
+	var items = [self leafItemsAsNormalizedArray];
+	var newTree = [[MFTreeModel alloc] init];
+	[newTree setItemName:[self itemName]];
+	[newTree setRepresentedObject:[self representedObject]];
+
+	CPLog.debug("MFTreeModel - Evaluating predicate '%@' on '%@'", aPredicate,
+	[self itemName]);
+	for (var i = 0; i < [items count]; i++)
+	{
+		var item = [items objectAtIndex:i];
+		if ([aPredicate evaluateWithObject:item] == YES)
+		{
+			var relativeNamespace = [[item itemNamespace]
+			stringByReplacingOccurrencesOfString:[self itemNamespace] withString:@""];
+			[newTree addDescendant:[item representedObject]
+			atRelativeNamespace:[relativeNamespace componentsSeparatedByString:@"/"]];
+		}
+	}
+	return newTree;
+}
+
+
+
+/** @} */
+#pragma mark -
 @end

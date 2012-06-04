@@ -52,6 +52,8 @@
 		// setup the outline view's datasource and delegate
 		outlineViewController = [[MFOutlineViewController alloc]
 			initWithRepresentedView:outlineView];
+		[searchField setTarget:outlineViewController];
+		[searchField setAction:@selector(setFilterString:)];
 		
 		// set this instance as the target for the segmented control
 		[segmentedControl setTarget:self];
