@@ -38,7 +38,8 @@
 
 
 #pragma mark - Initialization
-
+/** @name Initialization
+@{*/
 
 
 
@@ -65,10 +66,11 @@
 
 
 
-
+/*@}*/
 #pragma mark -
 #pragma mark - Data category switching logic
-
+/** @name Data category switching logic
+@{*/
 
 
 
@@ -118,10 +120,11 @@
 
 
 
-
+/*@}*/
 #pragma mark -
 #pragma mark Handle CPPredicate searches
-
+/** @name Handling CPPredicate searches
+@}*/
 
 
 
@@ -182,10 +185,11 @@
 
 
 
-
+/*@}*/
 #pragma mark -
 #pragma mark CPOutlineView DataSource
-
+/** @name CPOutlineViewDataSource methods
+@{*/
 
 
 
@@ -233,10 +237,11 @@
 
 
 
-
+/*@}*/
 #pragma mark -
 #pragma mark - CPOutlineViewDelegate methods
-
+/** @name CPOutlineViewDelegate methods
+@{*/
 
 
 
@@ -251,10 +256,11 @@
 
 
 
-
+/*@}*/
 #pragma mark -
 #pragma mark - KVO logic
-
+/** @name KVO logic
+@{*/
 
 
 
@@ -270,6 +276,6 @@
 
 
 
-
+/*@}*/
 #pragma mark -
 @end
