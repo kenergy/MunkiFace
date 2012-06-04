@@ -25,7 +25,7 @@ Because MunkiFace is still in development, this is far from a complete list and 
 * **Support for Manifests, Catalogs, and PkgsInfo files** - MunkiFace will currently show you the contents of each file within each of the respective directories. It will eventually allow you to perform operations on pkgsinfo files such as drag and drop, renaming, and importing new installer items.
 
 [1]:https://github.com/buffalo/MunkiFace/wiki/Installation
-[2]:https://github.com/buffalo/MunkiFace/wiki/Software Requirements
+[2]:https://github.com/buffalo/MunkiFace/wiki/Software%20Requirements
 [3]:http://en.wikipedia.org/wiki/Comet_(programming)
 [4]:http://cappuccino.org
 [5]:http://code.google.com/p/munki
