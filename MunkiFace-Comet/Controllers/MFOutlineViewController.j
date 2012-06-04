@@ -164,6 +164,7 @@
 	[self refreshDataInCurrentCategory];
 	arrangedObjects = [arrangedObjects subtreeFilteredByPredicate:filterPredicate];
 	[[self representedView] reloadItem:nil];
+	[[self representedView] expandItem:nil expandChildren:YES];
 }
 
 
@@ -177,18 +178,6 @@
 {
 	filterPredicate = nil;
 	[self setDataCategory:[self dataCategory]];
-}
-
-
-
-
-- (void)outlineViewSelectionDidChange:(id)aNotification
-{
-	var item = [representedView itemAtRow:[representedView selectedRow]];
-	if ([item isLeaf])
-	{
-		CPLog.debug("Outline view selection changed to" + [item itemName]);
-	}
 }
 
 
@@ -240,6 +229,24 @@
   objectValueForTableColumn:(CPTableColumn) tableColumn byItem:(id)item
 {
 	return nil == item ? [self treeModel] : item;
+}
+
+
+
+
+#pragma mark -
+#pragma mark - CPOutlineViewDelegate methods
+
+
+
+
+- (void)outlineViewSelectionDidChange:(id)aNotification
+{
+	var item = [representedView itemAtRow:[representedView selectedRow]];
+	if ([item isLeaf])
+	{
+		CPLog.debug("Outline view selection changed to" + [item itemName]);
+	}
 }
 
 
