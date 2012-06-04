@@ -39,7 +39,7 @@ class Settings
 
 	public function allKeys()
 	{
-		$keys = array_keys($this->_data);
+		return array_keys($this->_data);
 	}
 
 
