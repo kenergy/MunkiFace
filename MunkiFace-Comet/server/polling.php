@@ -17,6 +17,20 @@ require_once(LIBRARY_PATH . "CFPropertyList/CFPropertyList.php");
 
 $settings = Settings::sharedSettings();
 $munkiRepo = $settings->objectForKey('munki_repo');
+$settingsKeys = $settings->allKeys();
+
+$plistExtensions = array();
+$excludeExtensions = array();
+
+if (in_array("plist_extensions", $settingsKeys))
+{
+	$plistExtensions = $settings->objectForKey("plist_extensions");
+}
+
+if (in_array("exclude_extensions", $settingsKeys))
+{
+	$excludeExtensions = $settings->objectForKey("exclude_extensions");
+}
 
 
 if (is_dir($munkiRepo) == FALSE)
@@ -31,6 +45,8 @@ $watchPath = new WatchPath($munkiRepo . "/*", $requestedModificationDate);
 $changes = $watchPath->watch();
 
 $output = array();
+$shouldCheckPlistExt = count($plistExtensions) != 0;
+$shouldCheckExcludeExt = count($excludeExtensions) != 0;
 foreach($changes as $key=>$change)
 {
 	$output[$key] = array();
@@ -38,6 +54,23 @@ foreach($changes as $key=>$change)
 	{
 		if (!is_dir($path))
 		{
+			$ext = substr(strrchr($path, '.'), 1);
+
+			// If there are any plist extensions set in the settings, and the current
+			// file's extensions doesn't match one of the values, we'll skip it.
+			if ($shouldCheckPlistExt && !in_array($ext, $plistExtensions))
+			{
+				continue;
+			}
+
+			// If there are any exclude extensions set in the settings, and the
+			// current file's extensions does match one of the values, we'll skip it.
+			if ($shouldCheckExcludeExt && in_array($ext, $excludeExtensions))
+			{
+				continue;
+			}
+
+
 			$newPath = str_replace($munkiRepo, "", $path);
 			try
 			{
