@@ -6,6 +6,7 @@ At the moment, it's a work in progress. What it will eventually become is a web 
 
 * [Installation][1]
 * [Software Requirements][2]
+* [Directives in Settings.plist][8]
 
 ## Get Involved
 If you'd like to help me test this application as it is developed, or if you'd like to help out with development and need a place to ask questions, please join the [MunkiFace mailing list][6]. Is this the first time you're hearing of [Munki][5]? [Join the Munki community][7] and learn the tricks of the trade!
@@ -31,3 +32,4 @@ Because MunkiFace is still in development, this is far from a complete list and 
 [5]:http://code.google.com/p/munki
 [6]:http://groups.google.com/group/munkiface
 [7]:http://groups.google.com/group/munkidev
+[8]:https://github.com/buffalo/MunkiFace/wiki/Directives-In-Settings.plist
