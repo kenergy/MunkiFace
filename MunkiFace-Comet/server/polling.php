@@ -21,6 +21,7 @@ $settingsKeys = $settings->allKeys();
 
 $plistExtensions = array();
 $excludeExtensions = array();
+$includeDirectories = array("catalogs", "manifests", "pkgsinfo");
 
 if (in_array("plist_extensions", $settingsKeys))
 {
@@ -55,6 +56,15 @@ foreach($changes as $key=>$change)
 		if (!is_dir($path))
 		{
 			$ext = substr(strrchr($path, '.'), 1);
+			$newPath = str_replace($munkiRepo . "/", "", $path);
+			$parentDir = strchr($newPath, '/', TRUE);
+
+			// Make sure the parent directory of the given path is valid by seeing if
+			// it's in the includeDirectories array.
+			if (!in_array($parentDir, $includeDirectories))
+			{
+				continue;
+			}
 
 			// If there are any plist extensions set in the settings, and the current
 			// file's extensions doesn't match one of the values, we'll skip it.
@@ -71,7 +81,6 @@ foreach($changes as $key=>$change)
 			}
 
 
-			$newPath = str_replace($munkiRepo, "", $path);
 			try
 			{
 				$file = new CFPropertyList($path);
