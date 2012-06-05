@@ -96,6 +96,7 @@
  */
 - (void)performPredicateSearch:(id)aSender
 {
+	[self closePopover];
 	[searchDelegate setFilterPredicate:[predicateEditor objectValue]];
 }
 
