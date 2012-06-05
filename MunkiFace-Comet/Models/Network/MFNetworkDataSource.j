@@ -27,6 +27,14 @@
 
 
 
+#pragma mark - DataSource Methods
+/** @name DataSource Methods
+Additional accessor here is `- (CPString)dataSourceURI`
+@{*/
+
+
+
+
 /**
 	Set the URI that will be used in all future requests made by calling
 	MFNetworkDataSource::reloadData. There is nothing wrong with using the same
@@ -41,8 +49,18 @@
 
 
 
+/*@}*/
+#pragma mark -
+#pragma mark - Starting Connections
+/** @name Starting Connections
+@{*/
+
+
+
+
 /**
-	Asks for new data at dataSourceURI and sets 'self' as the delegate.
+	Asks for new data at dataSourceURI and converts the response from the server
+	to a CPDictionary object before sending it through dataDidReload:.
 	In your implementation, you should expect the data in the dataDidReload
 	delegate method.
 	\see MFNEtworkDataSource::reloadRawData
@@ -56,10 +74,12 @@
 
 
 /**
-	Asks for new data at dataSourceURI and sets 'self' as the delegate.
-	In your implementation, you should expect the data in the dataDidReload
-	delegate method.
-	Unlike the MFNetworkData::reloadData method, this method will pass the
+	Asks for new data at dataSourceURI and attempts to parse the response from the
+	server using JSON.parse before sending the data object back through
+	MFNetworkDataSource::dataDidReload.
+	In your implementation, you should expect the data in the
+	MFNetworkDataSource::dataDidReload method.
+	Unlike the MFNetworkDataSource::reloadData method, this method will pass the
 	resulting JSON data through JSON.parse and then hand it over to the
 	dataDidReload method. If you want the resulting object to be a CPDictionary,
 	use MFNetworkDataSource::reloadData instead.
@@ -73,12 +93,26 @@
 
 
 
+/**
+	Used internally by this class - there's probably no reason to ever call this
+	manually.
+ */
 - (void)_reloadDataAndConvertToDictionary:(BOOL)aBool
 {
 	_dataSourceConnection = [CPURLConnection
 		connectionWithRequest:_dataSourceRequest delegate:self];
 	_convertDataToDictionary = aBool;
 }
+
+
+
+
+/*@}*/
+#pragma mark -
+#pragma mark - Getting Data From Connections
+/** @name Getting Data From Connections
+Subclasses should override these methods in order to receive data.
+@{*/
 
 
 
@@ -114,7 +148,11 @@
 
 
 
-#pragma mark CPConnection Delegate Methods
+/*@}*/
+#pragma mark -
+#pragma mark - CPConnection Delegate Methods
+/** @name CPConnectionDelegate methods
+@{*/
 
 
 - (void)connection:(CPURLConnection) connection didReceiveData:(CPString)someData
@@ -172,4 +210,10 @@
 {
 	alert(error);
 }
+
+
+
+
+/*@}*/
+#pragma mark -
 @end

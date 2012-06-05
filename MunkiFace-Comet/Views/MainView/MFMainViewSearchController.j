@@ -13,8 +13,16 @@
 @implementation MFMainViewSearchController : CPViewController
 {
 	CPSearchField searchField @accessors;
+	MFOutlineViewController searchDelegate @accessors;
 	MFAdvancedSearchPopoverController popoverController @accessors;
 }
+
+
+
+
+#pragma mark - View Handlers
+/** @name View Handlers
+@{*/
 
 
 
@@ -44,6 +52,15 @@
 	}
 	return self.view;
 }
+
+
+
+
+/*@}*/
+#pragma mark -
+#pragma mark - Initialization
+/** @name Initialization
+@{*/
 
 
 
@@ -78,6 +95,30 @@
 
 
 /**
+	Assigns the search delegate for the search field as well as the predicate
+	editor.
+ */
+- (void)setSearchDelegate:(id)aDelegate
+{
+	searchDelegate = aDelegate;
+	[searchField setTarget:searchDelegate];
+	[searchField setAction:@selector(setFilterString:)];
+	[popoverController setSearchDelegate:searchDelegate];
+}
+
+
+
+
+/*@}*/
+#pragma mark -
+#pragma mark - Control Delegates
+/**@name Control Delegates
+@{*/
+
+
+
+
+/**
 	A placeholder target that is called when an item from the search field's menu
 	is clicked.
  */
@@ -98,4 +139,10 @@
 {
 	[popoverController showPopoverForView:[self view]];
 }
+
+
+
+
+/*@}*/
+#pragma mark -
 @end

@@ -29,11 +29,11 @@
 
 /**
 	Creates a new instance of MFMainView if needed, connects the outline view to
-	its data source and delegate, and binds the adds that data source as a
-	listener to MFPlistCollection's "treeModel" keypath. It also sets itself as
-	the target for the segmented control changes so they can be registered and
-	appropriate actions taken. Those actions are decided in the
-	segmentedControlDidChange selector.
+	its data source and delegate, and adds that data source as a listener to
+	MFPlistCollection's "treeModel" keypath. It also sets itself as the target for
+	the segmented control changes so they can be registered and appropriate
+	actions taken. Those actions are decided in the segmentedControlDidChange
+	selector.
  */
 - (CPView)view
 {
@@ -52,8 +52,7 @@
 		// setup the outline view's datasource and delegate
 		outlineViewController = [[MFOutlineViewController alloc]
 			initWithRepresentedView:outlineView];
-		[searchField setTarget:outlineViewController];
-		[searchField setAction:@selector(setFilterString:)];
+		[searchController setSearchDelegate:outlineViewController];
 		
 		// set this instance as the target for the segmented control
 		[segmentedControl setTarget:self];
