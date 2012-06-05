@@ -568,7 +568,16 @@
 	for (var i = 0; i < [items count]; i++)
 	{
 		var item = [items objectAtIndex:i];
-		if ([aPredicate evaluateWithObject:item] == YES)
+		var matches = NO;
+		try
+		{
+			matches = [aPredicate evaluateWithObject:item];
+		}
+		catch (e)
+		{
+			matches = [aPredicate evaluateWithObject:[item representedObject]];
+		}
+		if (matches)
 		{
 			var relativeNamespace = [[item itemNamespace]
 			stringByReplacingOccurrencesOfString:[self itemNamespace] withString:@""];
