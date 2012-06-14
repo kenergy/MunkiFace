@@ -26,12 +26,13 @@
  */
 @implementation MFOutlineViewController : CPObject
 {
-	@accessors MFTreeModel treeModel;
+	MFTreeModel treeModel @accessors;
 	MFTreeModel arrangedObjects;
 	CPOutlineView representedView @accessors;
 	CPPredicate filterPredicate @accessors;
 	int dataCategory @accessors;
 	BOOL sortsManifestsByInheritance @accessors;
+	CPMutableArray _draggedItems;
 }
 
 
@@ -252,6 +253,61 @@
 	{
 		CPLog.debug("Outline view selection changed to" + [item itemName]);
 	}
+}
+
+
+
+
+- (BOOL)outlineView:(CPOutlineView)anOutlineView writeItems:(CPArray)theItems
+	toPasteboard:(CPPasteBoard)thePasteBoard
+{
+	if (dataCategory != MFMainViewPkgsinfoSelection)
+	{
+		return NO;
+	}
+
+	[thePasteBoard declareTypes:[MFOutlineViewPkgsInfoDragType] owner:self];
+	[thePasteBoard setData:[CPKeyedArchiver archivedDataWithRootObject:theItems]
+		forType:MFOutlineViewPkgsInfoDragType];
+	_draggedItems = theItems;
+	return YES;
+}
+
+
+
+
+- (CPDragOperation)outlineView:(CPOutlineView)anOutlineView validateDrop:(id
+	<CPDraggingInfo>) theInfo proposedItem:(id)theItem
+	proposedChildIndex:(int)theIndex
+{
+	if (theItem == nil || [theItem isLeaf] == NO)
+	{
+		[anOutlineView setDropItem:theItem dropChildIndex:theIndex];
+		return CPDragOperationMove;
+	}
+	return CPDragOperationNone;
+}
+
+
+
+
+- (BOOL)outlineView:(CPOutlineView)anOutlineView acceptDrop:(id
+	<CPDraggingInfo>)theInfo item:(id)theItem childIndex:(int)theIndex
+{
+	for(var i = 0; i < [_draggedItems count]; i++)
+	{
+		var item = [_draggedItems objectAtIndex:i];
+		if (theItem == nil)
+		{
+			[item setParentItem:arrangedObjects];
+		}
+		else
+		{
+			[item setParentItem:theItem];
+		}
+	}
+	[arrangedObjects sortChildItems];
+	[representedView reloadData];
 }
 
 

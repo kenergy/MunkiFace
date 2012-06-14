@@ -1,3 +1,9 @@
+
+
+MFOutlineViewPkgsInfoDragType = @"MFOutlineViewPkgsInfoDragType";
+
+
+
 /**
 	Represents the Manifest category view
 	\var  MFMainViewManifestSelection
@@ -156,6 +162,8 @@ MFMainViewDefaultSelection = MFMainViewPkgsinfoSelection;
 	[outlineView setBackgroundColor:[CPColor clearColor]];
 	[outlineView setHeaderView:nil];
 	[outlineView setAutoresizingMask:CPViewWidthSizable];
+
+	[outlineView registerForDraggedTypes:[MFOutlineViewPkgsInfoDragType]];
 		
 	[outlineScrollView setDocumentView:outlineView];
 	[[[splitView subviews] firstObject] addSubview:outlineScrollView];

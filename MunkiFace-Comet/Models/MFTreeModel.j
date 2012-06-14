@@ -19,6 +19,17 @@
 
 
 
+- (void)encodeWithCoder:(CPCoder)coder
+{
+	[coder encodeObject:representedObject forKey:@"representedObject"];
+//	[coder encodeObject:parentItem forKey:@"parentItem"];
+	[coder encodeObject:childItems forKey:@"childItems"];
+	[coder encodeObject:itemName forKey:@"itemName"];
+}
+
+
+
+
 #pragma mark - Initialization
 /** @name Initialization
 @{*/
@@ -32,6 +43,19 @@
 	{
 		childItems = [CPMutableArray array];
 	}
+	return self;
+}
+
+
+
+
+- (id)initWithCoder:(CPCoder)coder
+{
+	[self init];
+	[self setRepresentedObject:[coder decodeObjectForKey:@"representedObject"]];
+//	[self setParentItem:[coder decodeObjectForKey:@"parentItem"]];
+	[self setChildItems:[coder decodeObjectForKey:@"childItems"]];
+	[self setItemName:[coder decodeObjectForKey:@"itemName"]];
 	return self;
 }
 
@@ -355,6 +379,30 @@
 
 
 
+- (void)setParentItem:(MFTreeModel)newParent
+{
+	if (newParent == nil)
+	{
+		// Can't really do that since an object with a nil parent would represent
+		// the root node
+		return;
+	}
+
+	// Avoid any attempts to add the receiver to itself or to its existing parent
+	if (newParent != self && parentItem != newParent)
+	{	
+		if (parentItem != nil)
+		{
+			[parentItem removeChild:self];
+		}
+		parentItem = newParent;
+		[[parentItem childItems] addObject:self];
+	}
+}
+
+
+
+
 - (void)setItemName:(CPString)aName
 {
 	if (aName == "")
@@ -481,10 +529,9 @@
 {
 	if (childItems == nil)
 	{
-		childItems = [CPMutable array];
+		childItems = [CPMutableArray array];
 	}
 	[aTreeModel setParentItem:self];
-	[[self childItems] addObject:aTreeModel];
 }
 
 
