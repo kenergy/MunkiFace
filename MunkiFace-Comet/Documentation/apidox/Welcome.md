@@ -1,0 +1,5 @@
+\mainpage Welcome to the MunkiFace API
+
+MunkiFace is designed to interact with state changes on the server. So when MunkiFace is first loaded, it asks the server for anything that's changed since we last checked. Since we've never checked before, we get everything. From there on out, if anything on the filesystem changes, MunkiFace is informed by its server component automatically.
+
+It might sounds a bit scary having megabytes of repository metadata loaded into memory at once, but MFTreeModel makes it very easy to work with subtrees within the structure. For example, when the PkgsInfo option is selected in the segmented control, the MFOutlineViewController will only perform searches and support drag and drop operations within the pkgsinfo subtree instead of attempting to blindly work with the entire data structure.

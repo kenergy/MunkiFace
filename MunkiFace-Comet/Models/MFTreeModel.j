@@ -1,8 +1,41 @@
 /**
-	The MFTreeModel takes a CPDictionary and turns it into a structure that is a
-	little more akin to a linked list. This makes it a little easier to plug the
-	data into something like an outline view.
+MFTreeModel behaves a bit link a doubly linked list only it can have multiple
+children, hence a 'tree model'.
+
+The tree always starts with an object with title "ROOT" which has no represented
+object. ROOT has three children; **pkgsinfo**, **manifests**, and **catalogs**.
+Each node within the tree links to its parent via its parentItem method and the
+ROOT object via the rootItem method. The tree can easily be reorganized using
+the setParent method on any node other than ROOT.
+
+---
+
+##Searching
+MFTreeModel supports predicate searching. Simply pass a predicate to the subtreeFilteredByPredicate method on any node, and you'll receive a subtree of that node matching the predicate.
 	\ingroup client-models
+
+##About Namespaces
+Namespaces in MFTreeModel are intended to represent a textual path to the
+object. Since the server provides the data payload which feeds into the tree by
+scanning a directory structure, it makes sense that the namespace is intended to
+represent the file on the filesystem.
+
+In addition, if a new object is added to the filesystem, the server will let us
+know about it and will include its directory path. That path is generally used
+by the ROOT object to figure out where it should insert the object into the
+tree. Likewise, if a file is deleted, it is quickly removed from the tree using
+its namespace which avoids any temptation to iterate over the entire tree to
+find the object.
+
+## Accessors
+Objective-J accessors aren't parsed very nicely by Doxygen, so here's a list of
+accessors available on any MFTreeModel object.
+- **representedObject** The data (usually a dictionary) represented by the node.
+- **parentItem** a quick way to read and set the parent node.
+- **childItems** provides direct access to the array of child nodes for the
+	receiver.
+- **itemName** the title that is to be used when representing the object in the
+	outlineview or other UI components.
  */
 @implementation MFTreeModel : CPObject
 {
