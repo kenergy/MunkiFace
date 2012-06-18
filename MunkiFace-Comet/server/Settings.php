@@ -45,6 +45,14 @@ class Settings
 
 
 
+	public function containsKey($aKey)
+	{
+		return in_array($aKey, $this->allKeys());
+	}
+
+
+
+
 	public function objectForKey($aKey)
 	{
 		if (!isset($this->_data[$aKey]))

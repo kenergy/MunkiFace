@@ -10,10 +10,8 @@
 	repo. If you pass the _GET variable "fromNow", it will only return data when
 	something is modified, added or deleted 'from now' on.
 */
-define("LIBRARY_PATH", dirname(__FILE__) . "/Library/");
-require_once(dirname(__FILE__) . "/Settings.php");
+require_once(dirname(__FILE__) . "/bootstrap.php");
 require_once(LIBRARY_PATH . "WatchPath.php");
-require_once(LIBRARY_PATH . "CFPropertyList/CFPropertyList.php");
 
 $settings = Settings::sharedSettings();
 $munkiRepo = $settings->objectForKey('munki_repo');
@@ -53,34 +51,33 @@ foreach($changes as $key=>$change)
 	$output[$key] = array();
 	foreach($change as $path=>$modificationDate)
 	{
+		$ext = substr(strrchr($path, '.'), 1);
+		$newPath = str_replace($munkiRepo . "/", "", $path);
+		$parentDir = strchr($newPath, '/', TRUE);
+
+		// Make sure the parent directory of the given path is valid by seeing if
+		// it's in the includeDirectories array.
+		if (!in_array($parentDir, $includeDirectories))
+		{
+			continue;
+		}
+
+		// If there are any plist extensions set in the settings, and the current
+		// file's extensions doesn't match one of the values, we'll skip it.
+		if ($shouldCheckPlistExt && !in_array($ext, $plistExtensions))
+		{
+			continue;
+		}
+
+		// If there are any exclude extensions set in the settings, and the
+		// current file's extensions does match one of the values, we'll skip it.
+		if ($shouldCheckExcludeExt && in_array($ext, $excludeExtensions))
+		{
+			continue;
+		}
+
 		if (!is_dir($path))
 		{
-			$ext = substr(strrchr($path, '.'), 1);
-			$newPath = str_replace($munkiRepo . "/", "", $path);
-			$parentDir = strchr($newPath, '/', TRUE);
-
-			// Make sure the parent directory of the given path is valid by seeing if
-			// it's in the includeDirectories array.
-			if (!in_array($parentDir, $includeDirectories))
-			{
-				continue;
-			}
-
-			// If there are any plist extensions set in the settings, and the current
-			// file's extensions doesn't match one of the values, we'll skip it.
-			if ($shouldCheckPlistExt && !in_array($ext, $plistExtensions))
-			{
-				continue;
-			}
-
-			// If there are any exclude extensions set in the settings, and the
-			// current file's extensions does match one of the values, we'll skip it.
-			if ($shouldCheckExcludeExt && in_array($ext, $excludeExtensions))
-			{
-				continue;
-			}
-
-
 			try
 			{
 				$file = new CFPropertyList($path);
@@ -90,6 +87,10 @@ foreach($changes as $key=>$change)
 			{
 				$output[$key][$newPath] = "(not a plist)";
 			}
+		}
+		else if (count(scandir($path)) === 2)
+		{
+			$output[$key][$newPath] = null;
 		}
 	}
 }

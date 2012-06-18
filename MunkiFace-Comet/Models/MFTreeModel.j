@@ -384,7 +384,7 @@ accessors available on any MFTreeModel object.
  */
 - (BOOL)isLeaf
 {
-	return [self numberOfChildren] == 0;
+	return [self numberOfChildren] == 0 && representedObject != nil;
 }
 
 
@@ -440,7 +440,7 @@ accessors available on any MFTreeModel object.
 {
 	if (aName == "")
 	{
-		[CPException raise:YES reason:@"itemName cannot be empty for an MFTreeModel"];
+		aName = @"<an item name>";
 	}
 	itemName = aName;
 }
@@ -469,18 +469,25 @@ accessors available on any MFTreeModel object.
 - (void)addDescendant:(id)anObject atRelativeNamespace:(CPArray)aNamespace
 {
 	var child = nil;
+	var currentName = [aNamespace firstObject];
+	if (currentName == "")
+	{
+		// we're probably at the end of the namespace and there was a trailing "/",
+		// so we don't actually want to create a new object here.
+		return;
+	}
+
 	// If there's only one component, it goes here
 	if ([aNamespace count] == 1)
 	{
 		child = [[MFTreeModel alloc] initWithObject:anObject];
-		[child setItemName:[aNamespace firstObject]];
+		[child setItemName:currentName];
 		[self addChild:child];
 		return;
 	}
 
 	// Make the range needed in order to knock off the first object of the
 	// namespace array.
-	// - is this the proper range?
 	var range = CPMakeRange(1, [aNamespace count] - 1);
 	
 	
@@ -489,7 +496,7 @@ accessors available on any MFTreeModel object.
 	for (var i = 0; i < [self numberOfChildren]; i++)
 	{
 		child = [childItems objectAtIndex:i];
-		if ([child itemName] == [aNamespace firstObject])
+		if ([child itemName] == currentName)
 		{
 			return [child addDescendant:anObject atRelativeNamespace:
 				[aNamespace subarrayWithRange:range]];
@@ -498,7 +505,7 @@ accessors available on any MFTreeModel object.
 
 	// No child was found with the name, so we'll make one.
 	child = [[MFTreeModel alloc] init];
-	[child setItemName:[aNamespace firstObject]];
+	[child setItemName:currentName];
 	[self addChild:child];
 	[child addDescendant:anObject atRelativeNamespace:
 		[aNamespace subarrayWithRange:range]];
@@ -529,6 +536,10 @@ accessors available on any MFTreeModel object.
 	for (var i = 0; i < [pathChunks count]-1; i++)
 	{
 		currentName = [pathChunks objectAtIndex:i];
+		if (currentName == "")
+		{
+			continue;
+		}
 		ephemeralChild = [potentialParent childWithName:currentName];
 		if (ephemeralChild == nil)
 		{

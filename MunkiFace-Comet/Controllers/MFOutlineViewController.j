@@ -258,6 +258,10 @@
 
 
 
+/**
+	Determines if the item being dragged is in the pkgsinfo tree, and allows only
+	those items to be dragged and copied to the pasteboard.
+ */
 - (BOOL)outlineView:(CPOutlineView)anOutlineView writeItems:(CPArray)theItems
 	toPasteboard:(CPPasteBoard)thePasteBoard
 {
@@ -276,6 +280,10 @@
 
 
 
+/**
+	Determines if the mouse is hovering over a valid drop point for the item being
+	dragged. Currently this is simply disallowing leaf nodes as drop points.
+ */
 - (CPDragOperation)outlineView:(CPOutlineView)anOutlineView validateDrop:(id
 	<CPDraggingInfo>) theInfo proposedItem:(id)theItem
 	proposedChildIndex:(int)theIndex
@@ -291,6 +299,11 @@
 
 
 
+/**
+	Contacts the server to make sure it's possible to move the item, and if so,
+	moves the item to the desired location and reloads the representedView
+	(outlineview).
+ */
 - (BOOL)outlineView:(CPOutlineView)anOutlineView acceptDrop:(id
 	<CPDraggingInfo>)theInfo item:(id)theItem childIndex:(int)theIndex
 {

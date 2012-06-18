@@ -16,6 +16,7 @@
 	CPTextField badgeView;
 	CPColor badgeBackgroundDefault;
 	CPColor badgeBackgroundSelected;
+	BOOL isLeaf;
 }
 
 
@@ -126,7 +127,7 @@
 	)];
 
 	var badgeWidth = [badgeView frame].size.width;
-	if (badgeValue != 0)
+	if (isLeaf == NO)
 	{
 		[badgeView sizeToFit];
 		badgeWidth = [badgeView frame].size.width;
@@ -190,6 +191,7 @@
 	if ([anObject respondsToSelector:@selector(title)] && [anObject
 	respondsToSelector:@selector(numberOfChildren)])
 	{
+		isLeaf = [anObject isLeaf];
 		[self setTitle:[anObject title]];
 		[self setBadgeValue:[anObject numberOfChildren]];
 	}
@@ -266,7 +268,7 @@
 {
 	badgeValue = aValue;
 	[badgeView setObjectValue:[CPString stringWithFormat:@"%d", badgeValue]];
-	if (badgeValue == 0 || badgeValue == nil)
+	if (isLeaf == YES && (badgeValue == 0 || badgeValue == nil))
 	{
 		[badgeView setFrameSize:CGSizeMake(0.0, 0.0)];
 		[titleView setToolTip:title];

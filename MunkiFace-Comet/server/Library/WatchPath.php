@@ -15,6 +15,7 @@ function glob_recursive($pattern, $flags = 0)
 
 
 
+
 class WatchPath
 {
 	protected $path;
