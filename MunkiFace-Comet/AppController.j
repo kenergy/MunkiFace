@@ -18,7 +18,7 @@
  */
 @implementation AppController : CPObject
 {
-	MainViewController mainViewController @accessors;
+	MFMainViewController mainViewController @accessors;
 }
 
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
@@ -30,8 +30,7 @@
 	
 	[self setMainViewController: [[MFMainViewController alloc] init]];
 	[mainViewController setContentViewController:
-		[[MFEmptyViewController alloc] init]
-	];
+		[[MFLoadingViewController alloc] init]];
 
 	var mainView = [mainViewController view];
 	[mainView setFrame:[contentView bounds]];
@@ -57,12 +56,37 @@
 	[logoWindow setHasShadow:NO];
 	[logoWindow setIgnoresMouseEvents:YES];
 	[logoWindow setBackgroundColor: [CPColor clearColor]];
-	[logoWindow setAlphaValue: 1.0];
 	[logoWindow orderFront:self];
 	
 
 	// Uncomment the following line to turn on the standard menu bar.
 	//[CPMenu setMenuBarVisible:YES];
+
+	[[CPNotificationCenter defaultCenter] addObserver:self
+		selector:@selector(outlineDataCategoryDidChange:)
+		name:OutlineViewDataCategoryDidChangeNotification object:nil];
+}
+
+
+
+
+- (void)outlineDataCategoryDidChange:(CPNotification)aNotification
+{
+	var outlineViewController = [aNotification object];
+	var dataCategory = [outlineViewController dataCategory];
+	switch (dataCategory)
+	{
+		case MFMainViewManifestSelection:
+			[mainViewController setContentViewController:
+				[[MFManifestViewController alloc] init]];
+			break;
+
+		case MFMainViewCatalogSelection:
+		case MFMainViewPkgsinfoSelection:
+		default:
+			[mainViewController setContentViewController:
+				[[MFEmptyViewController alloc] init]];
+	}
 }
 
 @end

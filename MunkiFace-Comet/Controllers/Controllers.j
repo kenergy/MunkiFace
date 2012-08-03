@@ -5,5 +5,6 @@
 	@{
  */
 @import "MFOutlineViewController.j"
+@import "MFLoadingViewController.j"
 @import "MFManifestViewController.j"
 /** @} */
