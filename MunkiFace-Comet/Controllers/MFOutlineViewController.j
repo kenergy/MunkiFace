@@ -24,6 +24,16 @@
 
 	\ingroup client-models
  */
+
+#pragma mark - Notification constants
+/** @name Notification Constants
+@{*/
+OutlineViewDataCategoryDidChangeNotification = @"OutlineViewDataCategoryDidChangeNotification";
+OutlineViewSelectionDidChangeNotification = @"OutlineViewDataSelectionDidChangeNotification";
+/**@}*/
+#pragma mark -
+
+
 @implementation MFOutlineViewController : CPObject
 {
 	MFTreeModel treeModel @accessors;
@@ -31,10 +41,10 @@
 	CPOutlineView representedView @accessors;
 	CPPredicate filterPredicate @accessors;
 	int dataCategory @accessors;
+	MFTreeModel selectedObject @accessors;
 	BOOL sortsManifestsByInheritance @accessors;
 	CPMutableArray _draggedItems;
 }
-
 
 
 
@@ -81,6 +91,9 @@
 	appropriate data set. The arrangedObjects property is being observed by the
 	CPOutlineView and should update automatically when the arrangedObjects value
 	changes.
+
+	When the data category changes, this will send the
+	OutlineViewDataCategoryDidChangeNotification
  */
 - (void)setDataCategory:(int)aCategory
 {
@@ -95,6 +108,8 @@
 	{
 		[self setFilterPredicate:filterPredicate];
 	}
+	[[CPNotificationCenter defaultCenter] postNotificationName:
+		OutlineViewDataCategoryDidChangeNotification object:self];
 }
 
 
@@ -246,13 +261,16 @@
 
 
 
+/**
+	This is called automatically when the selection changes so that it can fire
+	off an OutlineViewSelectionDidChangeNotification.
+ */
 - (void)outlineViewSelectionDidChange:(id)aNotification
 {
 	var item = [representedView itemAtRow:[representedView selectedRow]];
-	if ([item isLeaf])
-	{
-		CPLog.debug("Outline view selection changed to" + [item itemName]);
-	}
+	[self setSelectedObject:item];
+	[[CPNotificationCenter defaultCenter] postNotificationName:
+		OutlineViewSelectionDidChangeNotification object:self];
 }
 
 
