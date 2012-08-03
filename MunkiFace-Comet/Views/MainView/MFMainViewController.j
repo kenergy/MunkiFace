@@ -70,10 +70,21 @@
  */
 - (void)setContentViewController:(CPViewController)aController
 {
-	contentViewController = aController;
+	if ([contentViewController isEqual:aController])
+	{
+		// We'll just return here since we don't want to add the overhead of
+		// removing and then re-adding the exact same controller's view.
+		return;
+	}
+
 	var splitView = [[[self view] subviews] firstObject];
-	[splitView addSubview:[aController view]];
-	[[[splitView subviews] objectAtIndex:1] removeFromSuperview];
+	var mainView = [[splitView subviews] lastObject];
+	var contentView = [aController view];
+	[contentView setFrame:[mainView frame]];
+	[splitView addSubview:contentView];
+	[mainView removeFromSuperview];
+	[self.contentViewController release];
+	self.contentViewController = aController;
 }
 
 
