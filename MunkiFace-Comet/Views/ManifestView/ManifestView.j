@@ -4,8 +4,6 @@
 	\ingroup client-app
 	@{
  */
-@import "ManifestView/ManifestView.j"
-@import "MFEmptyViewController.j"
-@import "MainView/MainView.j"
+@import "MFManifestView.j"
 
 /** @} */
