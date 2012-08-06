@@ -78,7 +78,7 @@
 			0, 50, [right bounds].size.width, [right bounds].size.height - 50)];
 		[optionsTable setUsesAlternatingRowBackgroundColors:YES];
 		[optionsTable setAutoresizingMask: CPViewWidthSizable |
-		CPViewHeightSizable];
+			CPViewHeightSizable];
 
 		[left addSubview: conditionsLabel];
 		[left addSubview: conditionsEditor];
