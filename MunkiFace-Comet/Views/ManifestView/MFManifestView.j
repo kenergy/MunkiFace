@@ -4,6 +4,7 @@
 	CPPopupButton conditionOptionsPopUp;
 	CPView selectedManifestLabel;
 	LPMultiLineTextField conditionsEditor;
+	CPTableView optionsTable;
 }
 
 - (id)initWithFrame:(CPRect)aRect
@@ -61,6 +62,8 @@
 			@"Managed Updates",
 			@"Optional Installs"]];
 
+
+		// Create the conditions text editor
 		conditionsEditor = [[LPMultiLineTextField alloc] initWithFrame:CGRectMake(
 			0, 50, [left bounds].size.width, [left bounds].size.height-50)];
 		[conditionsEditor setAutoresizingMask:
@@ -69,11 +72,20 @@
 		[conditionsEditor setBezeled:YES];
 		[conditionsEditor setEditable:YES];
 
+
+		// Create the options table and controls
+		optionsTable = [[CPTableView alloc] initWithFrame:CGRectMake(
+			0, 50, [right bounds].size.width, [right bounds].size.height - 50)];
+		[optionsTable setUsesAlternatingRowBackgroundColors:YES];
+		[optionsTable setAutoresizingMask: CPViewWidthSizable |
+		CPViewHeightSizable];
+
 		[left addSubview: conditionsLabel];
 		[left addSubview: conditionsEditor];
 		[left addSubview: conditionsPopUp];
 		[right addSubview: conditionsOptionsLabel];
 		[right addSubview: conditionsOptionsPopUp];
+		[right addSubview: optionsTable];
 
 
 		[self addSubview: selectedManifestLabel];
