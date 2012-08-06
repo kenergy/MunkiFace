@@ -3,6 +3,7 @@
 	CPPopupButton conditionsPopUp;
 	CPPopupButton conditionOptionsPopUp;
 	CPView selectedManifestLabel;
+	LPMultiLineTextField conditionsEditor;
 }
 
 - (id)initWithFrame:(CPRect)aRect
@@ -26,10 +27,10 @@
 		
 		// Next, we'll make the left and right panes
 		var left = [[CPView alloc] initWithFrame:CGRectMake(
-			5, 50, aRect.size.width/2-5, aRect.size.height-50)];
+			5, 50, aRect.size.width/2 - 7.5, aRect.size.height-55)];
 		var right = [[CPView alloc] initWithFrame:CGRectMake(
-			aRect.size.width - (aRect.size.width/2-5), 50, aRect.size.width/2-5,
-			aRect.size.height-50)];
+			aRect.size.width - (aRect.size.width/2 - 7.5), 50, aRect.size.width/2 - 7.5,
+			aRect.size.height-55)];
 
 		[left setAutoresizingMask:
 			CPViewMaxXMargin | CPViewWidthSizable | CPViewHeightSizable];
@@ -60,14 +61,24 @@
 			@"Managed Updates",
 			@"Optional Installs"]];
 
+		conditionsEditor = [[LPMultiLineTextField alloc] initWithFrame:CGRectMake(
+			0, 50, [left bounds].size.width, [left bounds].size.height-50)];
+		[conditionsEditor setAutoresizingMask:
+			CPViewWidthSizable | CPViewHeightSizable];
+		[conditionsEditor setStringValue:@"This is some\nmulti-line text"];
+		[conditionsEditor setBezeled:YES];
+		[conditionsEditor setEditable:YES];
+
 		[left addSubview: conditionsLabel];
-		[right addSubview: conditionsOptionsLabel];
+		[left addSubview: conditionsEditor];
 		[left addSubview: conditionsPopUp];
+		[right addSubview: conditionsOptionsLabel];
 		[right addSubview: conditionsOptionsPopUp];
 
+
+		[self addSubview: selectedManifestLabel];
 		[self addSubview: left];
 		[self addSubview: right];
-		[self addSubview: selectedManifestLabel];
 	}
 	return self;
 }
