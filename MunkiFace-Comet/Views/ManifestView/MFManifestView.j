@@ -5,6 +5,8 @@
 	CPView selectedManifestLabel;
 	LPMultiLineTextField conditionsEditor;
 	CPTableView optionsTable;
+	CPButton optionsTableAdd;
+	CPButton optionsTableRemove;
 }
 
 - (id)initWithFrame:(CPRect)aRect
@@ -75,10 +77,24 @@
 
 		// Create the options table and controls
 		optionsTable = [[CPTableView alloc] initWithFrame:CGRectMake(
-			0, 50, [right bounds].size.width, [right bounds].size.height - 50)];
+			0, 50, [right bounds].size.width, [right bounds].size.height - 80)];
 		[optionsTable setUsesAlternatingRowBackgroundColors:YES];
 		[optionsTable setAutoresizingMask: CPViewWidthSizable |
 			CPViewHeightSizable];
+
+		optionsTableAdd = [[CPButton alloc] initWithFrame:CGRectMake(
+			0, [right bounds].size.height-24, 24, 24)];
+		[optionsTableAdd setImage:[CPImage imageNamed:MFImageNameAddTemplate]];
+		[optionsTableAdd setAutoresizingMask: CPViewMinYMargin | CPViewMaxXMargin];
+		[optionsTableAdd sizeToFit];
+		
+		optionsTableRemove = [[CPButton alloc] initWithFrame:CGRectMake(
+			[optionsTableAdd bounds].size.width+5, [right bounds].size.height-24, 24, 24)];
+		[optionsTableRemove setImage:
+			[CPImage imageNamed:MFImageNameRemoveTemplate]];
+		[optionsTableRemove setAutoresizingMask:
+			CPViewMinYMargin | CPViewMaxXMargin];
+		[optionsTableRemove sizeToFit];
 
 		[left addSubview: conditionsLabel];
 		[left addSubview: conditionsEditor];
@@ -86,6 +102,8 @@
 		[right addSubview: conditionsOptionsLabel];
 		[right addSubview: conditionsOptionsPopUp];
 		[right addSubview: optionsTable];
+		[right addSubview: optionsTableAdd];
+		[right addSubview: optionsTableRemove];
 
 
 		[self addSubview: selectedManifestLabel];

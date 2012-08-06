@@ -12,6 +12,9 @@
 @import "Controllers/Controllers.j"
 
 
+MFImageNameAddTemplate = @"MFImageNameAddTemplate";
+MFImageNameRemoveTemplate = @"MFImageNameRemoveTemplate";
+
 /**
 	The primary application controller for the client app.
 	\ingroup client-app
@@ -23,6 +26,19 @@
 
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
 {
+
+	// Set up a few image names
+	var add = [[CPImage alloc]
+		initWithContentsOfFile:@"Resources/MFImageNameAddTemplate.png"
+		size:CGSizeMake(11, 12)];
+	var remove = [[CPImage alloc]
+		initWithContentsOfFile:@"Resources/MFImageNameRemoveTemplate.png"
+		size:CGSizeMake(11, 4)];
+	[add setName:MFImageNameAddTemplate];
+	[remove setName:MFImageNameRemoveTemplate];
+	[add release];
+	[remove release];
+
 	var theWindow = [[CPWindow alloc] initWithContentRect:CGRectMakeZero() styleMask:CPBorderlessBridgeWindowMask],
 		contentView = [theWindow contentView];
 	
